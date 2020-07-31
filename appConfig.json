@@ -1,0 +1,8 @@
+{    
+    "mailconfig" :{
+        "service": "gmail",
+        "user": "aW5mby5mYW5kYXNodGljQGdtYWlsLmNvbQ==",
+        "pass": "JSVmJUgqdDJQVzZS"
+    },
+    "Pagination":10
+}
