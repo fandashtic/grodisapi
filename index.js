@@ -1,10 +1,10 @@
 const express = require('express');
 const bodyParser = require('body-parser');
 const cors = require('cors');
-
 const app = express();
 app.use(bodyParser.json());
 app.use(cors());
+const PORT = 3001;
 
 const { EnCode } = require('./src/Shared/Util');
 const { SendEmail } = require('./src/Shared/SendEmail');
@@ -55,7 +55,7 @@ const { AddFavoriteAPI, UpdateFavoriteAPI, DeleteFavoriteAPI, GetFavoriteAPI, Ge
 
 //#region Manufacture API
 
-app.get('/AddManufacture', async (request, response) => {
+app.post('/AddManufacture', async (request, response) => {
   if (request.body !== null && request.body !== undefined && request.body.inputmodel != null && request.body.inputmodel !== undefined) {
     AddManufactureAPI(request.body.inputmodel, (data, err) => {
       ResponseAPI(response, data, err);
@@ -65,7 +65,7 @@ app.get('/AddManufacture', async (request, response) => {
   }
 });
 
-app.get('/UpdateManufacture', async (request, response) => {
+app.post('/UpdateManufacture', async (request, response) => {
   if (request.body !== null && request.body !== undefined && request.body.inputmodel != null && request.body.inputmodel !== undefined && request.body.id !== undefined) {
     UpdateManufactureAPI(request.body.id, request.body.inputmodel, (data, err) => {
       ResponseAPI(response, data, err);
@@ -75,7 +75,7 @@ app.get('/UpdateManufacture', async (request, response) => {
   }
 });
 
-app.get('/DeleteManufacture', async (request, response) => {
+app.post('/DeleteManufacture', async (request, response) => {
   if (request.body !== null && request.body !== undefined && request.body.id != null) {
     DeleteManufactureAPI(request.body.id, (data, err) => {
       ResponseAPI(response, data, err);
@@ -85,7 +85,7 @@ app.get('/DeleteManufacture', async (request, response) => {
   }
 });
 
-app.get('/GetManufacture', async (request, response) => {
+app.post('/GetManufacture', async (request, response) => {
   if (request.body !== null && request.body !== undefined && request.body.filter != null && request.body.filter !== undefined) {
     GetManufactureAPI(request.body.filter, (data, err) => {
       ResponseAPI(response, data, err);
@@ -95,7 +95,7 @@ app.get('/GetManufacture', async (request, response) => {
   }
 });
 
-app.get('/GetManufactures', async (request, response) => {
+app.post('/GetManufactures', async (request, response) => {
   if (request.body !== null && request.body !== undefined && request.body.filter != null && request.body.filter !== undefined) {
     GetManufacturesAPI(request.body.filter, (data, err) => {
       ResponseAPI(response, data, err);
@@ -105,7 +105,7 @@ app.get('/GetManufactures', async (request, response) => {
   }
 });
 
-app.get('/ManufactureLookUp', async (request, response) => {
+app.post('/ManufactureLookUp', async (request, response) => {
   if (request.body !== null && request.body !== undefined && request.body.filter != null && request.body.filter !== undefined) {
     ManufactureLookUpAPI(request.body.filter, (data, err) => {
       ResponseAPI(response, data, err);
@@ -119,7 +119,7 @@ app.get('/ManufactureLookUp', async (request, response) => {
 
 //#region Area API
 
-app.get('/AddArea', async (request, response) => {
+app.post('/AddArea', async (request, response) => {
   if (request.body !== null && request.body !== undefined && request.body.inputmodel != null && request.body.inputmodel !== undefined) {
     AddAreaAPI(request.body.inputmodel, (data, err) => {
       ResponseAPI(response, data, err);
@@ -129,7 +129,7 @@ app.get('/AddArea', async (request, response) => {
   }
 });
 
-app.get('/UpdateArea', async (request, response) => {
+app.post('/UpdateArea', async (request, response) => {
   if (request.body !== null && request.body !== undefined && request.body.inputmodel != null && request.body.inputmodel !== undefined && request.body.id !== undefined) {
     UpdateAreaAPI(request.body.id, request.body.inputmodel, (data, err) => {
       ResponseAPI(response, data, err);
@@ -139,7 +139,7 @@ app.get('/UpdateArea', async (request, response) => {
   }
 });
 
-app.get('/DeleteArea', async (request, response) => {
+app.post('/DeleteArea', async (request, response) => {
   if (request.body !== null && request.body !== undefined && request.body.id != null) {
     DeleteAreaAPI(request.body.id, (data, err) => {
       ResponseAPI(response, data, err);
@@ -149,7 +149,7 @@ app.get('/DeleteArea', async (request, response) => {
   }
 });
 
-app.get('/GetArea', async (request, response) => {
+app.post('/GetArea', async (request, response) => {
   if (request.body !== null && request.body !== undefined && request.body.filter != null && request.body.filter !== undefined) {
     GetAreaAPI(request.body.filter, (data, err) => {
       ResponseAPI(response, data, err);
@@ -159,7 +159,7 @@ app.get('/GetArea', async (request, response) => {
   }
 });
 
-app.get('/GetAreas', async (request, response) => {
+app.post('/GetAreas', async (request, response) => {
   if (request.body !== null && request.body !== undefined && request.body.filter != null && request.body.filter !== undefined) {
     GetAreasAPI(request.body.filter, (data, err) => {
       ResponseAPI(response, data, err);
@@ -169,7 +169,7 @@ app.get('/GetAreas', async (request, response) => {
   }
 });
 
-app.get('/AreaLookUp', async (request, response) => {
+app.post('/AreaLookUp', async (request, response) => {
   if (request.body !== null && request.body !== undefined && request.body.filter != null && request.body.filter !== undefined) {
     AreaLookUpAPI(request.body.filter, (data, err) => {
       ResponseAPI(response, data, err);
@@ -183,7 +183,7 @@ app.get('/AreaLookUp', async (request, response) => {
 
 //#region Brand API
 
-app.get('/AddBrand', async (request, response) => {
+app.post('/AddBrand', async (request, response) => {
   if (request.body !== null && request.body !== undefined && request.body.inputmodel != null && request.body.inputmodel !== undefined) {
     AddBrandAPI(request.body.inputmodel, (data, err) => {
       ResponseAPI(response, data, err);
@@ -193,7 +193,7 @@ app.get('/AddBrand', async (request, response) => {
   }
 });
 
-app.get('/UpdateBrand', async (request, response) => {
+app.post('/UpdateBrand', async (request, response) => {
   if (request.body !== null && request.body !== undefined && request.body.inputmodel != null && request.body.inputmodel !== undefined && request.body.id !== undefined) {
     UpdateBrandAPI(request.body.id, request.body.inputmodel, (data, err) => {
       ResponseAPI(response, data, err);
@@ -203,7 +203,7 @@ app.get('/UpdateBrand', async (request, response) => {
   }
 });
 
-app.get('/DeleteBrand', async (request, response) => {
+app.post('/DeleteBrand', async (request, response) => {
   if (request.body !== null && request.body !== undefined && request.body.id != null) {
     DeleteBrandAPI(request.body.id, (data, err) => {
       ResponseAPI(response, data, err);
@@ -213,7 +213,7 @@ app.get('/DeleteBrand', async (request, response) => {
   }
 });
 
-app.get('/GetBrand', async (request, response) => {
+app.post('/GetBrand', async (request, response) => {
   if (request.body !== null && request.body !== undefined && request.body.filter != null && request.body.filter !== undefined) {
     GetBrandAPI(request.body.filter, (data, err) => {
       ResponseAPI(response, data, err);
@@ -223,7 +223,7 @@ app.get('/GetBrand', async (request, response) => {
   }
 });
 
-app.get('/GetBrands', async (request, response) => {
+app.post('/GetBrands', async (request, response) => {
   if (request.body !== null && request.body !== undefined && request.body.filter != null && request.body.filter !== undefined) {
     GetBrandsAPI(request.body.filter, (data, err) => {
       ResponseAPI(response, data, err);
@@ -233,7 +233,7 @@ app.get('/GetBrands', async (request, response) => {
   }
 });
 
-app.get('/BrandLookUp', async (request, response) => {
+app.post('/BrandLookUp', async (request, response) => {
   if (request.body !== null && request.body !== undefined && request.body.filter != null && request.body.filter !== undefined) {
     BrandLookUpAPI(request.body.filter, (data, err) => {
       ResponseAPI(response, data, err);
@@ -247,7 +247,7 @@ app.get('/BrandLookUp', async (request, response) => {
 
 //#region City API
 
-app.get('/AddCity', async (request, response) => {
+app.post('/AddCity', async (request, response) => {
   if (request.body !== null && request.body !== undefined && request.body.inputmodel != null && request.body.inputmodel !== undefined) {
     AddCityAPI(request.body.inputmodel, (data, err) => {
       ResponseAPI(response, data, err);
@@ -257,7 +257,7 @@ app.get('/AddCity', async (request, response) => {
   }
 });
 
-app.get('/UpdateCity', async (request, response) => {
+app.post('/UpdateCity', async (request, response) => {
   if (request.body !== null && request.body !== undefined && request.body.inputmodel != null && request.body.inputmodel !== undefined && request.body.id !== undefined) {
     UpdateCityAPI(request.body.id, request.body.inputmodel, (data, err) => {
       ResponseAPI(response, data, err);
@@ -267,7 +267,7 @@ app.get('/UpdateCity', async (request, response) => {
   }
 });
 
-app.get('/DeleteCity', async (request, response) => {
+app.post('/DeleteCity', async (request, response) => {
   if (request.body !== null && request.body !== undefined && request.body.id != null) {
     DeleteCityAPI(request.body.id, (data, err) => {
       ResponseAPI(response, data, err);
@@ -277,7 +277,7 @@ app.get('/DeleteCity', async (request, response) => {
   }
 });
 
-app.get('/GetCity', async (request, response) => {
+app.post('/GetCity', async (request, response) => {
   if (request.body !== null && request.body !== undefined && request.body.filter != null && request.body.filter !== undefined) {
     GetCityAPI(request.body.filter, (data, err) => {
       ResponseAPI(response, data, err);
@@ -287,7 +287,7 @@ app.get('/GetCity', async (request, response) => {
   }
 });
 
-app.get('/GetCities', async (request, response) => {
+app.post('/GetCities', async (request, response) => {
   if (request.body !== null && request.body !== undefined && request.body.filter != null && request.body.filter !== undefined) {
     GetCiteisAPI(request.body.filter, (data, err) => {
       ResponseAPI(response, data, err);
@@ -297,7 +297,7 @@ app.get('/GetCities', async (request, response) => {
   }
 });
 
-app.get('/CityLookUp', async (request, response) => {
+app.post('/CityLookUp', async (request, response) => {
   if (request.body !== null && request.body !== undefined && request.body.filter != null && request.body.filter !== undefined) {
     CityLookUpAPI(request.body.filter, (data, err) => {
       ResponseAPI(response, data, err);
@@ -311,7 +311,7 @@ app.get('/CityLookUp', async (request, response) => {
 
 //#region Country API
 
-app.get('/AddCountry', async (request, response) => {
+app.post('/AddCountry', async (request, response) => {
   if (request.body !== null && request.body !== undefined && request.body.inputmodel != null && request.body.inputmodel !== undefined) {
     AddCountryAPI(request.body.inputmodel, (data, err) => {
       ResponseAPI(response, data, err);
@@ -321,7 +321,7 @@ app.get('/AddCountry', async (request, response) => {
   }
 });
 
-app.get('/UpdateCountry', async (request, response) => {
+app.post('/UpdateCountry', async (request, response) => {
   if (request.body !== null && request.body !== undefined && request.body.inputmodel != null && request.body.inputmodel !== undefined && request.body.id !== undefined) {
     UpdateCountryAPI(request.body.id, request.body.inputmodel, (data, err) => {
       ResponseAPI(response, data, err);
@@ -331,7 +331,7 @@ app.get('/UpdateCountry', async (request, response) => {
   }
 });
 
-app.get('/DeleteCountry', async (request, response) => {
+app.post('/DeleteCountry', async (request, response) => {
   if (request.body !== null && request.body !== undefined && request.body.id != null) {
     DeleteCountryAPI(request.body.id, (data, err) => {
       ResponseAPI(response, data, err);
@@ -341,7 +341,7 @@ app.get('/DeleteCountry', async (request, response) => {
   }
 });
 
-app.get('/GetCountry', async (request, response) => {
+app.post('/GetCountry', async (request, response) => {
   if (request.body !== null && request.body !== undefined && request.body.filter != null && request.body.filter !== undefined) {
     GetCountryAPI(request.body.filter, (data, err) => {
       ResponseAPI(response, data, err);
@@ -351,7 +351,7 @@ app.get('/GetCountry', async (request, response) => {
   }
 });
 
-app.get('/GetCountries', async (request, response) => {
+app.post('/GetCountries', async (request, response) => {
   if (request.body !== null && request.body !== undefined && request.body.filter != null && request.body.filter !== undefined) {
     GetCountriesAPI(request.body.filter, (data, err) => {
       ResponseAPI(response, data, err);
@@ -361,7 +361,7 @@ app.get('/GetCountries', async (request, response) => {
   }
 });
 
-app.get('/CountryLookUp', async (request, response) => {
+app.post('/CountryLookUp', async (request, response) => {
   if (request.body !== null && request.body !== undefined && request.body.filter != null && request.body.filter !== undefined) {
     CountryLookUpAPI(request.body.filter, (data, err) => {
       ResponseAPI(response, data, err);
@@ -375,7 +375,7 @@ app.get('/CountryLookUp', async (request, response) => {
 
 //#region ProductCategory API
 
-app.get('/AddProductCategory', async (request, response) => {
+app.post('/AddProductCategory', async (request, response) => {
   if (request.body !== null && request.body !== undefined && request.body.inputmodel != null && request.body.inputmodel !== undefined) {
     AddProductCategoryAPI(request.body.inputmodel, (data, err) => {
       ResponseAPI(response, data, err);
@@ -385,7 +385,7 @@ app.get('/AddProductCategory', async (request, response) => {
   }
 });
 
-app.get('/UpdateProductCategory', async (request, response) => {
+app.post('/UpdateProductCategory', async (request, response) => {
   if (request.body !== null && request.body !== undefined && request.body.inputmodel != null && request.body.inputmodel !== undefined && request.body.id !== undefined) {
     UpdateProductCategoryAPI(request.body.id, request.body.inputmodel, (data, err) => {
       ResponseAPI(response, data, err);
@@ -395,7 +395,7 @@ app.get('/UpdateProductCategory', async (request, response) => {
   }
 });
 
-app.get('/DeleteProductCategory', async (request, response) => {
+app.post('/DeleteProductCategory', async (request, response) => {
   if (request.body !== null && request.body !== undefined && request.body.id != null) {
     DeleteProductCategoryAPI(request.body.id, (data, err) => {
       ResponseAPI(response, data, err);
@@ -405,7 +405,7 @@ app.get('/DeleteProductCategory', async (request, response) => {
   }
 });
 
-app.get('/GetProductCategory', async (request, response) => {
+app.post('/GetProductCategory', async (request, response) => {
   if (request.body !== null && request.body !== undefined && request.body.filter != null && request.body.filter !== undefined) {
     GetProductCategoryAPI(request.body.filter, (data, err) => {
       ResponseAPI(response, data, err);
@@ -415,7 +415,7 @@ app.get('/GetProductCategory', async (request, response) => {
   }
 });
 
-app.get('/GetProductCategories', async (request, response) => {
+app.post('/GetProductCategories', async (request, response) => {
   if (request.body !== null && request.body !== undefined && request.body.filter != null && request.body.filter !== undefined) {
     GetProductCategoriesAPI(request.body.filter, (data, err) => {
       ResponseAPI(response, data, err);
@@ -425,7 +425,7 @@ app.get('/GetProductCategories', async (request, response) => {
   }
 });
 
-app.get('/ProductCategoryLookUp', async (request, response) => {
+app.post('/ProductCategoryLookUp', async (request, response) => {
   if (request.body !== null && request.body !== undefined && request.body.filter != null && request.body.filter !== undefined) {
     ProductCategoryLookUpAPI(request.body.filter, (data, err) => {
       ResponseAPI(response, data, err);
@@ -439,7 +439,7 @@ app.get('/ProductCategoryLookUp', async (request, response) => {
 
 //#region Product API
 
-app.get('/AddProduct', async (request, response) => {
+app.post('/AddProduct', async (request, response) => {
   if (request.body !== null && request.body !== undefined && request.body.inputmodel != null && request.body.inputmodel !== undefined) {
     AddProductAPI(request.body.inputmodel, (data, err) => {
       ResponseAPI(response, data, err);
@@ -449,7 +449,7 @@ app.get('/AddProduct', async (request, response) => {
   }
 });
 
-app.get('/UpdateProduct', async (request, response) => {
+app.post('/UpdateProduct', async (request, response) => {
   if (request.body !== null && request.body !== undefined && request.body.inputmodel != null && request.body.inputmodel !== undefined && request.body.id !== undefined) {
     UpdateProductAPI(request.body.id, request.body.inputmodel, (data, err) => {
       ResponseAPI(response, data, err);
@@ -459,7 +459,7 @@ app.get('/UpdateProduct', async (request, response) => {
   }
 });
 
-app.get('/DeleteProduct', async (request, response) => {
+app.post('/DeleteProduct', async (request, response) => {
   if (request.body !== null && request.body !== undefined && request.body.id != null) {
     DeleteProductAPI(request.body.id, (data, err) => {
       ResponseAPI(response, data, err);
@@ -469,7 +469,7 @@ app.get('/DeleteProduct', async (request, response) => {
   }
 });
 
-app.get('/GetProduct', async (request, response) => {
+app.post('/GetProduct', async (request, response) => {
   if (request.body !== null && request.body !== undefined && request.body.filter != null && request.body.filter !== undefined) {
     GetProductAPI(request.body.filter, (data, err) => {
       ResponseAPI(response, data, err);
@@ -479,7 +479,7 @@ app.get('/GetProduct', async (request, response) => {
   }
 });
 
-app.get('/GetProducts', async (request, response) => {
+app.post('/GetProducts', async (request, response) => {
   if (request.body !== null && request.body !== undefined && request.body.filter != null && request.body.filter !== undefined) {
     GetProductsAPI(request.body.filter, (data, err) => {
       ResponseAPI(response, data, err);
@@ -489,7 +489,7 @@ app.get('/GetProducts', async (request, response) => {
   }
 });
 
-app.get('/ProductLookUp', async (request, response) => {
+app.post('/ProductLookUp', async (request, response) => {
   if (request.body !== null && request.body !== undefined && request.body.filter != null && request.body.filter !== undefined) {
     ProductLookUpAPI(request.body.filter, (data, err) => {
       ResponseAPI(response, data, err);
@@ -503,7 +503,7 @@ app.get('/ProductLookUp', async (request, response) => {
 
 //#region ProductFamily API
 
-app.get('/AddProductFamily', async (request, response) => {
+app.post('/AddProductFamily', async (request, response) => {
   if (request.body !== null && request.body !== undefined && request.body.inputmodel != null && request.body.inputmodel !== undefined) {
     AddProductFamilyAPI(request.body.inputmodel, (data, err) => {
       ResponseAPI(response, data, err);
@@ -513,7 +513,7 @@ app.get('/AddProductFamily', async (request, response) => {
   }
 });
 
-app.get('/UpdateProductFamily', async (request, response) => {
+app.post('/UpdateProductFamily', async (request, response) => {
   if (request.body !== null && request.body !== undefined && request.body.inputmodel != null && request.body.inputmodel !== undefined && request.body.id !== undefined) {
     UpdateProductFamilyAPI(request.body.id, request.body.inputmodel, (data, err) => {
       ResponseAPI(response, data, err);
@@ -523,7 +523,7 @@ app.get('/UpdateProductFamily', async (request, response) => {
   }
 });
 
-app.get('/DeleteProductFamily', async (request, response) => {
+app.post('/DeleteProductFamily', async (request, response) => {
   if (request.body !== null && request.body !== undefined && request.body.id != null) {
     DeleteProductFamilyAPI(request.body.id, (data, err) => {
       ResponseAPI(response, data, err);
@@ -533,7 +533,7 @@ app.get('/DeleteProductFamily', async (request, response) => {
   }
 });
 
-app.get('/GetProductFamily', async (request, response) => {
+app.post('/GetProductFamily', async (request, response) => {
   if (request.body !== null && request.body !== undefined && request.body.filter != null && request.body.filter !== undefined) {
     GetProductFamilyAPI(request.body.filter, (data, err) => {
       ResponseAPI(response, data, err);
@@ -543,7 +543,7 @@ app.get('/GetProductFamily', async (request, response) => {
   }
 });
 
-app.get('/GetProductFamilies', async (request, response) => {
+app.post('/GetProductFamilies', async (request, response) => {
   if (request.body !== null && request.body !== undefined && request.body.filter != null && request.body.filter !== undefined) {
     GetProductFamiliesAPI(request.body.filter, (data, err) => {
       ResponseAPI(response, data, err);
@@ -553,7 +553,7 @@ app.get('/GetProductFamilies', async (request, response) => {
   }
 });
 
-app.get('/ProductFamilyLookUp', async (request, response) => {
+app.post('/ProductFamilyLookUp', async (request, response) => {
   if (request.body !== null && request.body !== undefined && request.body.filter != null && request.body.filter !== undefined) {
     ProductFamilyLookUpAPI(request.body.filter, (data, err) => {
       ResponseAPI(response, data, err);
@@ -567,7 +567,7 @@ app.get('/ProductFamilyLookUp', async (request, response) => {
 
 //#region State API
 
-app.get('/AddState', async (request, response) => {
+app.post('/AddState', async (request, response) => {
   if (request.body !== null && request.body !== undefined && request.body.inputmodel != null && request.body.inputmodel !== undefined) {
     AddStateAPI(request.body.inputmodel, (data, err) => {
       ResponseAPI(response, data, err);
@@ -577,7 +577,7 @@ app.get('/AddState', async (request, response) => {
   }
 });
 
-app.get('/UpdateState', async (request, response) => {
+app.post('/UpdateState', async (request, response) => {
   if (request.body !== null && request.body !== undefined && request.body.inputmodel != null && request.body.inputmodel !== undefined && request.body.id !== undefined) {
     UpdateStateAPI(request.body.id, request.body.inputmodel, (data, err) => {
       ResponseAPI(response, data, err);
@@ -587,7 +587,7 @@ app.get('/UpdateState', async (request, response) => {
   }
 });
 
-app.get('/DeleteState', async (request, response) => {
+app.post('/DeleteState', async (request, response) => {
   if (request.body !== null && request.body !== undefined && request.body.id != null) {
     DeleteStateAPI(request.body.id, (data, err) => {
       ResponseAPI(response, data, err);
@@ -597,7 +597,7 @@ app.get('/DeleteState', async (request, response) => {
   }
 });
 
-app.get('/GetState', async (request, response) => {
+app.post('/GetState', async (request, response) => {
   if (request.body !== null && request.body !== undefined && request.body.filter != null && request.body.filter !== undefined) {
     GetStateAPI(request.body.filter, (data, err) => {
       ResponseAPI(response, data, err);
@@ -607,7 +607,7 @@ app.get('/GetState', async (request, response) => {
   }
 });
 
-app.get('/GetStates', async (request, response) => {
+app.post('/GetStates', async (request, response) => {
   if (request.body !== null && request.body !== undefined && request.body.filter != null && request.body.filter !== undefined) {
     GetStatesAPI(request.body.filter, (data, err) => {
       ResponseAPI(response, data, err);
@@ -617,7 +617,7 @@ app.get('/GetStates', async (request, response) => {
   }
 });
 
-app.get('/StateLookUp', async (request, response) => {
+app.post('/StateLookUp', async (request, response) => {
   if (request.body !== null && request.body !== undefined && request.body.filter != null && request.body.filter !== undefined) {
     StateLookUpAPI(request.body.filter, (data, err) => {
       ResponseAPI(response, data, err);
@@ -631,7 +631,7 @@ app.get('/StateLookUp', async (request, response) => {
 
 //#region Store API
 
-app.get('/AddStore', async (request, response) => {
+app.post('/AddStore', async (request, response) => {
   if (request.body !== null && request.body !== undefined && request.body.inputmodel != null && request.body.inputmodel !== undefined) {
     AddStoreAPI(request.body.inputmodel, (data, err) => {
       ResponseAPI(response, data, err);
@@ -641,7 +641,7 @@ app.get('/AddStore', async (request, response) => {
   }
 });
 
-app.get('/UpdateStore', async (request, response) => {
+app.post('/UpdateStore', async (request, response) => {
   if (request.body !== null && request.body !== undefined && request.body.inputmodel != null && request.body.inputmodel !== undefined && request.body.id !== undefined) {
     UpdateStoreAPI(request.body.id, request.body.inputmodel, (data, err) => {
       ResponseAPI(response, data, err);
@@ -651,7 +651,7 @@ app.get('/UpdateStore', async (request, response) => {
   }
 });
 
-app.get('/DeleteStore', async (request, response) => {
+app.post('/DeleteStore', async (request, response) => {
   if (request.body !== null && request.body !== undefined && request.body.id != null) {
     DeleteStoreAPI(request.body.id, (data, err) => {
       ResponseAPI(response, data, err);
@@ -661,7 +661,7 @@ app.get('/DeleteStore', async (request, response) => {
   }
 });
 
-app.get('/GetStore', async (request, response) => {
+app.post('/GetStore', async (request, response) => {
   if (request.body !== null && request.body !== undefined && request.body.filter != null && request.body.filter !== undefined) {
     GetStoreAPI(request.body.filter, (data, err) => {
       ResponseAPI(response, data, err);
@@ -671,7 +671,7 @@ app.get('/GetStore', async (request, response) => {
   }
 });
 
-app.get('/GetStores', async (request, response) => {
+app.post('/GetStores', async (request, response) => {
   if (request.body !== null && request.body !== undefined && request.body.filter != null && request.body.filter !== undefined) {
     GetStoresAPI(request.body.filter, (data, err) => {
       ResponseAPI(response, data, err);
@@ -681,7 +681,7 @@ app.get('/GetStores', async (request, response) => {
   }
 });
 
-app.get('/StoreLookUp', async (request, response) => {
+app.post('/StoreLookUp', async (request, response) => {
   if (request.body !== null && request.body !== undefined && request.body.filter != null && request.body.filter !== undefined) {
     StoreLookUpAPI(request.body.filter, (data, err) => {
       ResponseAPI(response, data, err);
@@ -695,7 +695,7 @@ app.get('/StoreLookUp', async (request, response) => {
 
 //#region User API
 
-app.get('/AddUser', async (request, response) => {
+app.post('/AddUser', async (request, response) => {
   if (request.body !== null && request.body !== undefined && request.body.inputmodel != null && request.body.inputmodel !== undefined) {
     AddUserAPI(request.body.inputmodel, (data, err) => {
       ResponseAPI(response, data, err);
@@ -705,7 +705,7 @@ app.get('/AddUser', async (request, response) => {
   }
 });
 
-app.get('/UpdateUser', async (request, response) => {
+app.post('/UpdateUser', async (request, response) => {
   if (request.body !== null && request.body !== undefined && request.body.inputmodel != null && request.body.inputmodel !== undefined && request.body.id !== undefined) {
     UpdateUserAPI(request.body.id, request.body.inputmodel, (data, err) => {
       ResponseAPI(response, data, err);
@@ -715,7 +715,7 @@ app.get('/UpdateUser', async (request, response) => {
   }
 });
 
-app.get('/DeleteUser', async (request, response) => {
+app.post('/DeleteUser', async (request, response) => {
   if (request.body !== null && request.body !== undefined && request.body.id != null) {
     DeleteUserAPI(request.body.id, (data, err) => {
       ResponseAPI(response, data, err);
@@ -725,7 +725,7 @@ app.get('/DeleteUser', async (request, response) => {
   }
 });
 
-app.get('/GetUser', async (request, response) => {
+app.post('/GetUser', async (request, response) => {
   if (request.body !== null && request.body !== undefined && request.body.filter != null && request.body.filter !== undefined) {
     GetUserAPI(request.body.filter, (data, err) => {
       ResponseAPI(response, data, err);
@@ -735,7 +735,7 @@ app.get('/GetUser', async (request, response) => {
   }
 });
 
-app.get('/GetUsers', async (request, response) => {
+app.post('/GetUsers', async (request, response) => {
   if (request.body !== null && request.body !== undefined && request.body.filter != null && request.body.filter !== undefined) {
     GetUsersAPI(request.body.filter, (data, err) => {
       ResponseAPI(response, data, err);
@@ -745,7 +745,7 @@ app.get('/GetUsers', async (request, response) => {
   }
 });
 
-app.get('/ChangePassword', async (request, response) => {
+app.post('/ChangePassword', async (request, response) => {
   if (request.body !== null && request.body !== undefined && request.body.user_id != null && request.body.new_password !== undefined && request.body.old_password !== undefined) {
     ChangePasswordAPI(request.body.user_id, request.body.new_password, request.body.old_password, (data, err) => {
       ResponseAPI(response, data, err);
@@ -759,7 +759,7 @@ app.get('/ChangePassword', async (request, response) => {
 
 //#region Company API
 
-app.get('/AddCompany', async (request, response) => {
+app.post('/AddCompany', async (request, response) => {
   if (request.body !== null && request.body !== undefined && request.body.inputmodel != null && request.body.inputmodel !== undefined) {
     AddCompanyAPI(request.body.inputmodel, (data, err) => {
       ResponseAPI(response, data, err);
@@ -769,7 +769,7 @@ app.get('/AddCompany', async (request, response) => {
   }
 });
 
-app.get('/UpdateCompany', async (request, response) => {
+app.post('/UpdateCompany', async (request, response) => {
   if (request.body !== null && request.body !== undefined && request.body.inputmodel != null && request.body.inputmodel !== undefined && request.body.id !== undefined) {
     UpdateCompanyAPI(request.body.id, request.body.inputmodel, (data, err) => {
       ResponseAPI(response, data, err);
@@ -779,7 +779,7 @@ app.get('/UpdateCompany', async (request, response) => {
   }
 });
 
-app.get('/DeleteCompany', async (request, response) => {
+app.post('/DeleteCompany', async (request, response) => {
   if (request.body !== null && request.body !== undefined && request.body.id != null) {
     DeleteCompanyAPI(request.body.id, (data, err) => {
       ResponseAPI(response, data, err);
@@ -789,7 +789,7 @@ app.get('/DeleteCompany', async (request, response) => {
   }
 });
 
-app.get('/GetCompany', async (request, response) => {
+app.post('/GetCompany', async (request, response) => {
   if (request.body !== null && request.body !== undefined && request.body.filter != null && request.body.filter !== undefined) {
     GetCompanyAPI(request.body.filter, (data, err) => {
       ResponseAPI(response, data, err);
@@ -799,7 +799,7 @@ app.get('/GetCompany', async (request, response) => {
   }
 });
 
-app.get('/GetCompanies', async (request, response) => {
+app.post('/GetCompanies', async (request, response) => {
   if (request.body !== null && request.body !== undefined && request.body.filter != null && request.body.filter !== undefined) {
     GetCompaniesAPI(request.body.filter, (data, err) => {
       ResponseAPI(response, data, err);
@@ -813,7 +813,7 @@ app.get('/GetCompanies', async (request, response) => {
 
 //#region Delivery API
 
-app.get('/AddDelivery', async (request, response) => {
+app.post('/AddDelivery', async (request, response) => {
   if (request.body !== null && request.body !== undefined && request.body.inputmodel != null && request.body.inputmodel !== undefined) {
     AddDeliveryAPI(request.body.inputmodel, (data, err) => {
       ResponseAPI(response, data, err);
@@ -823,7 +823,7 @@ app.get('/AddDelivery', async (request, response) => {
   }
 });
 
-app.get('/UpdateDelivery', async (request, response) => {
+app.post('/UpdateDelivery', async (request, response) => {
   if (request.body !== null && request.body !== undefined && request.body.inputmodel != null && request.body.inputmodel !== undefined && request.body.id !== undefined) {
     UpdateDeliveryAPI(request.body.id, request.body.inputmodel, (data, err) => {
       ResponseAPI(response, data, err);
@@ -833,7 +833,7 @@ app.get('/UpdateDelivery', async (request, response) => {
   }
 });
 
-app.get('/DeleteDelivery', async (request, response) => {
+app.post('/DeleteDelivery', async (request, response) => {
   if (request.body !== null && request.body !== undefined && request.body.id != null) {
     DeleteDeliveryAPI(request.body.id, (data, err) => {
       ResponseAPI(response, data, err);
@@ -843,7 +843,7 @@ app.get('/DeleteDelivery', async (request, response) => {
   }
 });
 
-app.get('/GetDelivery', async (request, response) => {
+app.post('/GetDelivery', async (request, response) => {
   if (request.body !== null && request.body !== undefined && request.body.filter != null && request.body.filter !== undefined) {
     GetDeliveryAPI(request.body.filter, (data, err) => {
       ResponseAPI(response, data, err);
@@ -853,7 +853,7 @@ app.get('/GetDelivery', async (request, response) => {
   }
 });
 
-app.get('/GetDeliveries', async (request, response) => {
+app.post('/GetDeliveries', async (request, response) => {
   if (request.body !== null && request.body !== undefined && request.body.filter != null && request.body.filter !== undefined) {
     GetDeliverysAPI(request.body.filter, (data, err) => {
       ResponseAPI(response, data, err);
@@ -863,7 +863,7 @@ app.get('/GetDeliveries', async (request, response) => {
   }
 });
 
-// app.get('/DeliveryLookUp', async(request, response) => {
+// app.post('/DeliveryLookUp', async(request, response) => {
 //   if (request.body !== null && request.body !== undefined && request.body.filter != null && request.body.filter !== undefined) {
 //     DeliveryLookUpAPI(request.body.filter, (data, err) => {
 //       ResponseAPI(response, data, err);
@@ -877,7 +877,7 @@ app.get('/GetDeliveries', async (request, response) => {
 
 //#region Inventory API
 
-app.get('/AddInventory', async (request, response) => {
+app.post('/AddInventory', async (request, response) => {
   if (request.body !== null && request.body !== undefined && request.body.inputmodel != null && request.body.inputmodel !== undefined) {
     AddInventoryAPI(request.body.inputmodel, (data, err) => {
       ResponseAPI(response, data, err);
@@ -887,7 +887,7 @@ app.get('/AddInventory', async (request, response) => {
   }
 });
 
-app.get('/UpdateInventory', async (request, response) => {
+app.post('/UpdateInventory', async (request, response) => {
   if (request.body !== null && request.body !== undefined && request.body.inputmodel != null && request.body.inputmodel !== undefined && request.body.id !== undefined) {
     UpdateInventoryAPI(request.body.id, request.body.inputmodel, (data, err) => {
       ResponseAPI(response, data, err);
@@ -897,7 +897,7 @@ app.get('/UpdateInventory', async (request, response) => {
   }
 });
 
-app.get('/DeleteInventory', async (request, response) => {
+app.post('/DeleteInventory', async (request, response) => {
   if (request.body !== null && request.body !== undefined && request.body.id != null) {
     DeleteInventoryAPI(request.body.id, (data, err) => {
       ResponseAPI(response, data, err);
@@ -907,7 +907,7 @@ app.get('/DeleteInventory', async (request, response) => {
   }
 });
 
-app.get('/GetInventory', async (request, response) => {
+app.post('/GetInventory', async (request, response) => {
   if (request.body !== null && request.body !== undefined && request.body.filter != null && request.body.filter !== undefined) {
     GetInventoryAPI(request.body.filter, (data, err) => {
       ResponseAPI(response, data, err);
@@ -917,7 +917,7 @@ app.get('/GetInventory', async (request, response) => {
   }
 });
 
-app.get('/GetInventories', async (request, response) => {
+app.post('/GetInventories', async (request, response) => {
   if (request.body !== null && request.body !== undefined && request.body.filter != null && request.body.filter !== undefined) {
     GetInventorysAPI(request.body.filter, (data, err) => {
       ResponseAPI(response, data, err);
@@ -927,7 +927,7 @@ app.get('/GetInventories', async (request, response) => {
   }
 });
 
-//  app.get('/InventoryLookUp', async(request, response) => {
+//  app.post('/InventoryLookUp', async(request, response) => {
 //   if (request.body !== null && request.body !== undefined && request.body.filter != null && request.body.filter !== undefined) {
 //     InventoryLookUpAPI(request.body.filter, (data, err) => {
 //       ResponseAPI(response, data, err);
@@ -941,7 +941,7 @@ app.get('/GetInventories', async (request, response) => {
 
 //#region Order API
 
-app.get('/AddOrder', async (request, response) => {
+app.post('/AddOrder', async (request, response) => {
   if (request.body !== null && request.body !== undefined && request.body.inputmodel != null && request.body.inputmodel !== undefined) {
     AddOrderAPI(request.body.inputmodel, (data, err) => {
       ResponseAPI(response, data, err);
@@ -951,7 +951,7 @@ app.get('/AddOrder', async (request, response) => {
   }
 });
 
-app.get('/UpdateOrder', async (request, response) => {
+app.post('/UpdateOrder', async (request, response) => {
   if (request.body !== null && request.body !== undefined && request.body.inputmodel != null && request.body.inputmodel !== undefined && request.body.id !== undefined) {
     UpdateOrderAPI(request.body.id, request.body.inputmodel, (data, err) => {
       ResponseAPI(response, data, err);
@@ -961,7 +961,7 @@ app.get('/UpdateOrder', async (request, response) => {
   }
 });
 
-app.get('/DeleteOrder', async (request, response) => {
+app.post('/DeleteOrder', async (request, response) => {
   if (request.body !== null && request.body !== undefined && request.body.id != null) {
     DeleteOrderAPI(request.body.id, (data, err) => {
       ResponseAPI(response, data, err);
@@ -971,7 +971,7 @@ app.get('/DeleteOrder', async (request, response) => {
   }
 });
 
-app.get('/GetOrder', async (request, response) => {
+app.post('/GetOrder', async (request, response) => {
   if (request.body !== null && request.body !== undefined && request.body.filter != null && request.body.filter !== undefined) {
     GetOrderAPI(request.body.filter, (data, err) => {
       ResponseAPI(response, data, err);
@@ -981,7 +981,7 @@ app.get('/GetOrder', async (request, response) => {
   }
 });
 
-app.get('/GetOrders', async (request, response) => {
+app.post('/GetOrders', async (request, response) => {
   if (request.body !== null && request.body !== undefined && request.body.filter != null && request.body.filter !== undefined) {
     GetOrdersAPI(request.body.filter, (data, err) => {
       ResponseAPI(response, data, err);
@@ -991,7 +991,7 @@ app.get('/GetOrders', async (request, response) => {
   }
 });
 
-//  app.get('/OrderLookUp', async(request, response) => {
+//  app.post('/OrderLookUp', async(request, response) => {
 //   if (request.body !== null && request.body !== undefined && request.body.filter != null && request.body.filter !== undefined) {
 //     OrderLookUpAPI(request.body.filter, (data, err) => {
 //       ResponseAPI(response, data, err);
@@ -1005,7 +1005,7 @@ app.get('/GetOrders', async (request, response) => {
 
 //#region Payment API
 
-app.get('/AddPayment', async (request, response) => {
+app.post('/AddPayment', async (request, response) => {
   if (request.body !== null && request.body !== undefined && request.body.inputmodel != null && request.body.inputmodel !== undefined) {
     AddPaymentAPI(request.body.inputmodel, (data, err) => {
       ResponseAPI(response, data, err);
@@ -1015,7 +1015,7 @@ app.get('/AddPayment', async (request, response) => {
   }
 });
 
-app.get('/UpdatePayment', async (request, response) => {
+app.post('/UpdatePayment', async (request, response) => {
   if (request.body !== null && request.body !== undefined && request.body.inputmodel != null && request.body.inputmodel !== undefined && request.body.id !== undefined) {
     UpdatePaymentAPI(request.body.id, request.body.inputmodel, (data, err) => {
       ResponseAPI(response, data, err);
@@ -1025,7 +1025,7 @@ app.get('/UpdatePayment', async (request, response) => {
   }
 });
 
-app.get('/DeletePayment', async (request, response) => {
+app.post('/DeletePayment', async (request, response) => {
   if (request.body !== null && request.body !== undefined && request.body.id != null) {
     DeletePaymentAPI(request.body.id, (data, err) => {
       ResponseAPI(response, data, err);
@@ -1035,7 +1035,7 @@ app.get('/DeletePayment', async (request, response) => {
   }
 });
 
-app.get('/GetPayment', async (request, response) => {
+app.post('/GetPayment', async (request, response) => {
   if (request.body !== null && request.body !== undefined && request.body.filter != null && request.body.filter !== undefined) {
     GetPaymentAPI(request.body.filter, (data, err) => {
       ResponseAPI(response, data, err);
@@ -1045,7 +1045,7 @@ app.get('/GetPayment', async (request, response) => {
   }
 });
 
-app.get('/GetPayments', async (request, response) => {
+app.post('/GetPayments', async (request, response) => {
   if (request.body !== null && request.body !== undefined && request.body.filter != null && request.body.filter !== undefined) {
     GetPaymentsAPI(request.body.filter, (data, err) => {
       ResponseAPI(response, data, err);
@@ -1055,7 +1055,7 @@ app.get('/GetPayments', async (request, response) => {
   }
 });
 
-// app.get('/PaymentLookUp', async(request, response) => {
+// app.post('/PaymentLookUp', async(request, response) => {
 //   if (request.body !== null && request.body !== undefined && request.body.filter != null && request.body.filter !== undefined) {
 //     PaymentLookUpAPI(request.body.filter, (data, err) => {
 //       ResponseAPI(response, data, err);
@@ -1069,7 +1069,7 @@ app.get('/GetPayments', async (request, response) => {
 
 //#region Scheme API
 
-app.get('/AddScheme', async (request, response) => {
+app.post('/AddScheme', async (request, response) => {
   if (request.body !== null && request.body !== undefined && request.body.inputmodel != null && request.body.inputmodel !== undefined) {
     AddSchemeAPI(request.body.inputmodel, (data, err) => {
       ResponseAPI(response, data, err);
@@ -1079,7 +1079,7 @@ app.get('/AddScheme', async (request, response) => {
   }
 });
 
-app.get('/UpdateScheme', async (request, response) => {
+app.post('/UpdateScheme', async (request, response) => {
   if (request.body !== null && request.body !== undefined && request.body.inputmodel != null && request.body.inputmodel !== undefined && request.body.id !== undefined) {
     UpdateSchemeAPI(request.body.id, request.body.inputmodel, (data, err) => {
       ResponseAPI(response, data, err);
@@ -1089,7 +1089,7 @@ app.get('/UpdateScheme', async (request, response) => {
   }
 });
 
-app.get('/DeleteScheme', async (request, response) => {
+app.post('/DeleteScheme', async (request, response) => {
   if (request.body !== null && request.body !== undefined && request.body.id != null) {
     DeleteSchemeAPI(request.body.id, (data, err) => {
       ResponseAPI(response, data, err);
@@ -1099,7 +1099,7 @@ app.get('/DeleteScheme', async (request, response) => {
   }
 });
 
-app.get('/GetScheme', async (request, response) => {
+app.post('/GetScheme', async (request, response) => {
   if (request.body !== null && request.body !== undefined && request.body.filter != null && request.body.filter !== undefined) {
     GetSchemeAPI(request.body.filter, (data, err) => {
       ResponseAPI(response, data, err);
@@ -1109,7 +1109,7 @@ app.get('/GetScheme', async (request, response) => {
   }
 });
 
-app.get('/GetSchemes', async (request, response) => {
+app.post('/GetSchemes', async (request, response) => {
   if (request.body !== null && request.body !== undefined && request.body.filter != null && request.body.filter !== undefined) {
     GetSchemesAPI(request.body.filter, (data, err) => {
       ResponseAPI(response, data, err);
@@ -1119,7 +1119,7 @@ app.get('/GetSchemes', async (request, response) => {
   }
 });
 
-// app.get('/SchemeLookUp', async(request, response) => {
+// app.post('/SchemeLookUp', async(request, response) => {
 //   if (request.body !== null && request.body !== undefined && request.body.filter != null && request.body.filter !== undefined) {
 //     SchemeLookUpAPI(request.body.filter, (data, err) => {
 //       ResponseAPI(response, data, err);
@@ -1133,7 +1133,7 @@ app.get('/GetSchemes', async (request, response) => {
 
 //#region Cart API
 
-app.get('/AddCart', async (request, response) => {
+app.post('/AddCart', async (request, response) => {
   if (request.body !== null && request.body !== undefined && request.body.inputmodel != null && request.body.inputmodel !== undefined) {
     AddCartAPI(request.body.inputmodel, (data, err) => {
       ResponseAPI(response, data, err);
@@ -1143,7 +1143,7 @@ app.get('/AddCart', async (request, response) => {
   }
 });
 
-app.get('/UpdateCart', async (request, response) => {
+app.post('/UpdateCart', async (request, response) => {
   if (request.body !== null && request.body !== undefined && request.body.inputmodel != null && request.body.inputmodel !== undefined && request.body.id !== undefined) {
     UpdateCartAPI(request.body.id, request.body.inputmodel, (data, err) => {
       ResponseAPI(response, data, err);
@@ -1153,7 +1153,7 @@ app.get('/UpdateCart', async (request, response) => {
   }
 });
 
-app.get('/DeleteCart', async (request, response) => {
+app.post('/DeleteCart', async (request, response) => {
   if (request.body !== null && request.body !== undefined && request.body.id != null) {
     DeleteCartAPI(request.body.id, (data, err) => {
       ResponseAPI(response, data, err);
@@ -1163,7 +1163,7 @@ app.get('/DeleteCart', async (request, response) => {
   }
 });
 
-app.get('/GetCart', async (request, response) => {
+app.post('/GetCart', async (request, response) => {
   if (request.body !== null && request.body !== undefined && request.body.filter != null && request.body.filter !== undefined) {
     GetCartAPI(request.body.filter, (data, err) => {
       ResponseAPI(response, data, err);
@@ -1173,7 +1173,7 @@ app.get('/GetCart', async (request, response) => {
   }
 });
 
-app.get('/GetCarts', async (request, response) => {
+app.post('/GetCarts', async (request, response) => {
   if (request.body !== null && request.body !== undefined && request.body.filter != null && request.body.filter !== undefined) {
     GetCartsAPI(request.body.filter, (data, err) => {
       ResponseAPI(response, data, err);
@@ -1183,7 +1183,7 @@ app.get('/GetCarts', async (request, response) => {
   }
 });
 
-// app.get('/CartLookUp', async(request, response) => {
+// app.post('/CartLookUp', async(request, response) => {
 //   if (request.body !== null && request.body !== undefined && request.body.filter != null && request.body.filter !== undefined) {
 //     CartLookUpAPI(request.body.filter, (data, err) => {
 //       ResponseAPI(response, data, err);
@@ -1197,7 +1197,7 @@ app.get('/GetCarts', async (request, response) => {
 
 //#region Favorite API
 
-app.get('/AddFavorite', async (request, response) => {
+app.post('/AddFavorite', async (request, response) => {
   if (request.body !== null && request.body !== undefined && request.body.inputmodel != null && request.body.inputmodel !== undefined) {
     AddFavoriteAPI(request.body.inputmodel, (data, err) => {
       ResponseAPI(response, data, err);
@@ -1207,7 +1207,7 @@ app.get('/AddFavorite', async (request, response) => {
   }
 });
 
-app.get('/UpdateFavorite', async (request, response) => {
+app.post('/UpdateFavorite', async (request, response) => {
   if (request.body !== null && request.body !== undefined && request.body.inputmodel != null && request.body.inputmodel !== undefined && request.body.id !== undefined) {
     UpdateFavoriteAPI(request.body.id, request.body.inputmodel, (data, err) => {
       ResponseAPI(response, data, err);
@@ -1217,7 +1217,7 @@ app.get('/UpdateFavorite', async (request, response) => {
   }
 });
 
-app.get('/DeleteFavorite', async (request, response) => {
+app.post('/DeleteFavorite', async (request, response) => {
   if (request.body !== null && request.body !== undefined && request.body.id != null) {
     DeleteFavoriteAPI(request.body.id, (data, err) => {
       ResponseAPI(response, data, err);
@@ -1227,7 +1227,7 @@ app.get('/DeleteFavorite', async (request, response) => {
   }
 });
 
-app.get('/GetFavorite', async (request, response) => {
+app.post('/GetFavorite', async (request, response) => {
   if (request.body !== null && request.body !== undefined && request.body.filter != null && request.body.filter !== undefined) {
     GetFavoriteAPI(request.body.filter, (data, err) => {
       ResponseAPI(response, data, err);
@@ -1237,7 +1237,7 @@ app.get('/GetFavorite', async (request, response) => {
   }
 });
 
-app.get('/GetFavorites', async (request, response) => {
+app.post('/GetFavorites', async (request, response) => {
   if (request.body !== null && request.body !== undefined && request.body.filter != null && request.body.filter !== undefined) {
     GetFavoritesAPI(request.body.filter, (data, err) => {
       ResponseAPI(response, data, err);
@@ -1247,7 +1247,7 @@ app.get('/GetFavorites', async (request, response) => {
   }
 });
 
-// app.get('/FavoriteLookUp', async(request, response) => {
+// app.post('/FavoriteLookUp', async(request, response) => {
 //   if (request.body !== null && request.body !== undefined && request.body.filter != null && request.body.filter !== undefined) {
 //     FavoriteLookUpAPI(request.body.filter, (data, err) => {
 //       ResponseAPI(response, data, err);
@@ -1263,7 +1263,7 @@ app.get('/GetFavorites', async (request, response) => {
 
 //#region Common API
 
-app.get('/SendEmail', async (request, response) => {
+app.post('/SendEmail', async (request, response) => {
   SendEmail(request.body.mailOptions, response);
 });
 
@@ -1281,5 +1281,5 @@ let ResponseAPI = (response, data, err) => {
 
 //#endregion  Private
 
-console.log('API Run at http://localhost:3000/');
-app.listen(3000);
+console.log('API Run at http://localhost:' + PORT + '/');
+app.listen(PORT);
