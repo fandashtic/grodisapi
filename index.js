@@ -53,6 +53,14 @@ const { AddFavoriteAPI, UpdateFavoriteAPI, DeleteFavoriteAPI, GetFavoriteAPI, Ge
 
 //#region API's
 
+//#region Test API
+
+app.get('/test', async (request, response) => {
+    response.send('Api Works Good!');
+});
+
+//#endregion Test API
+
 //#region Manufacture API
 
 app.post('/AddManufacture', async (request, response) => {
