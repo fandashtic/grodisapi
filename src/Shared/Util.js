@@ -1,6 +1,5 @@
 const { v4: uuidv4 } = require('uuid');
 const generator = require( 'generate-password');
-//const Base64 = require('js-base64').Base64;
 
 let GetUpdateExpressionAndAttributeValuesAndNames = (obj, type) => {
     let result = {};
@@ -30,13 +29,13 @@ let GetKey = (key, value) => {
 
 let GetNewKey = (type) => {
     let _key = uuidv4();
-    let base64data = _key;
+    let newKey = _key;
     if (IsHasValue(type)) {
-        base64data = type + '0' + _key;
+        newKey = type + '0' + _key;
     }else{
-        base64data = _key;
+        newKey = _key;
     }
-    return base64data;
+    return newKey;
 };
 
 let GetKeyNameFromObject = (obj, value) => {

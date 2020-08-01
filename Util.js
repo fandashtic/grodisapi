@@ -1,6 +1,5 @@
 const { v4: uuidv4 } = require('uuid');
 const generator = require( 'generate-password');
-const Base64 = require('js-base64').Base64;
 
 let GetUpdateExpressionAndAttributeValuesAndNames = (obj, type) => {
     let result = {};
@@ -31,11 +30,11 @@ let GetKey = (key, value) => {
 let GetNewKey = (type) => {
     let _key = uuidv4();
     let buff = new Buffer(_key);
-    let base64data = buff.toString('base64');
+    let newKey = _key;
     if (IsHasValue(type)) {
-        base64data = type + '0' + base64data;
+        newKey = type + '0' + newKey;
     }
-    return base64data;
+    return newKey;
 };
 
 let GetKeyNameFromObject = (obj, value) => {
@@ -87,14 +86,18 @@ let GetLookUpData = (dataList, idCoulmn, dataLabel, selectedValue) => {
 
 let AddDetaultValues = (tableData, keyColumn, type, created_by) => {
     tableData[keyColumn] = GetNewKey(type);
-    tableData['created_by'] = created_by;
+    if(IsHasValue(created_by)){
+        tableData['created_by'] = created_by;
+    }
     tableData['created_on'] = GetDate();
     tableData['status'] = true;
     return tableData;
 }
 
 let UpdateDetaultValues = (tableData, modified_by) => {
-    tableData['modified_by'] = modified_by;
+    if(IsHasValue(created_by)){
+        tableData['modified_by'] = modified_by;
+    }
     tableData['modified_on'] = GetDate();
     return tableData;
 }
@@ -126,19 +129,19 @@ let GetDate = () => {
 }
 
 let EnCode = (data) => {
-    return Base64.encode(data);
+    return data;
 }
 
 let DeCode = (data) => {
-    return Base64.decode(data);
+    return data;
 }
 
 let CreatePassword = (password, password_salt) => {
-    return Base64.encode(password + password_salt);
+    return password + password_salt;
 };
 
 let ComparePassword = (password, password_salt, sys_password) => {
-    return Base64.encode(password + password_salt) === sys_password ? true : false;
+    return (password + password_salt) === sys_password ? true : false;
 };
 
 let CreatePasswordSalt = () => {
