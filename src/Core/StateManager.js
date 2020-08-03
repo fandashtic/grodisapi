@@ -1,10 +1,10 @@
-const { GetStateDataById, GetAllStateData, SaveStateData, UpdateStateData, DeleteStateData } = require('./../Data/State');
+const { GetbyColumn, GetById, GetAll, Save, Update, Delete } = require('./../Data/State');
 const { GetAllCountryData } = require('./../Data/Country');
 const { ReturnObject, GetLookUpData } = require('./../Shared/Util');
 const { IsHasValue } = require('./../Shared/Util');
 
 let IsStateValid = async (state_id, password, callback) => {
-    return await GetStateDataById(state_id, async (state) => {
+    return await GetById(state_id, async (state) => {
         if (state.password === password) {
             return await callback({
                 'data': {
@@ -27,7 +27,7 @@ let IsStateValid = async (state_id, password, callback) => {
 };
 
 let AddState = async (state, callback) => {
-    return await SaveStateData(state, async (state) => {
+    return await Save(state, async (state) => {
         if (state) {
             return await callback({
                 'data': state,
@@ -43,7 +43,7 @@ let AddState = async (state, callback) => {
 }
 
 let UpdateState = async (state_id, state, callback) => {
-    return await UpdateStateData(state_id, state, async (state) => {
+    return await Update(state_id, state, async (state) => {
         if (state) {
             return await callback({
                 'data': state,
@@ -59,7 +59,7 @@ let UpdateState = async (state_id, state, callback) => {
 }
 
 let DeleteState = async (state_id, callback) => {
-    return await DeleteStateData(state_id, async (state) => {
+    return await Delete(state_id, async (state) => {
         if (state) {
             return await callback({
                 'data': state,
@@ -75,7 +75,7 @@ let DeleteState = async (state_id, callback) => {
 };
 
 let GetState = async (state_id, callback) => {
-    return await GetStateDataById(state_id, async (state) => {
+    return await GetById(state_id, async (state) => {
         if (state) {
             return await callback({
                 'data': state,
@@ -91,7 +91,7 @@ let GetState = async (state_id, callback) => {
 }
 
 let GetAllStates = async (filter, callback) => {
-    return await GetAllStateData(filter, async (states) => {
+    return await GetAll(filter, async (states) => {
         if (states) {
             return await callback({
                 'data': states,
@@ -108,7 +108,7 @@ let GetAllStates = async (filter, callback) => {
 
 let StateLookUp = async (state_id, callback) => {
     if (IsHasValue(state_id)) {
-        return await GetStateDataById(state_id, async (state) => {
+        return await GetById(state_id, async (state) => {
             if (IsHasValue(state)) {
                 return await GetStateHierarchyData(state, callback);
             } else {

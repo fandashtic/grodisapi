@@ -1,9 +1,9 @@
-const { GetCountryDataById, GetAllCountryData, SaveCountryData, UpdateCountryData, DeleteCountryData } = require('./../Data/Country');
+const { GetbyColumn, GetById, GetAll, Save, Update, Delete } = require('./../Data/Country');
 const { ReturnObject, GetLookUpData } = require('./../Shared/Util');
 const { IsHasValue } = require('./../Shared/Util');
 
 let IsCountryValid = async (country_id, password, callback) => {
-    return await GetCountryDataById(country_id, async (country) => {
+    return await GetById(country_id, async (country) => {
         if (country.password === password) {
             return await callback({
                 'data': {
@@ -26,7 +26,7 @@ let IsCountryValid = async (country_id, password, callback) => {
 };
 
 let AddCountry = async (country, callback) => {
-    return await SaveCountryData(country, async (country) => {
+    return await Save(country, async (country) => {
         if (country) {
             return await callback({
                 'data': country,
@@ -42,7 +42,7 @@ let AddCountry = async (country, callback) => {
 }
 
 let UpdateCountry = async (country_id, country, callback) => {
-    return await UpdateCountryData(country_id, country, async (country) => {
+    return await Update(country_id, country, async (country) => {
         if (country) {
             return await callback({
                 'data': country,
@@ -58,7 +58,7 @@ let UpdateCountry = async (country_id, country, callback) => {
 }
 
 let DeleteCountry = async (country_id, callback) => {
-    return await DeleteCountryData(country_id, async (country) => {
+    return await Delete(country_id, async (country) => {
         if (country) {
             return await callback({
                 'data': country,
@@ -74,7 +74,7 @@ let DeleteCountry = async (country_id, callback) => {
 };
 
 let GetCountry = async (country_id, callback) => {
-    return await GetCountryDataById(country_id, async (country) => {
+    return await GetById(country_id, async (country) => {
         if (country) {
             return await callback({
                 'data': country,
@@ -90,7 +90,7 @@ let GetCountry = async (country_id, callback) => {
 }
 
 let GetAllCountries = async (filter, callback) => {
-    return await GetAllCountryData(filter, async (countries) => {
+    return await GetAll(filter, async (countries) => {
         if (countries) {
             return await callback({
                 'data': countries,
@@ -108,7 +108,7 @@ let GetAllCountries = async (filter, callback) => {
 
 let CountryLookUp = async (country_id, callback) => {
     if (IsHasValue(country_id)) {
-        return await GetCountryDataById(country_id, async (country) => {
+        return await GetById(country_id, async (country) => {
             if (IsHasValue(country)) {
                 return await GetCountryHierarchyData(country, callback);
             } else {

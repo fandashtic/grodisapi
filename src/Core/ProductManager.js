@@ -1,4 +1,4 @@
-const { GetById, GetAll, Save, Update, Delete } = require('./../Data/Product');
+const { GetbyColumn, GetById, GetAll, Save, Update, Delete } = require('./../Data/Product');
 const { GetAllManufactureData } = require('./../Data/Manufacture');
 const { GetAllBrandDatas } = require('./../Data/Brand');
 const { GetAllProductCategoriesData } = require('./../Data/ProductCategory');

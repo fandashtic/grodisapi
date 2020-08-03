@@ -1,4 +1,4 @@
-const { GetById, GetAll, Save, Update, Delete } = require('./../Data/Order');
+const { GetbyColumn, GetById, GetAll, Save, Update, Delete } = require('./../Data/Order');
 
 let IsOrderValid = async (orderName, password, callback) => {
     return await GetById(orderName, async (order) => {

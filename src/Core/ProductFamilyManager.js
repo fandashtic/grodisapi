@@ -1,12 +1,12 @@
-const { GetProductFamilyDataById, GetAllProductFamiliesData, SaveProductFamilyData, UpdateProductFamilyData, DeleteProductFamilyData } = require('./../Data/ProductFamily');
-const { GetAllManufactureData } = require('./../Data/Manufacture');
-const { GetAllBrandDatas } = require('./../Data/Brand');
-const { GetAllProductCategoriesData } = require('./../Data/ProductCategory');
+const { GetbyColumn, GetById, GetAll, Save, Update, Delete } = require('./../Data/ProductFamily');
+const { GetAll: GetAllManufactureData } = require('./../Data/Manufacture');
+const { GetAll: GetAllBrandDatas } = require('./../Data/Brand');
+const { GetAll: GetAllProductCategoriesData } = require('./../Data/ProductCategory');
 const { ReturnObject, GetLookUpData } = require('./../Shared/Util');
 const { IsHasValue } = require('./../Shared/Util');
 
 let IsProductFamilyValid = async (product_family_id, password, callback) => {
-    return await GetProductFamilyDataById(product_family_id, async (product_family) => {
+    return await GetById(product_family_id, async (product_family) => {
         if (product_family.password === password) {
             return await callback({
                 'data': {
@@ -29,7 +29,7 @@ let IsProductFamilyValid = async (product_family_id, password, callback) => {
 };
 
 let AddProductFamily = async (product_family, callback) => {
-    return await SaveProductFamilyData(product_family, async (product_family) => {
+    return await Save(product_family, async (product_family) => {
         if (product_family) {
             return await callback({
                 'data': product_family,
@@ -45,7 +45,7 @@ let AddProductFamily = async (product_family, callback) => {
 }
 
 let UpdateProductFamily = async (product_family_id, product_family, callback) => {
-    return await UpdateProductFamilyData(product_family_id, product_family, async (product_family) => {
+    return await Update(product_family_id, product_family, async (product_family) => {
         if (product_family) {
             return await callback({
                 'data': product_family,
@@ -61,7 +61,7 @@ let UpdateProductFamily = async (product_family_id, product_family, callback) =>
 }
 
 let DeleteProductFamily = async (product_family_id, callback) => {
-    return await DeleteProductFamilyData(product_family_id, async (product_family) => {
+    return await Delete(product_family_id, async (product_family) => {
         if (product_family) {
             return await callback({
                 'data': product_family,
@@ -77,7 +77,7 @@ let DeleteProductFamily = async (product_family_id, callback) => {
 };
 
 let GetProductFamily = async (product_family_name, callback) => {
-    return await GetProductFamilyDataById(product_family_name, async (product_family) => {
+    return await GetById(product_family_name, async (product_family) => {
         if (product_family) {
             return await callback({
                 'data': product_family,
@@ -93,7 +93,7 @@ let GetProductFamily = async (product_family_name, callback) => {
 }
 
 let GetAllProductFamilies = async (filter, callback) => {
-    return await GetAllProductFamiliesData(filter, async (product_familys) => {
+    return await GetAll(filter, async (product_familys) => {
         if (product_familys) {
             return await callback({
                 'data': product_familys,
@@ -110,7 +110,7 @@ let GetAllProductFamilies = async (filter, callback) => {
 
 let ProductFamilyLookUp = async (product_family_id, callback) => {
     if (IsHasValue(product_family_id)) {
-        return await GetProductFamilyDataById(product_family_id, async (product_family) => {
+        return await GetById(product_family_id, async (product_family) => {
             if (IsHasValue(product_family)) {
                 return await GetProductFamilyHierarchyData(product_family, callback);
             } else {

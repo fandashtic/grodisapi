@@ -1,11 +1,11 @@
-const { GetCityDataById, GetAllCityData, SaveCityData, UpdateCityData, DeleteCityData } = require('./../Data/City');
-const { GetAllStateData } = require('./../Data/State');
-const { GetAllCountryData } = require('./../Data/Country');
+const { GetbyColumn, GetById, GetAll, Save, Update, Delete } = require('./../Data/City');
+const { GetAll: GetAllStateData } = require('./../Data/State');
+const { GetAll: GetAllCountryData } = require('./../Data/Country');
 const { ReturnObject, GetLookUpData } = require('./../Shared/Util');
 const { IsHasValue } = require('./../Shared/Util');
 
 let IsCityValid = async (city_id, password, callback) => {
-    return await GetCityDataById(city_id, async (city) => {
+    return await GetById(city_id, async (city) => {
         if (city.password === password) {
             return await callback({
                 'data': {
@@ -28,7 +28,7 @@ let IsCityValid = async (city_id, password, callback) => {
 };
 
 let AddCity = async (city, callback) => {
-    return await SaveCityData(city, async (city) => {
+    return await Save(city, async (city) => {
         if (city) {
             return await callback({
                 'data': city,
@@ -44,7 +44,7 @@ let AddCity = async (city, callback) => {
 }
 
 let UpdateCity = async (city_id, city, callback) => {
-    return await UpdateCityData(city_id, city, async (city) => {
+    return await Update(city_id, city, async (city) => {
         if (city) {
             return await callback({
                 'data': city,
@@ -60,7 +60,7 @@ let UpdateCity = async (city_id, city, callback) => {
 }
 
 let DeleteCity = async (city_id, callback) => {
-    return await DeleteCityData(city_id, async (city) => {
+    return await Delete(city_id, async (city) => {
         if (city) {
             return await callback({
                 'data': city,
@@ -76,7 +76,7 @@ let DeleteCity = async (city_id, callback) => {
 };
 
 let GetCity = async (city_id, callback) => {
-    return await GetCityDataById(city_id, async (city) => {
+    return await GetById(city_id, async (city) => {
         if (city) {
             return await callback({
                 'data': city,
@@ -92,7 +92,7 @@ let GetCity = async (city_id, callback) => {
 }
 
 let GetAllCities = async (filter, callback) => {
-    return await GetAllCityData(filter, async (citys) => {
+    return await GetAll(filter, async (citys) => {
         if (citys) {
             return await callback({
                 'data': citys,
@@ -109,7 +109,7 @@ let GetAllCities = async (filter, callback) => {
 
 let CityLookUp = async (city_id, callback) => {
     if (IsHasValue(city_id)) {
-        return await GetCityDataById(city_id, async (city) => {
+        return await GetById(city_id, async (city) => {
             if (IsHasValue(city)) {
                 return await GetCityHierarchyData(city, callback);
             } else {

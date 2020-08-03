@@ -58,7 +58,6 @@ let AddBrand = () => {
 
 let DeleteBrand = (brand_id) => {
     DeleteBrandAPI(brand_id, (data, err) => {
-        debugger;
     });
 }
 

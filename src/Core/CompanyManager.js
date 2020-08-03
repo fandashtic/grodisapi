@@ -1,45 +1,41 @@
-const { GetById, GetAll, Save, Update, Delete } = require('./../Data/Company');
+const { GetbyColumn, GetById, GetAll, Save, Update, Delete } = require('./../Data/Company');
 const { CreateDynamicUser } = require('./../Shared/Common');
 const { ApplicationType } = require('./../Shared/Constant/Enum');
 
-let IsCompanyValid = async (companyName, password, callback) => {
-    return await GetById(companyName, async (company) => {
-        if (company.password === password) {
-            return await callback({
-                'data': {
-                    CompanyName: company.companyName,
-                    CompanyDisplayName: company.firstName + ' ' + company.lastName,
-                    CompanyType: company.companyType,
-                    CompanyId: company.companyId,
-                    store_id: company.store_id,
-                    CompanyProfileImage: company.profileImageUrl
-                },
-                'Status': 200
-            })
+let IsCompanyValid = async (email_id) => {
+    return await GetbyColumn(email_id, 'email_id', async (company) => {
+        if (company) {
+            return false;
         } else {
-            return await callback({
-                'data': null,
-                'Status': 401
-            })
+            return true;
         }
     });
 };
 
 let AddCompany = async (company, callback) => {
-    return await Save(company, async (company) => {
-        if (company) {
-            await CreateDynamicUser(company, ApplicationType.Company);
-            return await callback({
-                'data': company,
-                'Status': 200
-            })
-        } else {
-            return await callback({
-                'data': null,
-                'Status': 401
-            })
-        }
-    });
+
+    // Check the company is exists by email
+    if (!IsCompanyValid(company.email_id)) {
+        return await Save(company, async (company) => {
+            if (company) {
+                await CreateDynamicUser(company, ApplicationType.Company);
+                return await callback({
+                    'data': company,
+                    'Status': 200
+                })
+            } else {
+                return await callback({
+                    'data': null,
+                    'Status': 401
+                })
+            }
+        });
+    } else {
+        return await callback({
+            'data': 'Company exists with emailid: ' + company.email_id,
+            'Status': 401
+        })
+    }
 }
 
 let UpdateCompany = async (key, company, callback) => {

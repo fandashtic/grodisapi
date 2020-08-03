@@ -1,4 +1,4 @@
-const {Get, All, Add, Edit, Remove } = require('./../Shared/Reposidery');
+const {Get, GetbySingleFilter, All, Add, Edit, Remove } = require('./../Shared/Reposidery');
 const {AddDetaultValues, UpdateDetaultValues } = require('./../Shared/Util');
 const {PreFix } = require('./../Shared/Constant/Enum');
 
@@ -6,6 +6,10 @@ const _tableName = 'deliveries';
 const _primaryKey = 'delivery_id';
 
 //#region
+
+let GetbyColumn = async (value, columnName, callback) => {
+    return await GetbySingleFilter(_tableName, columnName, value, callback);
+};
 
 let GetById = async (key, callback) => {
     return await Get(_tableName, _primaryKey, key, callback);
@@ -29,6 +33,6 @@ let Delete = async (key, callback) => {
     return await Remove(_tableName, _primaryKey, key, callback);
 };
 
-module.exports = { GetById, GetAll, Save, Update, Delete };
+module.exports = { GetbyColumn, GetById, GetAll, Save, Update, Delete };
 
 //#endregion

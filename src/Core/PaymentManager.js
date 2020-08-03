@@ -1,4 +1,4 @@
-const { GetById, GetAll, Save, Update, Delete } = require('./../Data/Payment');
+const { GetbyColumn, GetById, GetAll, Save, Update, Delete } = require('./../Data/Payment');
 
 let IsPaymentValid = async (paymentName, password, callback) => {
     return await GetById(paymentName, async (payment) => {

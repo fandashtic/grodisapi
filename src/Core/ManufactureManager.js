@@ -1,8 +1,8 @@
-const { GetManufactureDataById, GetAllManufactureData, SaveManufactureData, UpdateManufactureData, DeleteManufactureData} = require('./../Data/Manufacture');
+const { GetbyColumn, GetById, GetAll, Save, Update, Delete } = require('./../Data/Manufacture');
 const { ReturnObject, GetLookUpData, IsHasValue} = require('./../Shared/Util');
 
 let AddManufacture = async (manufacture, callback) => {
-    return await SaveManufactureData(manufacture, async (manufacture) => {
+    return await Save(manufacture, async (manufacture) => {
         if (manufacture) {
             return await callback({
                 'data': manufacture,
@@ -18,7 +18,7 @@ let AddManufacture = async (manufacture, callback) => {
 }
 
 let UpdateManufacture = async (manufacture_id, manufacture, callback) => {
-    return await UpdateManufactureData(manufacture_id, manufacture, async (manufacture) => {
+    return await Update(manufacture_id, manufacture, async (manufacture) => {
         if (manufacture) {
             return await callback({
                 'data': manufacture,
@@ -34,7 +34,7 @@ let UpdateManufacture = async (manufacture_id, manufacture, callback) => {
 }
 
 let DeleteManufacture = async (manufacture_id, callback) => {
-    return await DeleteManufactureData(manufacture_id, async (manufacture) => {
+    return await Delete(manufacture_id, async (manufacture) => {
         if (manufacture) {
             return await callback({
                 'data': manufacture,
@@ -50,7 +50,7 @@ let DeleteManufacture = async (manufacture_id, callback) => {
 };
 
 let GetManufacture = async (manufacture_id, callback) => {
-    return await GetManufactureDataById(manufacture_id, async (manufacture) => {
+    return await GetById(manufacture_id, async (manufacture) => {
         if (manufacture) {
             return await callback({
                 'data': manufacture,
@@ -66,7 +66,7 @@ let GetManufacture = async (manufacture_id, callback) => {
 };
 
 let GetAllManufactures = async (filter, callback) => {
-    return await GetAllManufactureData(filter, async (manufactures) => {
+    return await GetAll(filter, async (manufactures) => {
         if (manufactures) {
             return await callback({
                 'data': manufactures,
@@ -83,7 +83,7 @@ let GetAllManufactures = async (filter, callback) => {
 
 let ManufactureLookUp = async (manufacture_id, callback) => {
     if (IsHasValue(manufacture_id)) {
-        return await GetManufactureDataById(manufacture_id, async (manufacture) => {
+        return await GetById(manufacture_id, async (manufacture) => {
             if (IsHasValue(manufacture)) {
                 return await GetManufactureHierarchyData(manufacture, callback);
             } else {

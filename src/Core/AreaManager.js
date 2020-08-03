@@ -1,4 +1,4 @@
-const { GetAreaDataById, GetAllAreaData, SaveAreaData, UpdateAreaData, DeleteAreaData } = require('./../Data/Area');
+const { GetbyColumn, GetById, GetAll, Save, Update, Delete } = require('./../Data/Area');
 const { GetAllCityData } = require('./../Data/City');
 const { GetAllStateData } = require('./../Data/State');
 const { GetAllCountryData } = require('./../Data/Country');
@@ -6,7 +6,7 @@ const { ReturnObject, GetLookUpData } = require('./../Shared/Util');
 const { IsHasValue } = require('./../Shared/Util');
 
 let AddArea = async (area, callback) => {
-    return await SaveAreaData(area, async (area) => {
+    return await Save(area, async (area) => {
         if (area) {
             return await callback({
                 'data': area,
@@ -22,7 +22,7 @@ let AddArea = async (area, callback) => {
 }
 
 let UpdateArea = async (key, area, callback) => {
-    return await UpdateAreaData(key, area, async (area) => {
+    return await Update(key, area, async (area) => {
         if (area) {
             return await callback({
                 'data': area,
@@ -38,7 +38,7 @@ let UpdateArea = async (key, area, callback) => {
 }
 
 let DeleteArea = async (key, callback) => {
-    return await DeleteAreaData(key, async (area) => {
+    return await Delete(key, async (area) => {
         if (area) {
             return await callback({
                 'data': area,
@@ -54,7 +54,7 @@ let DeleteArea = async (key, callback) => {
 };
 
 let GetArea = async (areaName, callback) => {
-    return await GetAreaDataById(areaName, async (area) => {
+    return await GetById(areaName, async (area) => {
         if (area) {
             return await callback({
                 'data': area,
@@ -70,7 +70,7 @@ let GetArea = async (areaName, callback) => {
 }
 
 let GetAllAreas = async (filter, callback) => {
-    return await GetAllAreaData(filter, async (areas) => {
+    return await GetAll(filter, async (areas) => {
         if (areas) {
             return await callback({
                 'data': areas,
@@ -87,7 +87,7 @@ let GetAllAreas = async (filter, callback) => {
 
 let AreaLookUp = async (area_id, callback) => {
     if (IsHasValue(area_id)) {
-        return await GetAreaDataById(area_id, async (area) => {
+        return await GetById(area_id, async (area) => {
             if (IsHasValue(area)) {
                 return await GetAreaHierarchyData(area, callback);
             } else {

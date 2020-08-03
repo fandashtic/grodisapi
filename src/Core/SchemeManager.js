@@ -1,4 +1,4 @@
-const { GetById, GetAll, Save, Update, Delete } = require('./../Data/Scheme');
+const { GetbyColumn, GetById, GetAll, Save, Update, Delete } = require('./../Data/Scheme');
 
 let IsSchemeValid = async (schemeName, password, callback) => {
     return await GetById(schemeName, async (scheme) => {

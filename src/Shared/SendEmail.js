@@ -1,5 +1,5 @@
 var nodemailer = require('nodemailer');
-const { DeCode } = require('./../Shared/Util');
+const { DeCode, ReturnObject } = require('./../Shared/Util');
 var config = require('./../../appConfig.json');
 
 let SendEmail = async (mailOptions, callback) => {
@@ -15,11 +15,7 @@ let SendEmail = async (mailOptions, callback) => {
     });
 
     transporter.sendMail(mailOptions, function (err, data) {
-        if (data) {
-            callback.send(data);
-        } else {
-            callback.send(err);
-        }
+        ReturnObject(callback, err, data, 'SendEmail');
     });
 };
 

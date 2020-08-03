@@ -1,4 +1,4 @@
-const { GetById, GetAll, Save, Update, Delete } = require('./../Data/Favorite');
+const { GetbyColumn, GetById, GetAll, Save, Update, Delete } = require('./../Data/Favorite');
 
 let IsFavoriteValid = async (favorite_name, password, callback) => {
     return await GetById(favorite_name, async (favorite) => {

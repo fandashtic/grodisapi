@@ -1,11 +1,11 @@
-const { GetProductCategoryDataById, GetAllProductCategoriesData, SaveProductCategoryData, UpdateProductCategoryData, DeleteProductCategoryData } = require('./../Data/ProductCategory');
-const { GetAllManufactureData } = require('./../Data/Manufacture');
-const { GetAllBrandDatas } = require('./../Data/Brand');
+const { GetbyColumn, GetById, GetAll, Save, Update, Delete } = require('./../Data/ProductCategory');
+const { GetAll: GetAllManufactureData } = require('./../Data/Manufacture');
+const { GetAll: GetAllBrandDatas } = require('./../Data/Brand');
 const { ReturnObject, GetLookUpData } = require('./../Shared/Util');
 const { IsHasValue } = require('./../Shared/Util');
 
 let IsProductCategoryValid = async (product_category_id, password, callback) => {
-    return await GetProductCategoryDataById(product_category_id, async (product_category) => {
+    return await GetById(product_category_id, async (product_category) => {
         if (product_category.password === password) {
             return await callback({
                 'data': {
@@ -28,7 +28,7 @@ let IsProductCategoryValid = async (product_category_id, password, callback) => 
 };
 
 let AddProductCategory = async (product_category, callback) => {
-    return await SaveProductCategoryData(product_category, async (product_category) => {
+    return await Save(product_category, async (product_category) => {
         if (product_category) {
             return await callback({
                 'data': product_category,
@@ -44,7 +44,7 @@ let AddProductCategory = async (product_category, callback) => {
 }
 
 let UpdateProductCategory = async (product_category_id, product_category, callback) => {
-    return await UpdateProductCategoryData(product_category_id, product_category, async (product_category) => {
+    return await Update(product_category_id, product_category, async (product_category) => {
         if (product_category) {
             return await callback({
                 'data': product_category,
@@ -60,7 +60,7 @@ let UpdateProductCategory = async (product_category_id, product_category, callba
 }
 
 let DeleteProductCategory = async (product_category_id, callback) => {
-    return await DeleteProductCategoryData(product_category_id, async (product_category) => {
+    return await Delete(product_category_id, async (product_category) => {
         if (product_category) {
             return await callback({
                 'data': product_category,
@@ -76,7 +76,7 @@ let DeleteProductCategory = async (product_category_id, callback) => {
 };
 
 let GetProductCategory = async (product_category_name, callback) => {
-    return await GetProductCategoryDataById(product_category_name, async (product_category) => {
+    return await GetById(product_category_name, async (product_category) => {
         if (product_category) {
             return await callback({
                 'data': product_category,
@@ -92,7 +92,7 @@ let GetProductCategory = async (product_category_name, callback) => {
 }
 
 let GetAllProductCategories = async (filter, callback) => {
-    return await GetAllProductCategoriesData(filter, async (product_categorys) => {
+    return await GetAll(filter, async (product_categorys) => {
         if (product_categorys) {
             return await callback({
                 'data': product_categorys,
@@ -109,7 +109,7 @@ let GetAllProductCategories = async (filter, callback) => {
 
 let ProductCategoryLookUp = async (product_category_id, callback) => {
     if (IsHasValue(product_category_id)) {
-        return await GetProductCategoryDataById(product_category_id, async (product_category) => {
+        return await GetById(product_category_id, async (product_category) => {
             if (IsHasValue(product_category)) {
                 return await GetProductCategoryHierarchyData(product_category, callback);
             } else {

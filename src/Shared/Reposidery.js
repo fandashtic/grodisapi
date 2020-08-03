@@ -1,5 +1,5 @@
 const db = require('./../../db');
-const { GetUpdateExpressionAndAttributeValuesAndNames, ReturnObject, GetKey } = require('./Util');
+const { GetUpdateExpressionAndAttributeValuesAndNames, ReturnObject, GetKey, IsHasValue } = require('./Util');
 
 let Get = async (tableName, key, callback) => {
     const ref = db.collection(tableName).doc(key);
@@ -7,9 +7,26 @@ let Get = async (tableName, key, callback) => {
     ReturnObject(callback, null, doc.data(), 'Get');
 };
 
+let GetbySingleFilter = async (tableName, columnName, value, callback) => {
+    let array = [];
+    const ref = db.collection(tableName);
+    const snapshot = await ref.where(columnName, '==', value).get();
+    if (snapshot.empty) {
+        console.log('No matching documents.');
+        return;
+    }
+
+    snapshot.forEach(doc => {
+        array.push(doc.data());
+    });
+
+    if(IsHasValue(array) && array.length > 0 && IsHasValue(array[0])){
+        ReturnObject(callback, null, array[0], 'GetbySingleFilter');
+    }
+};
+
 
 let All = async (tableName, filter, callback) => {
-    debugger;  
     const ref = db.collection(tableName);
     let array = [];
     const snapshot = await ref.get();
@@ -23,13 +40,13 @@ let All = async (tableName, filter, callback) => {
 let Add = async (tableName, key, tableData, callback) => {
     const ref = db.collection(tableName);
     await ref.doc(key).set(tableData);
-    ReturnObject(callback, null, 'Ok', 'Add');
+    ReturnObject(callback, null, tableData, 'Add');
 }
 
 let Edit = async (tableName, key, tableData, callback) => {
     const ref = db.collection(tableName);
     await ref.doc(key).set(tableData); 
-    ReturnObject(callback, null, 'Ok', 'Edit');
+    ReturnObject(callback, null, tableData, 'Edit');
 }
 
 let Remove = async (tableName, key, callback) => {
@@ -37,4 +54,4 @@ let Remove = async (tableName, key, callback) => {
     ReturnObject(callback, null, res, 'Remove');
 };
 
-module.exports = { Get, All, Add, Edit, Remove };
+module.exports = { Get, GetbySingleFilter, All, Add, Edit, Remove };

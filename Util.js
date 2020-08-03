@@ -39,7 +39,6 @@ let GetNewKey = (type) => {
 
 let GetKeyNameFromObject = (obj, value) => {
     var keys = Object.keys(obj);
-    console.log(keys[value]);
     return keys[value];
 }
 

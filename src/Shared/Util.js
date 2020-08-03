@@ -86,14 +86,16 @@ let GetLookUpData = (dataList, idCoulmn, dataLabel, selectedValue) => {
 
 let AddDetaultValues = (tableData, keyColumn, type, created_by) => {
     tableData[keyColumn] = GetNewKey(type);
-    tableData['created_by'] = created_by;
+    if(IsHasValue(created_by)){
+        tableData['created_by'] = created_by;
+    }
     tableData['created_on'] = GetDate();
     tableData['status'] = true;
     return tableData;
 }
 
 let UpdateDetaultValues = (tableData, modified_by) => {
-    if (IsHasValue(modified_by)) {
+    if(IsHasValue(created_by)){
         tableData['modified_by'] = modified_by;
     }
     tableData['modified_on'] = GetDate();

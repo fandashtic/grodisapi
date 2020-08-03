@@ -1,4 +1,4 @@
-const{ IsCompanyValid, AddCompany, UpdateCompany, DeleteCompany, GetCompany, GetAllCompanies } = require('./../../Core/CompanyManager');
+const{ AddCompany, UpdateCompany, DeleteCompany, GetCompany, GetAllCompanies } = require('./../../Core/CompanyManager');
 
 let AddCompanyAPI = async (company, callback) => {
     return await AddCompany(company, callback);

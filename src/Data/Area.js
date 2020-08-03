@@ -1,4 +1,4 @@
-const {Get, All, Add, Edit, Remove } = require('./../Shared/Reposidery');
+const {Get, GetbySingleFilter, All, Add, Edit, Remove } = require('./../Shared/Reposidery');
 const {AddDetaultValues, UpdateDetaultValues } = require('./../Shared/Util');
 const {PreFix } = require('./../Shared/Constant/Enum');
 
@@ -7,28 +7,32 @@ const _primaryKey = 'area_id';
 
 //#region
 
-let GetAreaDataById = async (key, callback) => {
+let GetbyColumn = async (value, columnName, callback) => {
+    return await GetbySingleFilter(_tableName, columnName, value, callback);
+};
+
+let GetById = async (key, callback) => {
     return await Get(_tableName, _primaryKey, key, callback);
 };
 
-let GetAllAreaData = async (filter, callback) => {
+let GetAll = async (filter, callback) => {
     return await All(_tableName, filter, callback);
 };
 
-let SaveAreaData = async (area, callback) => {
+let Save = async (area, callback) => {
     area = AddDetaultValues(area, 'area_id', PreFix.Area, area.created_by);
     return await Add(_tableName, area['area_id'], area, callback);
 }
 
-let UpdateAreaData = async (key, area, callback) => {
+let Update = async (key, area, callback) => {
     area = UpdateDetaultValues(area, area.modified_by);
     return await Edit(_tableName,  key, area, callback);
 }
 
-let DeleteAreaData = async (key, callback) => {
+let Delete = async (key, callback) => {
     return await Remove(_tableName, _primaryKey, key, callback);
 };
 
-module.exports = { GetAreaDataById, GetAllAreaData, SaveAreaData, UpdateAreaData, DeleteAreaData };
+module.exports = { GetbyColumn, GetById, GetAll, Save, Update, Delete };
 
 //#endregion

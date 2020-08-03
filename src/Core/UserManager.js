@@ -1,8 +1,8 @@
-const { GetUserDataById, GetAllUserData, SaveUserData, UpdateUserData, DeleteUserData } = require('./../Data/User');
+const { GetbyColumn, GetById, GetAll, Save, Update, Delete } = require('./../Data/User');
 const { InsertLog } = require('./../Data/SessionLog');
 const { GetNewKey, IsHasValue, GetDate, ComparePassword, CreatePassword } = require('./../Shared/Util');
 
-let IsUserValid = async (userName, password, callback) => {
+let IsUserVerified = async (userName, password, callback) => {
     let filter = {
         'user_name': userName
     };
@@ -36,6 +36,16 @@ let IsUserValid = async (userName, password, callback) => {
     });
 };
 
+let IsUserValid = async (user_name) => {
+    return await GetbyColumn(user_name, 'user_name', async (user) => {
+        if (user) {
+            return false;
+        } else {
+            return true;
+        }
+    });
+};
+
 let AddSessionLog = (session_id, session) => {
     InsertLog(session_id, session, async (session) => {
 
@@ -43,7 +53,7 @@ let AddSessionLog = (session_id, session) => {
 }
 
 let AddUser = async (user, callback) => {
-    return await SaveUserData(user, async (user) => {
+    return await Save(user, async (user) => {
         if (user) {
             //TODO: Send Confirmation email to user.
 
@@ -61,7 +71,7 @@ let AddUser = async (user, callback) => {
 }
 
 let UpdateUser = async (key, user, callback) => {
-    return await UpdateUserData(key, user, async (user) => {
+    return await Update(key, user, async (user) => {
         if (user) {
             return await callback({
                 'data': user,
@@ -77,7 +87,7 @@ let UpdateUser = async (key, user, callback) => {
 }
 
 let DeleteUser = async (key, callback) => {
-    return await DeleteUserData(key, async (user) => {
+    return await Delete(key, async (user) => {
         if (user) {
             return await callback({
                 'data': user,
@@ -93,7 +103,7 @@ let DeleteUser = async (key, callback) => {
 };
 
 let GetUser = async (userName, callback) => {
-    return await GetUserDataById(userName, async (user) => {
+    return await GetById(userName, async (user) => {
         if (user) {
             return await callback({
                 'data': user,
@@ -113,7 +123,7 @@ let ChangePassword = async (user_id, new_password, old_password, callback) => {
         'user_id': user_id
     };
 
-    return await GetAllUserData(filter, async (users) => {
+    return await GetAll(filter, async (users) => {
         let userExists = users.filter(function (o) { return o.user_id === user_id; });
         if (IsHasValue(userExists) && userExists.length > 0 && ComparePassword(old_password, userExists[0].password_salt, userExists[0].password)) {
             userExists[0].password = CreatePassword(new_password, userExists[0].password_salt);
@@ -142,7 +152,7 @@ let ChangePassword = async (user_id, new_password, old_password, callback) => {
 }
 
 let GetAllUsers = async (filter, callback) => {
-    return await GetAllUserData(filter, async (users) => {
+    return await GetAll(filter, async (users) => {
         if (users) {
             return await callback({
                 'data': users,
@@ -157,4 +167,4 @@ let GetAllUsers = async (filter, callback) => {
     });
 };
 
-module.exports = { IsUserValid, AddUser, UpdateUser, DeleteUser, GetUser, GetAllUsers, ChangePassword };
+module.exports = { IsUserValid, IsUserVerified, AddUser, UpdateUser, DeleteUser, GetUser, GetAllUsers, ChangePassword };
