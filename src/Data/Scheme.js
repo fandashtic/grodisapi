@@ -15,10 +15,6 @@ let GetById = async (key, callback) => {
     return await Get(_tableName, _primaryKey, key, callback);
 };
 
-let GetbyColumn = async (value, columnName, callback) => {
-    return await GetbySingleFilter(_tableName, columnName, value, callback);
-};
-
 let GetAll = async (filter, callback) => {
     return await All(_tableName, filter, callback);
 };
