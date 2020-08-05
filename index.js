@@ -4,7 +4,7 @@ const cors = require('cors');
 const app = express();
 app.use(bodyParser.json());
 app.use(cors());
-const PORT = process.PORT || 3001;
+const PORT = process.env.PORT || 3001;
 
 const { EnCode } = require('./src/Shared/Util');
 const { SendEmail } = require('./src/Shared/SendEmail');
