@@ -95,7 +95,7 @@ let AddDetaultValues = (tableData, keyColumn, type, created_by) => {
 }
 
 let UpdateDetaultValues = (tableData, modified_by) => {
-    if(IsHasValue(created_by)){
+    if(IsHasValue(modified_by)){
         tableData['modified_by'] = modified_by;
     }
     tableData['modified_on'] = GetDate();

@@ -50,10 +50,10 @@ let DeleteManufacture = async (manufacture_id, callback) => {
 };
 
 let GetManufacture = async (manufacture_id, callback) => {
-    return await GetById(manufacture_id, async (manufacture) => {
-        if (manufacture) {
+    return await GetById(manufacture_id, async (data, err) => {
+        if (data) {
             return await callback({
-                'data': manufacture,
+                'data': data,
                 'Status': 200
             })
         } else {
@@ -83,7 +83,7 @@ let GetAllManufactures = async (filter, callback) => {
 
 let ManufactureLookUp = async (manufacture_id, callback) => {
     if (IsHasValue(manufacture_id)) {
-        return await GetById(manufacture_id, async (manufacture) => {
+        return await GetById(manufacture_id, async (manufacture, err) => {
             if (IsHasValue(manufacture)) {
                 return await GetManufactureHierarchyData(manufacture, callback);
             } else {
@@ -114,7 +114,7 @@ const GetManufactureHierarchyData = async (manufacture, callback) => {
         _lookup.status = manufacture.status;
     }
 
-    GetAllManufactureData(active_filter, async (manufactures) => {
+    GetAll(active_filter, async (manufactures) => {
         let _m = GetLookUpData(manufactures, 'manufacture_id', 'manufacture_name', _lookup.manufacture_id);
         _lookup.manufactures = _m.list;
 

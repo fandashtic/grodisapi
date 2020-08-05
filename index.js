@@ -94,8 +94,8 @@ app.post('/DeleteManufacture', async (request, response) => {
 });
 
 app.post('/GetManufacture', async (request, response) => {
-  if (request.body !== null && request.body !== undefined && request.body.filter != null && request.body.filter !== undefined) {
-    GetManufactureAPI(request.body.filter, (data, err) => {
+  if (request.body !== null && request.body !== undefined && request.body.id != null && request.body.id !== undefined) {
+    GetManufactureAPI(request.body.id, (data, err) => {
       ResponseAPI(response, data, err);
     });
   } else {
@@ -114,8 +114,8 @@ app.post('/GetManufactures', async (request, response) => {
 });
 
 app.post('/ManufactureLookUp', async (request, response) => {
-  if (request.body !== null && request.body !== undefined && request.body.filter != null && request.body.filter !== undefined) {
-    ManufactureLookUpAPI(request.body.filter, (data, err) => {
+  if (request.body !== null && request.body !== undefined && request.body.id != null && request.body.id !== undefined) {
+    ManufactureLookUpAPI(request.body.id, (data, err) => {
       ResponseAPI(response, data, err);
     });
   } else {
@@ -158,8 +158,8 @@ app.post('/DeleteArea', async (request, response) => {
 });
 
 app.post('/GetArea', async (request, response) => {
-  if (request.body !== null && request.body !== undefined && request.body.filter != null && request.body.filter !== undefined) {
-    GetAreaAPI(request.body.filter, (data, err) => {
+  if (request.body !== null && request.body !== undefined && request.body.id != null && request.body.id !== undefined) {
+    GetAreaAPI(request.body.id, (data, err) => {
       ResponseAPI(response, data, err);
     });
   } else {
@@ -178,8 +178,8 @@ app.post('/GetAreas', async (request, response) => {
 });
 
 app.post('/AreaLookUp', async (request, response) => {
-  if (request.body !== null && request.body !== undefined && request.body.filter != null && request.body.filter !== undefined) {
-    AreaLookUpAPI(request.body.filter, (data, err) => {
+  if (request.body !== null && request.body !== undefined && request.body.id != null && request.body.id !== undefined) {
+    AreaLookUpAPI(request.body.id, (data, err) => {
       ResponseAPI(response, data, err);
     });
   } else {
@@ -222,8 +222,8 @@ app.post('/DeleteBrand', async (request, response) => {
 });
 
 app.post('/GetBrand', async (request, response) => {
-  if (request.body !== null && request.body !== undefined && request.body.filter != null && request.body.filter !== undefined) {
-    GetBrandAPI(request.body.filter, (data, err) => {
+  if (request.body !== null && request.body !== undefined && request.body.id != null && request.body.id !== undefined) {
+    GetBrandAPI(request.body.id, (data, err) => {
       ResponseAPI(response, data, err);
     });
   } else {
@@ -242,8 +242,8 @@ app.post('/GetBrands', async (request, response) => {
 });
 
 app.post('/BrandLookUp', async (request, response) => {
-  if (request.body !== null && request.body !== undefined && request.body.filter != null && request.body.filter !== undefined) {
-    BrandLookUpAPI(request.body.filter, (data, err) => {
+  if (request.body !== null && request.body !== undefined && request.body.id != null && request.body.id !== undefined) {
+    BrandLookUpAPI(request.body.id, (data, err) => {
       ResponseAPI(response, data, err);
     });
   } else {
@@ -286,8 +286,8 @@ app.post('/DeleteCity', async (request, response) => {
 });
 
 app.post('/GetCity', async (request, response) => {
-  if (request.body !== null && request.body !== undefined && request.body.filter != null && request.body.filter !== undefined) {
-    GetCityAPI(request.body.filter, (data, err) => {
+  if (request.body !== null && request.body !== undefined && request.body.id != null && request.body.id !== undefined) {
+    GetCityAPI(request.body.id, (data, err) => {
       ResponseAPI(response, data, err);
     });
   } else {
@@ -306,8 +306,8 @@ app.post('/GetCities', async (request, response) => {
 });
 
 app.post('/CityLookUp', async (request, response) => {
-  if (request.body !== null && request.body !== undefined && request.body.filter != null && request.body.filter !== undefined) {
-    CityLookUpAPI(request.body.filter, (data, err) => {
+  if (request.body !== null && request.body !== undefined && request.body.id != null && request.body.id !== undefined) {
+    CityLookUpAPI(request.body.id, (data, err) => {
       ResponseAPI(response, data, err);
     });
   } else {
@@ -350,8 +350,8 @@ app.post('/DeleteCountry', async (request, response) => {
 });
 
 app.post('/GetCountry', async (request, response) => {
-  if (request.body !== null && request.body !== undefined && request.body.filter != null && request.body.filter !== undefined) {
-    GetCountryAPI(request.body.filter, (data, err) => {
+  if (request.body !== null && request.body !== undefined && request.body.id != null && request.body.id !== undefined) {
+    GetCountryAPI(request.body.id, (data, err) => {
       ResponseAPI(response, data, err);
     });
   } else {
@@ -370,8 +370,8 @@ app.post('/GetCountries', async (request, response) => {
 });
 
 app.post('/CountryLookUp', async (request, response) => {
-  if (request.body !== null && request.body !== undefined && request.body.filter != null && request.body.filter !== undefined) {
-    CountryLookUpAPI(request.body.filter, (data, err) => {
+  if (request.body !== null && request.body !== undefined && request.body.id != null && request.body.id !== undefined) {
+    CountryLookUpAPI(request.body.id, (data, err) => {
       ResponseAPI(response, data, err);
     });
   } else {
@@ -414,8 +414,8 @@ app.post('/DeleteProductCategory', async (request, response) => {
 });
 
 app.post('/GetProductCategory', async (request, response) => {
-  if (request.body !== null && request.body !== undefined && request.body.filter != null && request.body.filter !== undefined) {
-    GetProductCategoryAPI(request.body.filter, (data, err) => {
+  if (request.body !== null && request.body !== undefined && request.body.id != null && request.body.id !== undefined) {
+    GetProductCategoryAPI(request.body.id, (data, err) => {
       ResponseAPI(response, data, err);
     });
   } else {
@@ -434,8 +434,8 @@ app.post('/GetProductCategories', async (request, response) => {
 });
 
 app.post('/ProductCategoryLookUp', async (request, response) => {
-  if (request.body !== null && request.body !== undefined && request.body.filter != null && request.body.filter !== undefined) {
-    ProductCategoryLookUpAPI(request.body.filter, (data, err) => {
+  if (request.body !== null && request.body !== undefined && request.body.id != null && request.body.id !== undefined) {
+    ProductCategoryLookUpAPI(request.body.id, (data, err) => {
       ResponseAPI(response, data, err);
     });
   } else {
@@ -478,8 +478,8 @@ app.post('/DeleteProduct', async (request, response) => {
 });
 
 app.post('/GetProduct', async (request, response) => {
-  if (request.body !== null && request.body !== undefined && request.body.filter != null && request.body.filter !== undefined) {
-    GetProductAPI(request.body.filter, (data, err) => {
+  if (request.body !== null && request.body !== undefined && request.body.id != null && request.body.id !== undefined) {
+    GetProductAPI(request.body.id, (data, err) => {
       ResponseAPI(response, data, err);
     });
   } else {
@@ -498,8 +498,8 @@ app.post('/GetProducts', async (request, response) => {
 });
 
 app.post('/ProductLookUp', async (request, response) => {
-  if (request.body !== null && request.body !== undefined && request.body.filter != null && request.body.filter !== undefined) {
-    ProductLookUpAPI(request.body.filter, (data, err) => {
+  if (request.body !== null && request.body !== undefined && request.body.id != null && request.body.id !== undefined) {
+    ProductLookUpAPI(request.body.id, (data, err) => {
       ResponseAPI(response, data, err);
     });
   } else {
@@ -542,8 +542,8 @@ app.post('/DeleteProductFamily', async (request, response) => {
 });
 
 app.post('/GetProductFamily', async (request, response) => {
-  if (request.body !== null && request.body !== undefined && request.body.filter != null && request.body.filter !== undefined) {
-    GetProductFamilyAPI(request.body.filter, (data, err) => {
+  if (request.body !== null && request.body !== undefined && request.body.id != null && request.body.id !== undefined) {
+    GetProductFamilyAPI(request.body.id, (data, err) => {
       ResponseAPI(response, data, err);
     });
   } else {
@@ -562,8 +562,8 @@ app.post('/GetProductFamilies', async (request, response) => {
 });
 
 app.post('/ProductFamilyLookUp', async (request, response) => {
-  if (request.body !== null && request.body !== undefined && request.body.filter != null && request.body.filter !== undefined) {
-    ProductFamilyLookUpAPI(request.body.filter, (data, err) => {
+  if (request.body !== null && request.body !== undefined && request.body.id != null && request.body.id !== undefined) {
+    ProductFamilyLookUpAPI(request.body.id, (data, err) => {
       ResponseAPI(response, data, err);
     });
   } else {
@@ -606,8 +606,8 @@ app.post('/DeleteState', async (request, response) => {
 });
 
 app.post('/GetState', async (request, response) => {
-  if (request.body !== null && request.body !== undefined && request.body.filter != null && request.body.filter !== undefined) {
-    GetStateAPI(request.body.filter, (data, err) => {
+  if (request.body !== null && request.body !== undefined && request.body.id != null && request.body.id !== undefined) {
+    GetStateAPI(request.body.id, (data, err) => {
       ResponseAPI(response, data, err);
     });
   } else {
@@ -626,8 +626,8 @@ app.post('/GetStates', async (request, response) => {
 });
 
 app.post('/StateLookUp', async (request, response) => {
-  if (request.body !== null && request.body !== undefined && request.body.filter != null && request.body.filter !== undefined) {
-    StateLookUpAPI(request.body.filter, (data, err) => {
+  if (request.body !== null && request.body !== undefined && request.body.id != null && request.body.id !== undefined) {
+    StateLookUpAPI(request.body.id, (data, err) => {
       ResponseAPI(response, data, err);
     });
   } else {
@@ -670,8 +670,8 @@ app.post('/DeleteStore', async (request, response) => {
 });
 
 app.post('/GetStore', async (request, response) => {
-  if (request.body !== null && request.body !== undefined && request.body.filter != null && request.body.filter !== undefined) {
-    GetStoreAPI(request.body.filter, (data, err) => {
+  if (request.body !== null && request.body !== undefined && request.body.id != null && request.body.id !== undefined) {
+    GetStoreAPI(request.body.id, (data, err) => {
       ResponseAPI(response, data, err);
     });
   } else {
@@ -690,8 +690,8 @@ app.post('/GetStores', async (request, response) => {
 });
 
 app.post('/StoreLookUp', async (request, response) => {
-  if (request.body !== null && request.body !== undefined && request.body.filter != null && request.body.filter !== undefined) {
-    StoreLookUpAPI(request.body.filter, (data, err) => {
+  if (request.body !== null && request.body !== undefined && request.body.id != null && request.body.id !== undefined) {
+    StoreLookUpAPI(request.body.id, (data, err) => {
       ResponseAPI(response, data, err);
     });
   } else {
@@ -734,8 +734,8 @@ app.post('/DeleteUser', async (request, response) => {
 });
 
 app.post('/GetUser', async (request, response) => {
-  if (request.body !== null && request.body !== undefined && request.body.filter != null && request.body.filter !== undefined) {
-    GetUserAPI(request.body.filter, (data, err) => {
+  if (request.body !== null && request.body !== undefined && request.body.id != null && request.body.id !== undefined) {
+    GetUserAPI(request.body.id, (data, err) => {
       ResponseAPI(response, data, err);
     });
   } else {
@@ -798,8 +798,8 @@ app.post('/DeleteCompany', async (request, response) => {
 });
 
 app.post('/GetCompany', async (request, response) => {
-  if (request.body !== null && request.body !== undefined && request.body.filter != null && request.body.filter !== undefined) {
-    GetCompanyAPI(request.body.filter, (data, err) => {
+  if (request.body !== null && request.body !== undefined && request.body.id != null && request.body.id !== undefined) {
+    GetCompanyAPI(request.body.id, (data, err) => {
       ResponseAPI(response, data, err);
     });
   } else {
@@ -852,8 +852,8 @@ app.post('/DeleteDelivery', async (request, response) => {
 });
 
 app.post('/GetDelivery', async (request, response) => {
-  if (request.body !== null && request.body !== undefined && request.body.filter != null && request.body.filter !== undefined) {
-    GetDeliveryAPI(request.body.filter, (data, err) => {
+  if (request.body !== null && request.body !== undefined && request.body.id != null && request.body.id !== undefined) {
+    GetDeliveryAPI(request.body.id, (data, err) => {
       ResponseAPI(response, data, err);
     });
   } else {
@@ -872,8 +872,8 @@ app.post('/GetDeliveries', async (request, response) => {
 });
 
 // app.post('/DeliveryLookUp', async(request, response) => {
-//   if (request.body !== null && request.body !== undefined && request.body.filter != null && request.body.filter !== undefined) {
-//     DeliveryLookUpAPI(request.body.filter, (data, err) => {
+//   if (request.body !== null && request.body !== undefined && request.body.id != null && request.body.id !== undefined) {
+//     DeliveryLookUpAPI(request.body.id, (data, err) => {
 //       ResponseAPI(response, data, err);
 //     });
 //   }else{
@@ -916,8 +916,8 @@ app.post('/DeleteInventory', async (request, response) => {
 });
 
 app.post('/GetInventory', async (request, response) => {
-  if (request.body !== null && request.body !== undefined && request.body.filter != null && request.body.filter !== undefined) {
-    GetInventoryAPI(request.body.filter, (data, err) => {
+  if (request.body !== null && request.body !== undefined && request.body.id != null && request.body.id !== undefined) {
+    GetInventoryAPI(request.body.id, (data, err) => {
       ResponseAPI(response, data, err);
     });
   } else {
@@ -936,8 +936,8 @@ app.post('/GetInventories', async (request, response) => {
 });
 
 //  app.post('/InventoryLookUp', async(request, response) => {
-//   if (request.body !== null && request.body !== undefined && request.body.filter != null && request.body.filter !== undefined) {
-//     InventoryLookUpAPI(request.body.filter, (data, err) => {
+//   if (request.body !== null && request.body !== undefined && request.body.id != null && request.body.id !== undefined) {
+//     InventoryLookUpAPI(request.body.id, (data, err) => {
 //       ResponseAPI(response, data, err);
 //     });
 //   }else{
@@ -980,8 +980,8 @@ app.post('/DeleteOrder', async (request, response) => {
 });
 
 app.post('/GetOrder', async (request, response) => {
-  if (request.body !== null && request.body !== undefined && request.body.filter != null && request.body.filter !== undefined) {
-    GetOrderAPI(request.body.filter, (data, err) => {
+  if (request.body !== null && request.body !== undefined && request.body.id != null && request.body.id !== undefined) {
+    GetOrderAPI(request.body.id, (data, err) => {
       ResponseAPI(response, data, err);
     });
   } else {
@@ -1000,8 +1000,8 @@ app.post('/GetOrders', async (request, response) => {
 });
 
 //  app.post('/OrderLookUp', async(request, response) => {
-//   if (request.body !== null && request.body !== undefined && request.body.filter != null && request.body.filter !== undefined) {
-//     OrderLookUpAPI(request.body.filter, (data, err) => {
+//   if (request.body !== null && request.body !== undefined && request.body.id != null && request.body.id !== undefined) {
+//     OrderLookUpAPI(request.body.id, (data, err) => {
 //       ResponseAPI(response, data, err);
 //     });
 //   }else{
@@ -1044,8 +1044,8 @@ app.post('/DeletePayment', async (request, response) => {
 });
 
 app.post('/GetPayment', async (request, response) => {
-  if (request.body !== null && request.body !== undefined && request.body.filter != null && request.body.filter !== undefined) {
-    GetPaymentAPI(request.body.filter, (data, err) => {
+  if (request.body !== null && request.body !== undefined && request.body.id != null && request.body.id !== undefined) {
+    GetPaymentAPI(request.body.id, (data, err) => {
       ResponseAPI(response, data, err);
     });
   } else {
@@ -1064,8 +1064,8 @@ app.post('/GetPayments', async (request, response) => {
 });
 
 // app.post('/PaymentLookUp', async(request, response) => {
-//   if (request.body !== null && request.body !== undefined && request.body.filter != null && request.body.filter !== undefined) {
-//     PaymentLookUpAPI(request.body.filter, (data, err) => {
+//   if (request.body !== null && request.body !== undefined && request.body.id != null && request.body.id !== undefined) {
+//     PaymentLookUpAPI(request.body.id, (data, err) => {
 //       ResponseAPI(response, data, err);
 //     });
 //   }else{
@@ -1108,8 +1108,8 @@ app.post('/DeleteScheme', async (request, response) => {
 });
 
 app.post('/GetScheme', async (request, response) => {
-  if (request.body !== null && request.body !== undefined && request.body.filter != null && request.body.filter !== undefined) {
-    GetSchemeAPI(request.body.filter, (data, err) => {
+  if (request.body !== null && request.body !== undefined && request.body.id != null && request.body.id !== undefined) {
+    GetSchemeAPI(request.body.id, (data, err) => {
       ResponseAPI(response, data, err);
     });
   } else {
@@ -1128,8 +1128,8 @@ app.post('/GetSchemes', async (request, response) => {
 });
 
 // app.post('/SchemeLookUp', async(request, response) => {
-//   if (request.body !== null && request.body !== undefined && request.body.filter != null && request.body.filter !== undefined) {
-//     SchemeLookUpAPI(request.body.filter, (data, err) => {
+//   if (request.body !== null && request.body !== undefined && request.body.id != null && request.body.id !== undefined) {
+//     SchemeLookUpAPI(request.body.id, (data, err) => {
 //       ResponseAPI(response, data, err);
 //     });
 //   }else{
@@ -1172,8 +1172,8 @@ app.post('/DeleteCart', async (request, response) => {
 });
 
 app.post('/GetCart', async (request, response) => {
-  if (request.body !== null && request.body !== undefined && request.body.filter != null && request.body.filter !== undefined) {
-    GetCartAPI(request.body.filter, (data, err) => {
+  if (request.body !== null && request.body !== undefined && request.body.id != null && request.body.id !== undefined) {
+    GetCartAPI(request.body.id, (data, err) => {
       ResponseAPI(response, data, err);
     });
   } else {
@@ -1192,8 +1192,8 @@ app.post('/GetCarts', async (request, response) => {
 });
 
 // app.post('/CartLookUp', async(request, response) => {
-//   if (request.body !== null && request.body !== undefined && request.body.filter != null && request.body.filter !== undefined) {
-//     CartLookUpAPI(request.body.filter, (data, err) => {
+//   if (request.body !== null && request.body !== undefined && request.body.id != null && request.body.id !== undefined) {
+//     CartLookUpAPI(request.body.id, (data, err) => {
 //       ResponseAPI(response, data, err);
 //     });
 //   }else{
@@ -1236,8 +1236,8 @@ app.post('/DeleteFavorite', async (request, response) => {
 });
 
 app.post('/GetFavorite', async (request, response) => {
-  if (request.body !== null && request.body !== undefined && request.body.filter != null && request.body.filter !== undefined) {
-    GetFavoriteAPI(request.body.filter, (data, err) => {
+  if (request.body !== null && request.body !== undefined && request.body.id != null && request.body.id !== undefined) {
+    GetFavoriteAPI(request.body.id, (data, err) => {
       ResponseAPI(response, data, err);
     });
   } else {
@@ -1256,8 +1256,8 @@ app.post('/GetFavorites', async (request, response) => {
 });
 
 // app.post('/FavoriteLookUp', async(request, response) => {
-//   if (request.body !== null && request.body !== undefined && request.body.filter != null && request.body.filter !== undefined) {
-//     FavoriteLookUpAPI(request.body.filter, (data, err) => {
+//   if (request.body !== null && request.body !== undefined && request.body.id != null && request.body.id !== undefined) {
+//     FavoriteLookUpAPI(request.body.id, (data, err) => {
 //       ResponseAPI(response, data, err);
 //     });
 //   }else{

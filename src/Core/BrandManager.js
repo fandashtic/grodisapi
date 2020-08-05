@@ -4,7 +4,7 @@ const { ReturnObject, GetLookUpData } = require('./../Shared/Util');
 const { IsHasValue } = require('./../Shared/Util');
 
 let IsBrandValid = async (brand_id, password, callback) => {
-    return await GetById(brand_id, async (brand) => {
+    return await GetById(brand_id, async (brand, err) => {
         if (brand.password === password) {
             return await callback({
                 'data': {
@@ -27,7 +27,7 @@ let IsBrandValid = async (brand_id, password, callback) => {
 };
 
 let AddBrand = async (brand, callback) => {
-    return await Save(brand, async (brand) => {
+    return await Save(brand, async (brand, err) => {
         if (brand) {
             return await callback({
                 'data': brand,
@@ -43,7 +43,7 @@ let AddBrand = async (brand, callback) => {
 }
 
 let UpdateBrand = async (brand_id, brand, callback) => {
-    return await Update(brand_id, brand, async (brand) => {
+    return await Update(brand_id, brand, async (brand, err) => {
         if (brand) {
             return await callback({
                 'data': brand,
@@ -59,7 +59,7 @@ let UpdateBrand = async (brand_id, brand, callback) => {
 }
 
 let DeleteBrand = async (brand_id, callback) => {
-    return await DeleteBrandData(brand_id, async (brand) => {
+    return await DeleteBrandData(brand_id, async (brand, err) => {
         if (brand) {
             return await callback({
                 'data': brand,
@@ -75,7 +75,7 @@ let DeleteBrand = async (brand_id, callback) => {
 };
 
 let GetBrand = async (brand_id, callback) => {
-    return await GetById(brand_id, async (brand) => {
+    return await GetById(brand_id, async (brand, err) => {
         if (brand) {
             return await callback({
                 'data': brand,
@@ -91,7 +91,7 @@ let GetBrand = async (brand_id, callback) => {
 }
 
 let GetAllBrands = async (filter, callback) => {
-    return await GetAll(filter, async (brands) => {
+    return await GetAll(filter, async (brands, err) => {
         if (brands) {
             return await callback({
                 'data': brands,
@@ -108,7 +108,7 @@ let GetAllBrands = async (filter, callback) => {
 
 let BrandLookUp = async (brand_id, callback) => {
     if (IsHasValue(brand_id)) {
-        return await GetById(brand_id, async (brand) => {
+        return await GetById(brand_id, async (brand, err) => {
             if (IsHasValue(brand)) {
                 return await GetBrandHierarchyData(brand, callback);
             } else {
@@ -140,7 +140,7 @@ const GetBrandHierarchyData = async (brand, callback) => {
         _lookup.status = brand.status;
     }
 
-    GetAllManufactureData(active_filter, async (manufactures) => {
+    GetAllManufactureData(active_filter, async (manufactures, err) => {
         let _m = GetLookUpData(manufactures, 'manufacture_id', 'manufacture_name', _lookup.manufacture_id);
         _lookup.manufactures = _m.list;
         _lookup.manufacture_name = _m.label;

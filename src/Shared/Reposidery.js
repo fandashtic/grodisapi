@@ -1,5 +1,5 @@
 const db = require('./../../db');
-const { GetUpdateExpressionAndAttributeValuesAndNames, ReturnObject, GetKey, IsHasValue } = require('./Util');
+const { ReturnObject, IsHasValue } = require('./Util');
 
 let Get = async (tableName, key, callback) => {
     const ref = db.collection(tableName).doc(key);

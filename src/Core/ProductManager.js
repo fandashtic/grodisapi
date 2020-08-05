@@ -1,8 +1,8 @@
 const { GetbyColumn, GetById, GetAll, Save, Update, Delete } = require('./../Data/Product');
-const { GetAllManufactureData } = require('./../Data/Manufacture');
-const { GetAllBrandDatas } = require('./../Data/Brand');
-const { GetAllProductCategoriesData } = require('./../Data/ProductCategory');
-const { GetAllProductFamiliesData } = require('./../Data/ProductFamily');
+const { GetAll: GetAllManufactureData  } = require('./../Data/Manufacture');
+const { GetAll: GetAllBrandDatas } = require('./../Data/Brand');
+const { GetAll: GetAllProductCategoriesData } = require('./../Data/ProductCategory');
+const { GetAll: GetAllProductFamiliesData } = require('./../Data/ProductFamily');
 const { ReturnObject, GetLookUpData } = require('./../Shared/Util');
 const { IsHasValue } = require('./../Shared/Util');
 
