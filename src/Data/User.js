@@ -14,7 +14,7 @@ let GetbyColumn = async (value, columnName, callback) => {
 };
 
 let GetById = async (user_id, callback) => {
-    return await Get(_tableName, _primaryKey, user_id, callback);
+    return await Get(_tableName, user_id, callback);
 };
 
 

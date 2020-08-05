@@ -11,8 +11,8 @@ let GetbyColumn = async (value, columnName, callback) => {
     return await GetbySingleFilter(_tableName, columnName, value, callback);
 };
 
-let GetById = async (key, callback) => {
-    return await Get(_tableName, key, callback);
+let GetById = async (manufacture_id, callback) => {
+    return await Get(_tableName, manufacture_id, callback);
 };
 
 let GetAll = async (filter, callback) => {

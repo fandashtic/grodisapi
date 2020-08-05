@@ -16,8 +16,8 @@ const DeleteUserAPI = async (user_id, callback) => {
     return await DeleteUser(user_id, callback);
 };
 
-const GetUserAPI = async (user, callback) => {
-    return await GetUser(user.id, callback);
+const GetUserAPI = async (user_id, callback) => {
+    return await GetUser(user_id, callback);
 };
 
 const GetUsersAPI = async (filter, callback) => {

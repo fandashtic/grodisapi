@@ -102,8 +102,8 @@ let DeleteUser = async (key, callback) => {
     });
 };
 
-let GetUser = async (userName, callback) => {
-    return await GetById(userName, async (user) => {
+let GetUser = async (user_id, callback) => {
+    return await GetById(user_id, async (user) => {
         if (user) {
             return await callback({
                 'data': user,
@@ -119,9 +119,33 @@ let GetUser = async (userName, callback) => {
 }
 
 let ChangePassword = async (user_id, new_password, old_password, callback) => {
-    let filter = {
-        'user_id': user_id
-    };
+    return await GetbyColumn(user_id, 'user_id', async (userExists) => {
+        console.log(userExists);
+        if (IsHasValue(userExists) && userExists.length > 0 && ComparePassword(old_password, userExists[0].password_salt, userExists[0].password)) {
+            userExists[0].password = CreatePassword(new_password, userExists[0].password_salt);
+            return await UpdateUserData(user_id, userExists[0], async (user) => {
+                if (user) {
+                    //TODO: Send Confirmation email to user.
+
+                    return await callback({
+                        'data': user,
+                        'Status': 200
+                    })
+                } else {
+                    return await callback({
+                        'data': null,
+                        'Status': 401
+                    })
+                }
+            });
+        } else {
+            return await callback({
+                'data': null,
+                'Status': 401
+            })
+        }
+    });
+
 
     return await GetAll(filter, async (users) => {
         let userExists = users.filter(function (o) { return o.user_id === user_id; });

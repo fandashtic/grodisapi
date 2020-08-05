@@ -504,7 +504,9 @@ app.post('/ProductLookUp', async (request, response) => {
       ResponseAPI(response, data, err);
     });
   } else {
-    response.send(request.body);
+    ProductLookUpAPI(null, (data, err) => {
+      ResponseAPI(response, data, err);
+    });
   }
 });
 

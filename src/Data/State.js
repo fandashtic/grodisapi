@@ -12,7 +12,7 @@ let GetbyColumn = async (value, columnName, callback) => {
 };
 
 let GetById = async (state_id, callback) => {
-    return await Get(_tableName, _primaryKey, state_id, callback);
+    return await Get(_tableName, state_id, callback);
 };
 
 let GetAll = async (filter, callback) => {
