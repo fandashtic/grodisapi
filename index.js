@@ -4,7 +4,7 @@ const cors = require('cors');
 const app = express();
 app.use(bodyParser.json());
 app.use(cors());
-const PORT = 3001;
+const PORT = process.PORT || 3001;
 
 const { EnCode } = require('./src/Shared/Util');
 const { SendEmail } = require('./src/Shared/SendEmail');
@@ -222,6 +222,7 @@ app.post('/DeleteBrand', async (request, response) => {
 });
 
 app.post('/GetBrand', async (request, response) => {
+
   if (request.body !== null && request.body !== undefined && request.body.id != null && request.body.id !== undefined) {
     GetBrandAPI(request.body.id, (data, err) => {
       ResponseAPI(response, data, err);
