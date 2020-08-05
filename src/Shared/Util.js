@@ -1,5 +1,6 @@
 const { v4: uuidv4 } = require('uuid');
 const generator = require( 'generate-password');
+const {Base64} = require('js-base64');
 
 let GetUpdateExpressionAndAttributeValuesAndNames = (obj, type) => {
     let result = {};
@@ -126,19 +127,19 @@ let GetDate = () => {
 }
 
 let EnCode = (data) => {
-    return data;
+    return Base64.encode(data);
 }
 
 let DeCode = (data) => {
-    return data;
+    return Base64.decode(data);
 }
 
 let CreatePassword = (password, password_salt) => {
-    return password + password_salt;
+    return Base64.encode(password + password_salt);
 };
 
 let ComparePassword = (password, password_salt, sys_password) => {
-    return password + password_salt === sys_password ? true : false;
+    return Base64.encode(password + password_salt) === sys_password ? true : false;
 };
 
 let CreatePasswordSalt = () => {

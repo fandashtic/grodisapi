@@ -56,7 +56,7 @@ const { AddFavoriteAPI, UpdateFavoriteAPI, DeleteFavoriteAPI, GetFavoriteAPI, Ge
 //#region Test API
 
 app.get('/test', async (request, response) => {
-    response.send('Api Works Good!');
+  response.send('Api Works Good!');
 });
 
 //#endregion Test API
@@ -119,7 +119,9 @@ app.post('/ManufactureLookUp', async (request, response) => {
       ResponseAPI(response, data, err);
     });
   } else {
-    response.send(request.body);
+    ManufactureLookUpAPI(null, (data, err) => {
+      ResponseAPI(response, data, err);
+    });
   }
 });
 
@@ -183,7 +185,9 @@ app.post('/AreaLookUp', async (request, response) => {
       ResponseAPI(response, data, err);
     });
   } else {
-    response.send(request.body);
+    AreaLookUpAPI(null, (data, err) => {
+      ResponseAPI(response, data, err);
+    });
   }
 });
 
@@ -248,7 +252,9 @@ app.post('/BrandLookUp', async (request, response) => {
       ResponseAPI(response, data, err);
     });
   } else {
-    response.send(request.body);
+    BrandLookUpAPI(null, (data, err) => {
+      ResponseAPI(response, data, err);
+    });
   }
 });
 
@@ -312,7 +318,9 @@ app.post('/CityLookUp', async (request, response) => {
       ResponseAPI(response, data, err);
     });
   } else {
-    response.send(request.body);
+    CityLookUpAPI(null, (data, err) => {
+      ResponseAPI(response, data, err);
+    });
   }
 });
 
@@ -376,7 +384,9 @@ app.post('/CountryLookUp', async (request, response) => {
       ResponseAPI(response, data, err);
     });
   } else {
-    response.send(request.body);
+    CountryLookUpAPI(null, (data, err) => {
+      ResponseAPI(response, data, err);
+    });
   }
 });
 
@@ -440,7 +450,9 @@ app.post('/ProductCategoryLookUp', async (request, response) => {
       ResponseAPI(response, data, err);
     });
   } else {
-    response.send(request.body);
+    ProductCategoryLookUpAPI(null, (data, err) => {
+      ResponseAPI(response, data, err);
+    });
   }
 });
 
@@ -570,7 +582,9 @@ app.post('/ProductFamilyLookUp', async (request, response) => {
       ResponseAPI(response, data, err);
     });
   } else {
-    response.send(request.body);
+    ProductFamilyLookUpAPI(null, (data, err) => {
+      ResponseAPI(response, data, err);
+    });
   }
 });
 
@@ -634,7 +648,9 @@ app.post('/StateLookUp', async (request, response) => {
       ResponseAPI(response, data, err);
     });
   } else {
-    response.send(request.body);
+    StateLookUpAPI(null, (data, err) => {
+      ResponseAPI(response, data, err);
+    });
   }
 });
 
@@ -698,7 +714,9 @@ app.post('/StoreLookUp', async (request, response) => {
       ResponseAPI(response, data, err);
     });
   } else {
-    response.send(request.body);
+    StoreLookUpAPI(null, (data, err) => {
+      ResponseAPI(response, data, err);
+    });
   }
 });
 
@@ -880,7 +898,9 @@ app.post('/GetDeliveries', async (request, response) => {
 //       ResponseAPI(response, data, err);
 //     });
 //   }else{
-//     response.send(request.body);
+//     DeliveryLookUpAPI(null, (data, err) => {
+//       ResponseAPI(response, data, err);
+//     });
 //   }
 // });
 
@@ -944,7 +964,9 @@ app.post('/GetInventories', async (request, response) => {
 //       ResponseAPI(response, data, err);
 //     });
 //   }else{
-//     response.send(request.body);
+//     InventoryLookUpAPI(request.body.id, (data, err) => {
+//       ResponseAPI(response, data, err);
+//     });
 //   }
 // });
 
@@ -1008,7 +1030,9 @@ app.post('/GetOrders', async (request, response) => {
 //       ResponseAPI(response, data, err);
 //     });
 //   }else{
-//     response.send(request.body);
+//     OrderLookUpAPI(request.body.id, (data, err) => {
+//       ResponseAPI(response, data, err);
+//     });
 //   }
 // });
 
@@ -1072,7 +1096,9 @@ app.post('/GetPayments', async (request, response) => {
 //       ResponseAPI(response, data, err);
 //     });
 //   }else{
-//     response.send(request.body);
+//     PaymentLookUpAPI(request.body.id, (data, err) => {
+//       ResponseAPI(response, data, err);
+//     });
 //   }
 // });
 
@@ -1136,7 +1162,9 @@ app.post('/GetSchemes', async (request, response) => {
 //       ResponseAPI(response, data, err);
 //     });
 //   }else{
-//     response.send(request.body);
+//     SchemeLookUpAPI(request.body.id, (data, err) => {
+//       ResponseAPI(response, data, err);
+//     });
 //   }
 // });
 
@@ -1200,7 +1228,9 @@ app.post('/GetCarts', async (request, response) => {
 //       ResponseAPI(response, data, err);
 //     });
 //   }else{
-//     response.send(request.body);
+//     CartLookUpAPI(request.body.id, (data, err) => {
+//       ResponseAPI(response, data, err);
+//     });
 //   }
 // });
 
@@ -1264,7 +1294,9 @@ app.post('/GetFavorites', async (request, response) => {
 //       ResponseAPI(response, data, err);
 //     });
 //   }else{
-//     response.send(request.body);
+//     FavoriteLookUpAPI(request.body.id, (data, err) => {
+//       ResponseAPI(response, data, err);
+//     });
 //   }
 // });
 

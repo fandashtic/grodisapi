@@ -9,20 +9,20 @@ let IsUserVerified = async (userName, password, callback) => {
 
     return await GetAllUserData(filter, async (users) => {
         let userExists = users.filter(function (o) { return o.user_name === userName; });
-        if (IsHasValue(userExists) && userExists.length > 0 && ComparePassword(password, userExists[0].password_salt, userExists[0].password)) {
+        if (IsHasValue(userExists) && userExists.length > 0 && ComparePassword(password, userExists.password_salt, userExists.password)) {
             let _session = {
                 session_token: GetNewKey(),
                 session_date: GetDate()
             }
-            AddSessionLog(userExists[0].user_id + GetNewKey(), _session);
+            AddSessionLog(userExists.user_id + GetNewKey(), _session);
             return await callback({
                 'data': {
-                    UserName: userExists[0].userName,
-                    UserDisplayName: userExists[0].firstName + ' ' + userExists[0].lastName,
-                    UserType: userExists[0].userType,
-                    CompanyId: userExists[0].companyId,
-                    store_id: userExists[0].store_id,
-                    UserProfileImage: userExists[0].profileImageUrl,
+                    UserName: userExists.userName,
+                    UserDisplayName: userExists.firstName + ' ' + userExists.lastName,
+                    UserType: userExists.userType,
+                    CompanyId: userExists.companyId,
+                    store_id: userExists.store_id,
+                    UserProfileImage: userExists.profileImageUrl,
                     Session_Token: _session.session_token
                 },
                 'Status': 200
@@ -120,10 +120,9 @@ let GetUser = async (user_id, callback) => {
 
 let ChangePassword = async (user_id, new_password, old_password, callback) => {
     return await GetbyColumn(user_id, 'user_id', async (userExists) => {
-        console.log(userExists);
-        if (IsHasValue(userExists) && userExists.length > 0 && ComparePassword(old_password, userExists[0].password_salt, userExists[0].password)) {
-            userExists[0].password = CreatePassword(new_password, userExists[0].password_salt);
-            return await UpdateUserData(user_id, userExists[0], async (user) => {
+        if (IsHasValue(userExists) && ComparePassword(old_password, userExists.password_salt, userExists.password)) {
+            userExists.password = CreatePassword(new_password, userExists.password_salt);
+            return await Update(user_id, userExists, async (user) => {
                 if (user) {
                     //TODO: Send Confirmation email to user.
 
@@ -133,42 +132,14 @@ let ChangePassword = async (user_id, new_password, old_password, callback) => {
                     })
                 } else {
                     return await callback({
-                        'data': null,
+                        'data': "Error on update new password. Please try again later.",
                         'Status': 401
                     })
                 }
             });
         } else {
             return await callback({
-                'data': null,
-                'Status': 401
-            })
-        }
-    });
-
-
-    return await GetAll(filter, async (users) => {
-        let userExists = users.filter(function (o) { return o.user_id === user_id; });
-        if (IsHasValue(userExists) && userExists.length > 0 && ComparePassword(old_password, userExists[0].password_salt, userExists[0].password)) {
-            userExists[0].password = CreatePassword(new_password, userExists[0].password_salt);
-            return await UpdateUserData(user_id, userExists[0], async (user) => {
-                if (user) {
-                    //TODO: Send Confirmation email to user.
-
-                    return await callback({
-                        'data': user,
-                        'Status': 200
-                    })
-                } else {
-                    return await callback({
-                        'data': null,
-                        'Status': 401
-                    })
-                }
-            });
-        } else {
-            return await callback({
-                'data': null,
+                'data': "Password is not match",
                 'Status': 401
             })
         }
