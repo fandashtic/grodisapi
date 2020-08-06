@@ -22,7 +22,7 @@ const { AddProductAPI, UpdateProductAPI, DeleteProductAPI, GetProductsAPI, GetPr
 const { AddProductFamilyAPI, GetProductFamilyAPI, UpdateProductFamilyAPI, DeleteProductFamilyAPI, GetProductFamiliesAPI, ProductFamilyLookUpAPI } = require('./src/Controller/Shared/ProductFamilyController');
 const { AddStateAPI, UpdateStateAPI, DeleteStateAPI, GetStateAPI, GetStatesAPI, StateLookUpAPI } = require('./src/Controller/Shared/StateController');
 const { AddStoreAPI, UpdateStoreAPI, DeleteStoreAPI, GetStoresAPI, GetStoreAPI, StoreLookUpAPI } = require('./src/Controller/Shared/StoreController');
-const { AddUserAPI, UpdateUserAPI, DeleteUserAPI, GetUserAPI, GetUsersAPI, ChangePasswordAPI } = require('./src/Controller/Shared/UserController');
+const { AddUserAPI, UpdateUserAPI, DeleteUserAPI, GetUserAPI, GetUsersAPI, IsUserVerifiedAPI, ChangePasswordAPI } = require('./src/Controller/Shared/UserController');
 
 //#endregion Shared Controller
 
@@ -774,6 +774,16 @@ app.post('/GetUsers', async (request, response) => {
   }
 });
 
+app.post('/IsUserValid', async (request, response) => {
+  if (request.body !== null && request.body !== undefined && request.body.filter != null && request.body.filter !== undefined) {
+    IsUserVerifiedAPI(request.body.filter.user_name, request.body.filter.password, (data, err) => {
+      ResponseAPI(response, data, err);
+    });
+  } else {
+    response.send(request.body);
+  }
+});
+
 app.post('/ChangePassword', async (request, response) => {
   if (request.body !== null && request.body !== undefined && request.body.user_id != null && request.body.new_password !== undefined && request.body.old_password !== undefined) {
     ChangePasswordAPI(request.body.user_id, request.body.new_password, request.body.old_password, (data, err) => {
@@ -788,7 +798,7 @@ app.post('/ChangePassword', async (request, response) => {
 
 //#region Company API
 
-app.post('/AddCompany', async (request, response) => {
+app.post('/AddCompany', async (request, response) => {  
   if (request.body !== null && request.body !== undefined && request.body.inputmodel != null && request.body.inputmodel !== undefined) {
     AddCompanyAPI(request.body.inputmodel, (data, err) => {
       ResponseAPI(response, data, err);

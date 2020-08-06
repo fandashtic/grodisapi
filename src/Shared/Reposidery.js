@@ -12,8 +12,7 @@ let GetbySingleFilter = async (tableName, columnName, value, callback) => {
     const ref = db.collection(tableName);
     const snapshot = await ref.where(columnName, '==', value).get();
     if (snapshot.empty) {
-        console.log('No matching documents.');
-        return;
+        ReturnObject(callback, null, null,  'GetbySingleFilter');
     }
 
     snapshot.forEach(doc => {

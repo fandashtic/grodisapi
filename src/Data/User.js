@@ -1,5 +1,5 @@
 const {Get, GetbySingleFilter, All, Add, Edit, Remove } = require('./../Shared/Reposidery');
-const {AddDetaultValues, UpdateDetaultValues, CreatePassword, CreatePasswordSalt, 
+const {AddDetaultValues, UpdateDetaultValues, CreateRandomPassword, CreatePassword, CreatePasswordSalt, 
     //IsHasValue
  } = require('./../Shared/Util');
 const {PreFix } = require('./../Shared/Constant/Enum');
@@ -22,9 +22,9 @@ let GetAll = async (filter, callback) => {
     return await All(_tableName, filter, callback);
 };
 
-let Save = async (user, callback) => {
+let Save = async (user, callback) => {    
     user = AddDetaultValues(user, 'user_id', PreFix.User, user.created_by);
-    let _password = CreatePassword();
+    let _password = CreateRandomPassword();
     let _password_salt = CreatePasswordSalt();
     user['password'] = CreatePassword(_password, _password_salt);
     user['password_salt'] = _password_salt;

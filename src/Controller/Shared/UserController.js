@@ -1,7 +1,7 @@
-const{ GetUser, GetAllUsers, IsUserValid, AddUser, UpdateUser, DeleteUser, ChangePassword } = require('./../../Core/UserManager');
+const{ GetUser, GetAllUsers, IsUserVerified, IsUserValid, AddUser, UpdateUser, DeleteUser, ChangePassword } = require('./../../Core/UserManager');
 
-const IsUserValidAPI = async (user_id, password, callback) => {
-    return await IsUserValid(user_id, password, callback);
+const IsUserValidAPI = async (user_name, password, callback) => {
+    return await IsUserValid(user_name, password, callback);
 };
 
 const AddUserAPI = async (user, callback) => {
@@ -24,8 +24,12 @@ const GetUsersAPI = async (filter, callback) => {
     return await GetAllUsers(filter, callback);
 };
 
+const IsUserVerifiedAPI = async (user_name, password, callback) => {
+    return await IsUserVerified(user_name, password, callback);
+};
+
 const ChangePasswordAPI = async (user_id, new_password, old_password, callback) => {
     return await ChangePassword(user_id, new_password, old_password, callback);
 };
 
-module.exports = { IsUserValidAPI, AddUserAPI, UpdateUserAPI, DeleteUserAPI, GetUserAPI, GetUsersAPI, ChangePasswordAPI };
+module.exports = { IsUserValidAPI, AddUserAPI, UpdateUserAPI, DeleteUserAPI, GetUserAPI, GetUsersAPI, IsUserVerifiedAPI, ChangePasswordAPI };

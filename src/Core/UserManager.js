@@ -2,14 +2,9 @@ const { GetbyColumn, GetById, GetAll, Save, Update, Delete } = require('./../Dat
 const { InsertLog } = require('./../Data/SessionLog');
 const { GetNewKey, IsHasValue, GetDate, ComparePassword, CreatePassword } = require('./../Shared/Util');
 
-let IsUserVerified = async (userName, password, callback) => {
-    let filter = {
-        'user_name': userName
-    };
-
-    return await GetAllUserData(filter, async (users) => {
-        let userExists = users.filter(function (o) { return o.user_name === userName; });
-        if (IsHasValue(userExists) && userExists.length > 0 && ComparePassword(password, userExists.password_salt, userExists.password)) {
+let IsUserVerified = async (user_name, password, callback) => {
+    return await GetbyColumn(user_name, 'user_name', async (userExists) => {        
+        if (IsHasValue(userExists) && ComparePassword(password, userExists.password_salt, userExists.password)) {
             let _session = {
                 session_token: GetNewKey(),
                 session_date: GetDate()
@@ -17,12 +12,12 @@ let IsUserVerified = async (userName, password, callback) => {
             AddSessionLog(userExists.user_id + GetNewKey(), _session);
             return await callback({
                 'data': {
-                    UserName: userExists.userName,
-                    UserDisplayName: userExists.firstName + ' ' + userExists.lastName,
-                    UserType: userExists.userType,
-                    CompanyId: userExists.companyId,
-                    store_id: userExists.store_id,
-                    UserProfileImage: userExists.profileImageUrl,
+                    UserName: userExists.user_name,
+                    UserDisplayName: userExists.first_name + ' ' + userExists.last_name,
+                    UserType: userExists.user_type,
+                    CompanyId: userExists.company_id,
+                    store_id: IsHasValue(userExists.store_id)? userExists.store_id: 0,
+                    UserProfileImage: IsHasValue(userExists.profileImageUrl) ? userExists.profileImageUrl: 'image.png',
                     Session_Token: _session.session_token
                 },
                 'Status': 200

@@ -1,6 +1,6 @@
 const { v4: uuidv4 } = require('uuid');
 const generator = require( 'generate-password');
-const {Base64} = require('js-base64');
+//const {Base64} = require('js-base64');
 
 let GetUpdateExpressionAndAttributeValuesAndNames = (obj, type) => {
     let result = {};
@@ -127,19 +127,33 @@ let GetDate = () => {
 }
 
 let EnCode = (data) => {
-    return Base64.encode(data);
+    //return Base64.encode(data);
+    return (data);
 }
 
 let DeCode = (data) => {
-    return Base64.decode(data);
+    //return Base64.decode(data);
+    return (data);
 }
 
 let CreatePassword = (password, password_salt) => {
-    return Base64.encode(password + password_salt);
+    //return Base64.encode(password + password_salt);
+    return password;
 };
 
 let ComparePassword = (password, password_salt, sys_password) => {
-    return Base64.encode(password + password_salt) === sys_password ? true : false;
+    //return Base64.encode(password + password_salt) === sys_password ? true : false;
+    return password === sys_password ? true : false;
+};
+
+let CreateRandomPassword = () => {
+    return generator.generate({
+        length: 10,
+        numbers: true,
+        symbols: true,
+        lowercase: true,
+        uppercase: true
+    });
 };
 
 let CreatePasswordSalt = () => {
@@ -158,6 +172,6 @@ let GetFileExtn = (fileName) => {
 
 module.exports = {
     GetLookUpData, GetDate, SortByCreatedOn, IsHasValue, GetUpdateExpressionAndAttributeValuesAndNames,
-    ReturnObject, GetKey, GetNewKey, AddDetaultValues, UpdateDetaultValues, CreatePassword, CreatePasswordSalt,
+    ReturnObject, GetKey, GetNewKey, AddDetaultValues, UpdateDetaultValues, CreateRandomPassword, CreatePassword, CreatePasswordSalt,
     ComparePassword, GetKeyNameFromObject, EnCode, DeCode, GetFileExtn
 };
