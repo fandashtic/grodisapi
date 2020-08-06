@@ -133,12 +133,12 @@ const GetAreaHierarchyData = async (area, callback) => {
         _lookup.country_name = _m.label;
 
         await GetAllStateData(active_filter, async (brands) => {
-            let _b = GetLookUpData(brands, 'state_id', 'state_name', _lookup.state_id);
+            let _b = GetLookUpData(brands, 'state_id', 'state_name', _lookup.state_id, 'country_id');
             _lookup.states = _b.list;
             _lookup.state_name = _b.label;
 
             await GetAllCityData(active_filter, async (storeCategories) => {
-                let _bc = GetLookUpData(storeCategories, 'city_id', 'city_name', _lookup.city_id);
+                let _bc = GetLookUpData(storeCategories, 'city_id', 'city_name', _lookup.city_id, 'state_id');
                 _lookup.cities = _bc.list;
                 _lookup.city_name = _bc.label;
 

@@ -65,7 +65,7 @@ let IsHasValue = (data) => {
     return false;
 };
 
-let GetLookUpData = (dataList, idCoulmn, dataLabel, selectedValue, dependent_id) => {
+let GetLookUpData = (dataList, idCoulmn, dataLabel, selectedValue, dependentColumn) => {
     let result = { list: [], label: '' };
     let _isSelected = false;
     dataList.forEach(l => {
@@ -79,7 +79,7 @@ let GetLookUpData = (dataList, idCoulmn, dataLabel, selectedValue, dependent_id)
                 label: l[dataLabel],
                 value: l[idCoulmn],
                 isSelected: _isSelected,
-                dependent: dependent_id
+                dependent: IsHasValue(dependentColumn) ? l[dependentColumn] : ""
             }
         )
     });
