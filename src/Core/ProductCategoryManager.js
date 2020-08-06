@@ -148,7 +148,7 @@ const GetProductCategoryHierarchyData = async (product_category, callback) => {
         _lookup.manufacture_name = _m.label;
 
         await GetAllBrandDatas(active_filter, async (brands) => {
-            let _b = GetLookUpData(brands, 'brand_id', 'brand_name', _lookup.brand_id);
+            let _b = GetLookUpData(brands, 'brand_id', 'brand_name', _lookup.brand_id, _lookup.manufacture_id);
             _lookup.brands = _b.list;
             _lookup.brand_name = _b.label;
             return await ReturnObject(callback, null, _lookup, 'GetProductCategoryHierarchyData');
