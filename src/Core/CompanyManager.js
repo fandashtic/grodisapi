@@ -1,6 +1,7 @@
 const { GetbyColumn, GetById, GetAll, Save, Update, Delete } = require('./../Data/Company');
 const { CreateDynamicUser } = require('./../Shared/Common');
 const { ApplicationType } = require('./../Shared/Constant/Enum');
+const { IsHasValue, ReturnObject, GetLookUpData } = require('./../Shared/Util');
 
 let AddCompany = async (company, callback) => {    
     // Check the company is exists by email
@@ -88,4 +89,40 @@ let GetAllCompanies = async (filter, callback) => {
     });
 };
 
-module.exports = { AddCompany, UpdateCompany, DeleteCompany, GetCompany, GetAllCompanies };
+
+let CompanyLookUp = async (company_id, callback) => {
+    if (IsHasValue(company_id)) {
+        return await GetById(company_id, async (company) => {
+            if (IsHasValue(company)) {
+                return await GetCompanyHierarchyData(company, callback);
+            } else {
+                return await callback({
+                    'data': null,
+                    'Status': 401
+                })
+            }
+        });
+    } else {
+        return await GetCompanyHierarchyData(null, callback);
+    }
+}
+
+const GetCompanyHierarchyData = async (company, callback) => {
+    let active_filter = { 'status': true };
+    let _lookup = {};
+
+    if (IsHasValue(company)) {
+        _lookup.company_id = company.company_id;
+        _lookup.company_name = company.company_name;
+        _lookup.profile_image_url = company.profile_image_url;
+        _lookup.status = company.status;
+    }
+
+    GetAll(active_filter, async (companies) => {
+        let _m = GetLookUpData(companies, 'company_id', 'company_name', _lookup.company_id);
+        _lookup.companies = _m.list;
+        return await ReturnObject(callback, null, _lookup, 'GetCompanyHierarchyData');
+    });
+}
+
+module.exports = { AddCompany, UpdateCompany, DeleteCompany, GetCompany, GetAllCompanies, CompanyLookUp };

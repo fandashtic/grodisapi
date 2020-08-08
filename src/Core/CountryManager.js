@@ -1,6 +1,5 @@
 const { GetbyColumn, GetById, GetAll, Save, Update, Delete } = require('./../Data/Country');
-const { ReturnObject, GetLookUpData } = require('./../Shared/Util');
-const { IsHasValue } = require('./../Shared/Util');
+const { IsHasValue, ReturnObject, GetLookUpData } = require('./../Shared/Util');
 
 let IsCountryValid = async (country_id, password, callback) => {
     return await GetById(country_id, async (country) => {

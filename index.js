@@ -28,7 +28,7 @@ const { AddUserAPI, UpdateUserAPI, DeleteUserAPI, GetUserAPI, GetUsersAPI, IsUse
 
 //#region Company Controller
 
-const { AddCompanyAPI, UpdateCompanyAPI, DeleteCompanyAPI, GetCompanyAPI, GetCompaniesAPI } = require('./src/Controller/Company/CompanyController');
+const { AddCompanyAPI, UpdateCompanyAPI, DeleteCompanyAPI, GetCompanyAPI, GetCompaniesAPI, CompanyLookUpAPI } = require('./src/Controller/Company/CompanyController');
 
 //#endregion Company Controller
 
@@ -845,6 +845,18 @@ app.post('/GetCompanies', async (request, response) => {
     });
   } else {
     response.send(request.body);
+  }
+});
+
+app.post('/CompanyLookUp', async (request, response) => {
+  if (request.body !== null && request.body !== undefined && request.body.id != null && request.body.id !== undefined) {
+    CompanyLookUpAPI(request.body.id, (data, err) => {
+      ResponseAPI(response, data, err);
+    });
+  } else {
+    CompanyLookUpAPI(null, (data, err) => {
+      ResponseAPI(response, data, err);
+    });
   }
 });
 
