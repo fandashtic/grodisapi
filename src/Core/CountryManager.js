@@ -140,7 +140,7 @@ const GetCountryHierarchyData = async (country, callback) => {
         _lookup.longitude = country.longitude;
     }
 
-    GetAllCountryData(active_filter, async (countries) => {
+    GetAll(active_filter, async (countries) => {
         let _m = GetLookUpData(countries, 'country_id', 'country_name', _lookup.country_id);
         _lookup.countries = _m.list;
         return await ReturnObject(callback, null, _lookup, 'GetCountryHierarchyData');

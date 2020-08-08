@@ -1,8 +1,8 @@
 const { GetbyColumn, GetById, GetAll, Save, Update, Delete } = require('./../Data/Store');
-const { GetAllAreaData } = require('./../Data/Area');
-const { GetAllCityData } = require('./../Data/City');
-const { GetAllStateData } = require('./../Data/State');
-const { GetAllCountryData } = require('./../Data/Country');
+const { GetAll:GetAllAreaData } = require('./../Data/Area');
+const { GetAll:GetAllCityData } = require('./../Data/City');
+const { GetAll:GetAllStateData } = require('./../Data/State');
+const { GetAll:GetAllCountryData } = require('./../Data/Country');
 const { ReturnObject, GetLookUpData } = require('./../Shared/Util');
 const { IsHasValue } = require('./../Shared/Util');
 const { CreateDynamicUser } = require('./../Shared/Common');

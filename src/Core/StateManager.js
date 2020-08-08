@@ -1,5 +1,5 @@
 const { GetbyColumn, GetById, GetAll, Save, Update, Delete } = require('./../Data/State');
-const { GetAllCountryData } = require('./../Data/Country');
+const { GetAll: GetAllCountryData } = require('./../Data/Country');
 const { ReturnObject, GetLookUpData } = require('./../Shared/Util');
 const { IsHasValue } = require('./../Shared/Util');
 
