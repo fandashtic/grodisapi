@@ -16,13 +16,13 @@ let CreateDynamicUser = (sourceData, type) => {
     if (type === ApplicationType.Company) {
         user['user_type'] = UserType.COMPANY_ADMIN;
         user['company_id'] = sourceData.company_id;
-        //user['company_name'] = sourceData.company_name;
+        user['company_name'] = sourceData.company_name;
     }
 
     if (type === ApplicationType.Store) {
         user['user_type'] = UserType.STORE_ADMIN;
         user['store_id'] = sourceData.store_id;
-        //user['store_name'] = sourceData.store_name;
+        user['store_name'] = sourceData.store_name;
     }
 
     if (IsHasValue(sourceData.profile_image_url)) {
