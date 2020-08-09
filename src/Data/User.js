@@ -37,7 +37,7 @@ let Update = async (user_id, user, callback) => {
 }
 
 let Delete = async (user_id, callback) => {
-    return await Remove(_tableName, _primaryKey, user_id, callback);
+    return await Remove(_tableName, user_id, callback);
 };
 
 module.exports = { GetbyColumn, GetById, GetAll, Save, Update, Delete };

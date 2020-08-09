@@ -31,7 +31,7 @@ let Update = async (key, brand, callback) => {
 }
 
 let Delete = async (key, callback) => {
-    return await Remove(_tableName, _primaryKey, key, callback);
+    return await Remove(_tableName, key, callback);
 };
 
 

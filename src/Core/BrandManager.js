@@ -59,7 +59,7 @@ let UpdateBrand = async (brand_id, brand, callback) => {
 }
 
 let DeleteBrand = async (brand_id, callback) => {
-    return await DeleteBrandData(brand_id, async (brand, err) => {
+    return await Delete(brand_id, async (brand, err) => {
         if (brand) {
             return await callback({
                 'data': brand,
