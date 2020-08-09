@@ -13,6 +13,7 @@ let Area = {
     store_id: String,
     store_name: String,
     profile_image_url: String,
+    pincode: Number,
     status: Boolean,
     created_on: Date,
     created_by: String,

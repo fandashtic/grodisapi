@@ -49,8 +49,20 @@ let Edit = async (tableName, key, tableData, callback) => {
 }
 
 let Remove = async (tableName, key, callback) => {
-    const res = await db.collection(tableName).doc(key).delete();
-    ReturnObject(callback, null, res, 'Remove');
+    const ref = db.collection(tableName).doc(key);
+    const doc = await  ref.get();
+    SetValue(ref, {'status': false}, callback, 'Remove');
 };
 
-module.exports = { Get, GetbySingleFilter, All, Add, Edit, Remove };
+let HardDelete = async (tableName, key, callback) => {
+    const res = await db.collection(tableName).doc(key).delete();
+    ReturnObject(callback, null, tableData, 'HardDelete');
+};
+
+let SetValue = async (doc, parameter, callback, methodName) => {
+    const res = await doc.update(parameter);
+    ReturnObject(callback, null, res, methodName);
+};
+
+
+module.exports = { Get, GetbySingleFilter, All, Add, Edit, Remove, HardDelete };
