@@ -1,5 +1,5 @@
 const { v4: uuidv4 } = require('uuid');
-const generator = require( 'generate-password');
+const generator = require('generate-password');
 //const {Base64} = require('js-base64');
 
 let GetUpdateExpressionAndAttributeValuesAndNames = (obj, type) => {
@@ -33,7 +33,7 @@ let GetNewKey = (type) => {
     let newKey = _key;
     if (IsHasValue(type)) {
         newKey = type + '0' + _key;
-    }else{
+    } else {
         newKey = _key;
     }
     return newKey;
@@ -56,6 +56,10 @@ let ReturnObject = (callback, err, data, methodName) => {
             return callback(null, 'Error on ' + methodName);
         }
     }
+};
+
+let ReplaceAll = (string, search, replace) => {
+    return string.split(search).join(replace);
 };
 
 let IsHasValue = (data) => {
@@ -88,7 +92,7 @@ let GetLookUpData = (dataList, idCoulmn, dataLabel, selectedValue, dependentColu
 
 let AddDetaultValues = (tableData, keyColumn, type, created_by) => {
     tableData[keyColumn] = GetNewKey(type);
-    if(IsHasValue(created_by)){
+    if (IsHasValue(created_by)) {
         tableData['created_by'] = created_by;
     }
     tableData['created_on'] = GetDate();
@@ -97,7 +101,7 @@ let AddDetaultValues = (tableData, keyColumn, type, created_by) => {
 }
 
 let UpdateDetaultValues = (tableData, modified_by) => {
-    if(IsHasValue(modified_by)){
+    if (IsHasValue(modified_by)) {
         tableData['modified_by'] = modified_by;
     }
     tableData['modified_on'] = GetDate();
@@ -172,7 +176,7 @@ let GetFileExtn = (fileName) => {
 }
 
 module.exports = {
-    GetLookUpData, GetDate, SortByCreatedOn, IsHasValue, GetUpdateExpressionAndAttributeValuesAndNames,
+    GetLookUpData, GetDate, SortByCreatedOn, IsHasValue, GetUpdateExpressionAndAttributeValuesAndNames, ReplaceAll,
     ReturnObject, GetKey, GetNewKey, AddDetaultValues, UpdateDetaultValues, CreateRandomPassword, CreatePassword, CreatePasswordSalt,
     ComparePassword, GetKeyNameFromObject, EnCode, DeCode, GetFileExtn
 };

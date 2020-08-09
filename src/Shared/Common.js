@@ -1,11 +1,11 @@
 const { Save: SaveUserData } = require('./../Data/User');
 const { ApplicationType, PreFix, UserType } = require('./../Shared/Constant/Enum');
-const { GetNewKey, CreateRandomPassword, CreatePassword, CreatePasswordSalt, IsHasValue } = require('./../Shared/Util');
+const { GetNewKey, ReplaceAll, IsHasValue, ReturnObject } = require('./../Shared/Util');
 const { SendEmail } = require('./SendEmail');
 var { userRegistationEmailTemplate } = require('./Constant/UserRegistationEmailTemplate');
 const config = require('./../../appConfig.json');
 
-let CreateDynamicUser = async (sourceData, type) => {   
+let CreateDynamicUser = async (sourceData, type, callback) => {
     let user = {};
     user['user_id'] = GetNewKey(PreFix.User);
     user['email_id'] = sourceData.email_id;
@@ -27,28 +27,28 @@ let CreateDynamicUser = async (sourceData, type) => {
 
     if (IsHasValue(sourceData.profile_image_url)) {
         user['profile_image_url'] = sourceData.profile_image_url;
-    } 
-    
-    await SaveUserData(user, async(data, err) => {
-        if (IsHasValue(data)) {            
-            if(IsHasValue(data.first_name)){
-                userRegistationEmailTemplate = userRegistationEmailTemplate.replace('[FIRSTNAME]', data.first_name);
+    }
+
+    await SaveUserData(user, async (data, err) => {
+        if (IsHasValue(data)) {
+            if (IsHasValue(data.first_name)) {
+                userRegistationEmailTemplate = ReplaceAll(userRegistationEmailTemplate, '[FIRSTNAME]', data.first_name);
             }
 
-            if(IsHasValue(data.last_name)){
-                userRegistationEmailTemplate = userRegistationEmailTemplate.replace('[LASTNAME]', data.last_name);
+            if (IsHasValue(data.last_name)) {
+                userRegistationEmailTemplate = ReplaceAll(userRegistationEmailTemplate, '[LASTNAME]', data.last_name);
             }
 
-            if(IsHasValue(data.last_name)){
-                userRegistationEmailTemplate = userRegistationEmailTemplate.replace('[COMPANYURL]', config.CompanyURL);
+            if (IsHasValue(data.last_name)) {
+                userRegistationEmailTemplate = ReplaceAll(userRegistationEmailTemplate, '[COMPANYURL]', config.CompanyURL);
             }
 
-            if(IsHasValue(data.last_name)){
-                userRegistationEmailTemplate = userRegistationEmailTemplate.replace('[USERNAME]', data.user_name);
+            if (IsHasValue(data.last_name)) {
+                userRegistationEmailTemplate = ReplaceAll(userRegistationEmailTemplate, '[USERNAME]', data.user_name);
             }
 
-            if(IsHasValue(data.last_name)){
-                userRegistationEmailTemplate = userRegistationEmailTemplate.replace('[PASSWORD]', data.password);
+            if (IsHasValue(data.last_name)) {
+                userRegistationEmailTemplate = ReplaceAll(userRegistationEmailTemplate, '[PASSWORD]', data.password);
             }
 
             //TODO: Send Confirmation email to user.
@@ -59,6 +59,7 @@ let CreateDynamicUser = async (sourceData, type) => {
             };
             SendEmail(mailOptions, (data, err) => {
                 console.log(data, err);
+                ReturnObject(callback, err, data, 'New Company User Registation');
             });
         }
     });

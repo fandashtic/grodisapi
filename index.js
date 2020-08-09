@@ -8,6 +8,7 @@ const PORT = process.env.PORT || 3001;
 
 const { EnCode } = require('./src/Shared/Util');
 const { SendEmail } = require('./src/Shared/SendEmail');
+const { AddTemplate } = require('./src/Shared/AddTemplate');
 //#region Imports
 
 //#region Shared Controller
@@ -810,7 +811,7 @@ app.post('/ChangePassword', async (request, response) => {
 
 //#region Company API
 
-app.post('/AddCompany', async (request, response) => {  
+app.post('/AddCompany', async (request, response) => {
   if (request.body !== null && request.body !== undefined && request.body.inputmodel != null && request.body.inputmodel !== undefined) {
     AddCompanyAPI(request.body.inputmodel, (data, err) => {
       ResponseAPI(response, data, err);
@@ -1342,6 +1343,12 @@ app.post('/GetFavorites', async (request, response) => {
 
 app.post('/SendEmail', async (request, response) => {
   SendEmail(request.body.mailOptions, (data, err) => {
+    ResponseAPI(response, data, err);
+  });
+});
+
+app.post('/AddTemplate', async (request, response) => {
+  AddTemplate(request.body.id, request.body.template, (data, err) => {
     ResponseAPI(response, data, err);
   });
 });

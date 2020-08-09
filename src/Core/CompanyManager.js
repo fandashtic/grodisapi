@@ -9,7 +9,7 @@ let AddCompany = async (company, callback) => {
         if (err) {
             return await Save(company, async (_company, err) => {
                 if (_company) {
-                    return await CreateDynamicUser(_company, ApplicationType.Company);
+                    return await CreateDynamicUser(_company, ApplicationType.Company, callback);
                 } else {
                     return await callback({
                         'data': null,

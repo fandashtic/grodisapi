@@ -56,30 +56,11 @@ td.mj-full-width-mobile { width: auto !important; }
                     <td background="https://firebasestorage.googleapis.com/v0/b/mycommitus.appspot.com/o/father-son-buying-food-supermarket_74855-5245.jpg?alt=media&token=4971b96e-3117-4704-be15-326a8b9f12aa"
                         style="background:#FFFFFF url(https://firebasestorage.googleapis.com/v0/b/mycommitus.appspot.com/o/father-son-buying-food-supermarket_74855-5245.jpg?alt=media&token=4971b96e-3117-4704-be15-326a8b9f12aa) no-repeat center center / cover;background-position:center center;background-repeat:no-repeat;padding:80px 0px 0px;vertical-align:top;"
                         height="220">
-                        <div class="mj-hero-content" style="margin:0px auto;">
-                            <table border="0" cellpadding="0" cellspacing="0" role="presentation"
-                                style="width:100%;margin:0px;">
-                                <tr>
-                                    <td>
-                                        <table border="0" cellpadding="0" cellspacing="0" role="presentation"
-                                            style="width:100%;margin:0px;">
-                                            <tr>
-                                                <td align="center"
-                                                    style="font-size:0px;padding:20px;word-break:break-word;">
-                                                    <div
-                                                        style="font-family:Arial;font-size:28px;font-weight:900;line-height:45px;text-align:center;color:#34b880;">
-                                                        Welcome to GROIDS</div>
-                                                </td>
-                                            </tr>
-                                        </table>
-                                    </td>
-                                </tr>
-                            </table>
-                        </div>
                     </td>
                 </tr>
             </table>
         </div>
+		
         <div style="background:#FFFFFF;background-color:#FFFFFF;margin:0px auto;max-width:600px;">
             <table align="center" border="0" cellpadding="0" cellspacing="0" role="presentation"
                 style="background:#FFFFFF;background-color:#FFFFFF;width:100%;">
@@ -93,15 +74,19 @@ td.mj-full-width-mobile { width: auto !important; }
                                     <tr>
                                         <td align="center" style="font-size:0px;padding:0;word-break:break-word;">
                                             <div
-                                                style="font-family:Arial;font-size:16px;line-height:24px;text-align:center;color:#879288;">
-                                                Hi [FIRSTNAME] [LASTNAME],<br><br>Welcome to GROIDS. Thank you for partnering with us.
-                                            </div>
+                                                style="font-family:Arial;font-size:16px;line-height:24px;text-align:center;color:#879288;margin-bottom:10px;">
+                                                Hi [FIRSTNAME] [LASTNAME],<br><br>
+												<h1>
+													Welcome to GROIDS. 
+												</h1>
+												Thank you for partnering with us.
+                                            </div>											
                                         </td>
                                     </tr>
                                     <tr>
                                     <td align="center" style="font-size:0px;padding:0;word-break:break-word;">
                                         <div
-                                            style="font-family:Arial;font-size:16px;line-height:24px;text-align:center;color:#879288;">
+                                            style="font-family:Arial;font-size:12px;line-height:24px;text-align:center;color:#879288;">
                                             You can continue to login your company with [COMPANYURL]
                                         </div>
                                     </td>
@@ -109,23 +94,23 @@ td.mj-full-width-mobile { width: auto !important; }
                                 <tr>
                                     <td align="center" style="font-size:0px;padding:0;word-break:break-word;">
                                         <div
-                                            style="font-family:Arial;font-size:16px;line-height:24px;text-align:center;color:#879288;">
-                                            Company Admin UserName: [USERNAME]
+                                            style="font-family:Arial;font-size:12px;line-height:24px;text-align:center;color:#879288;">
+                                            Company Admin UserName: <b>[USERNAME]</b>
                                         </div>
                                     </td>
                                 </tr>
                                 <tr>
                                     <td align="center" style="font-size:0px;padding:0;word-break:break-word;">
                                         <div
-                                            style="font-family:Arial;font-size:16px;line-height:24px;text-align:center;color:#879288;">
-                                            Company Admin Temp Password: [PASSWORD]
+                                            style="font-family:Arial;font-size:12px;line-height:24px;text-align:center;color:#879288;margin-bottom:10px;">
+                                            Company Admin Temp Password: <i>[PASSWORD]</i>
                                         </div>
                                     </td>
                                 </tr>
                                 <tr>
                                     <td align="center" style="font-size:0px;padding:0;word-break:break-word;">
                                         <div
-                                            style="font-family:Arial;font-size:16px;line-height:24px;text-align:center;color:#879288;">
+                                            style="font-family:Arial;font-size:12px;line-height:24px;text-align:center;color:red;">
                                             You should change this password on your first login!.
                                         </div>
                                     </td>
@@ -155,7 +140,7 @@ td.mj-full-width-mobile { width: auto !important; }
                                                 <tr>
                                                     <td align="center" bgcolor="#34b880" role="presentation"
                                                         style="border:none;border-radius:3px;cursor:auto;mso-padding-alt:10px 25px;background:#34b880;"
-                                                        valign="middle"><a href="https://www.fandashtic.com/"
+                                                        valign="middle"><a href="[COMPANYURL]"
                                                             style="display:inline-block;background:#34b880;color:#FFFFFF;font-family:Arial;font-size:16px;font-weight:normal;line-height:24px;margin:0;text-decoration:none;text-transform:none;padding:10px 25px;mso-padding-alt:0px;border-radius:3px;"
                                                             target="_blank">Get Started</a></td>
                                                 </tr>
@@ -183,7 +168,9 @@ td.mj-full-width-mobile { width: auto !important; }
                                         <td align="center" style="font-size:0px;padding:0;word-break:break-word;">
                                             <div
                                                 style="font-family:Arial;font-size:12px;line-height:16px;text-align:center;color:#879288;">
-                                                GROIDS<br>Address line 1<br>Address line 2</div>
+												<a href="https://fandashtic.com" style="text-decoration:none;" target="_blank" >
+                                                GROIDS </a>
+												</div>
                                         </td>
                                     </tr>
                                 </table>
@@ -195,7 +182,6 @@ td.mj-full-width-mobile { width: auto !important; }
         </div>
     </div>
 </body>
-
 </html>`
 
 module.exports = { userRegistationEmailTemplate };
