@@ -1341,7 +1341,9 @@ app.post('/GetFavorites', async (request, response) => {
 //#region Common API
 
 app.post('/SendEmail', async (request, response) => {
-  SendEmail(request.body.mailOptions, response);
+  SendEmail(request.body.mailOptions, (data, err) => {
+    ResponseAPI(response, data, err);
+  });
 });
 
 //#endregion Common API

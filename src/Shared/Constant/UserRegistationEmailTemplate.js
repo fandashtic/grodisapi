@@ -35,7 +35,7 @@ td.mj-full-width-mobile { width: auto !important; }
                                                     <tr>
                                                         <td style="width:240px;"><a href="https://www.fandashtic.com/"
                                                                 target="_blank"><img alt="logo" height="auto"
-                                                                    src="fandashtic-logo-full-1024x.png"
+                                                                    src="https://fandashtic.com/images/fandashtic-logo-full-1024x.png"
                                                                     style="border:0;display:block;outline:none;text-decoration:none;height:auto;width:100%;font-size:16px;"
                                                                     width="240"></a></td>
                                                     </tr>

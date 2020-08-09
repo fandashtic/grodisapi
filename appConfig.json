@@ -1,9 +1,9 @@
 {    
     "mailconfig" :{
         "service": "gmail",
-        "user": "info.fandashtic@gmail.com",
-        "pass": "%%f%H*t2PW6R"
+        "user": "manickam001@gmail.com",
+        "pass": "manick005"
     },
-    "CompanyURL": "http://localhost:3000/",
+    "CompanyURL": "https://grodis-d88d3.web.app",
     "Pagination":10
 }

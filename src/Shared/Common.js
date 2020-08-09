@@ -5,7 +5,7 @@ const { SendEmail } = require('./SendEmail');
 var { userRegistationEmailTemplate } = require('./Constant/UserRegistationEmailTemplate');
 const config = require('./../../appConfig.json');
 
-let CreateDynamicUser = (sourceData, type) => {   
+let CreateDynamicUser = async (sourceData, type) => {   
     let user = {};
     user['user_id'] = GetNewKey(PreFix.User);
     user['email_id'] = sourceData.email_id;
@@ -29,7 +29,7 @@ let CreateDynamicUser = (sourceData, type) => {
         user['profile_image_url'] = sourceData.profile_image_url;
     } 
     
-    SaveUserData(user, async(data, err) => {
+    await SaveUserData(user, async(data, err) => {
         if (IsHasValue(data)) {            
             if(IsHasValue(data.first_name)){
                 userRegistationEmailTemplate = userRegistationEmailTemplate.replace('[FIRSTNAME]', data.first_name);
@@ -58,7 +58,7 @@ let CreateDynamicUser = (sourceData, type) => {
                 html: userRegistationEmailTemplate
             };
             SendEmail(mailOptions, (data, err) => {
-                //console.log(data, err);
+                console.log(data, err);
             });
         }
     });

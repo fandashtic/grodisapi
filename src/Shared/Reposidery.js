@@ -3,7 +3,7 @@ const { ReturnObject, IsHasValue } = require('./Util');
 
 let Get = async (tableName, key, callback) => {
     const ref = db.collection(tableName).doc(key);
-    const doc = await  ref.get();
+    const doc = await ref.get();
     ReturnObject(callback, null, doc.data(), 'Get');
 };
 
@@ -12,14 +12,14 @@ let GetbySingleFilter = async (tableName, columnName, value, callback) => {
     const ref = db.collection(tableName);
     const snapshot = await ref.where(columnName, '==', value).get();
     if (snapshot.empty) {
-        ReturnObject(callback, null, null,  'GetbySingleFilter');
+        ReturnObject(callback, null, null, 'GetbySingleFilter');
     }
 
     snapshot.forEach(doc => {
         array.push(doc.data());
     });
 
-    if(IsHasValue(array) && array.length > 0 && IsHasValue(array[0])){
+    if (IsHasValue(array) && array.length > 0 && IsHasValue(array[0])) {
         ReturnObject(callback, null, array[0], 'GetbySingleFilter');
     }
 };
@@ -30,7 +30,7 @@ let All = async (tableName, filter, callback) => {
     let array = [];
     const snapshot = await ref.get();
     snapshot.forEach(doc => {
-        array.push( doc.data());       
+        array.push(doc.data());
         //console.log(doc.id, '=>', doc.data());
     });
     ReturnObject(callback, null, array, 'GetAll');
@@ -38,20 +38,21 @@ let All = async (tableName, filter, callback) => {
 
 let Add = async (tableName, key, tableData, callback) => {
     const ref = db.collection(tableName);
-    await ref.doc(key).set(tableData);
-    ReturnObject(callback, null, tableData, 'Add');
+    await ref.doc(key).set(tableData).then(function () {
+        ReturnObject(callback, null, tableData, 'Add');
+    });
 }
 
 let Edit = async (tableName, key, tableData, callback) => {
     const ref = db.collection(tableName);
-    await ref.doc(key).set(tableData); 
+    await ref.doc(key).set(tableData);
     ReturnObject(callback, null, tableData, 'Edit');
 }
 
 let Remove = async (tableName, key, callback) => {
     const ref = db.collection(tableName).doc(key);
-    const doc = await  ref.get();
-    SetValue(ref, {'status': false}, callback, 'Remove');
+    const doc = await ref.get();
+    SetValue(ref, { 'status': false }, callback, 'Remove');
 };
 
 let HardDelete = async (tableName, key, callback) => {
