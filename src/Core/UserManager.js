@@ -1,6 +1,6 @@
 const { GetbyColumn, GetById, GetAll, Save, Update, Delete } = require('./../Data/User');
 const { InsertLog } = require('./../Data/SessionLog');
-const { GetNewKey, IsHasValue, GetDate, ComparePassword, CreatePassword } = require('./../Shared/Util');
+const { GetNewKey, IsHasValue, GetDate, ComparePassword, CreatePassword, ReturnObject, GetLookUpData } = require('./../Shared/Util');
 
 let IsUserVerified = async (user_name, password, callback) => {
     return await GetbyColumn(user_name, 'user_name', async (userExists) => {        
@@ -157,4 +157,45 @@ let GetAllUsers = async (filter, callback) => {
     });
 };
 
-module.exports = { IsUserValid, IsUserVerified, AddUser, UpdateUser, DeleteUser, GetUser, GetAllUsers, ChangePassword };
+let UserLookUp = async (user_id, callback) => {
+    if (IsHasValue(user_id)) {
+        return await GetById(user_id, async (user) => {
+            if (IsHasValue(user)) {
+                return await GetUserHierarchyData(user, callback);
+            } else {
+                return await callback({
+                    'data': null,
+                    'Status': 401
+                })
+            }
+        });
+    } else {
+        return await GetUserHierarchyData(null, callback);
+    }
+}
+
+const GetUserHierarchyData = async (user, callback) => {
+    let _lookup = {};
+    if (IsHasValue(user)) {
+        _lookup.user_id= user.user_id;
+        _lookup.email_id= user.email_id;
+        _lookup.user_name= user.user_name;
+        _lookup.password= user.password;
+        _lookup.first_name= user.first_name;
+        _lookup.last_name= user.last_name;
+        _lookup.user_type= user.user_type;
+        _lookup.company_id = user.company_id;
+        _lookup.company_name = user.company_name;
+        _lookup.store_id = user.store_id;
+        _lookup.store_name = user.store_name;
+        _lookup.profile_image_url = user.profile_image_url;
+        _lookup.status = user.status;
+        _lookup.pincode = user.pincode;
+        _lookup.latitude = user.latitude;
+        _lookup.longitude = user.longitude;
+    }
+
+    return await ReturnObject(callback, null, _lookup, 'GetUserHierarchyData');
+}
+
+module.exports = { IsUserValid, IsUserVerified, AddUser, UpdateUser, DeleteUser, GetUser, GetAllUsers, ChangePassword, UserLookUp };

@@ -22,7 +22,7 @@ const { AddProductAPI, UpdateProductAPI, DeleteProductAPI, GetProductsAPI, GetPr
 const { AddProductFamilyAPI, GetProductFamilyAPI, UpdateProductFamilyAPI, DeleteProductFamilyAPI, GetProductFamiliesAPI, ProductFamilyLookUpAPI } = require('./src/Controller/Shared/ProductFamilyController');
 const { AddStateAPI, UpdateStateAPI, DeleteStateAPI, GetStateAPI, GetStatesAPI, StateLookUpAPI } = require('./src/Controller/Shared/StateController');
 const { AddStoreAPI, UpdateStoreAPI, DeleteStoreAPI, GetStoresAPI, GetStoreAPI, StoreLookUpAPI } = require('./src/Controller/Shared/StoreController');
-const { AddUserAPI, UpdateUserAPI, DeleteUserAPI, GetUserAPI, GetUsersAPI, IsUserVerifiedAPI, ChangePasswordAPI } = require('./src/Controller/Shared/UserController');
+const { AddUserAPI, UpdateUserAPI, DeleteUserAPI, GetUserAPI, GetUsersAPI, IsUserVerifiedAPI, ChangePasswordAPI, UserLookUpAPI } = require('./src/Controller/Shared/UserController');
 
 //#endregion Shared Controller
 
@@ -771,6 +771,18 @@ app.post('/GetUsers', async (request, response) => {
     });
   } else {
     response.send(request.body);
+  }
+});
+
+app.post('/UserLookUp', async (request, response) => {
+  if (request.body !== null && request.body !== undefined && request.body.id != null && request.body.id !== undefined) {
+    UserLookUpAPI(request.body.id, (data, err) => {
+      ResponseAPI(response, data, err);
+    });
+  } else {
+    UserLookUpAPI(null, (data, err) => {
+      ResponseAPI(response, data, err);
+    });
   }
 });
 
