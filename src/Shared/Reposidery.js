@@ -44,6 +44,14 @@ let Add = async (tableName, key, tableData, callback) => {
 }
 
 let Edit = async (tableName, key, tableData, callback) => {
+    const ref = db.collection(tableName).doc(key);
+    await UpdateObject(ref, tableData, (data, err) => {
+        //console.log(data, err);
+    });
+    ReturnObject(callback, null, tableData, 'Edit');
+}
+
+let FullUpdate = async (tableName, key, tableData, callback) => {
     const ref = db.collection(tableName);
     await ref.doc(key).set(tableData);
     ReturnObject(callback, null, tableData, 'Edit');
@@ -51,7 +59,6 @@ let Edit = async (tableName, key, tableData, callback) => {
 
 let Remove = async (tableName, key, callback) => {
     const ref = db.collection(tableName).doc(key);
-    const doc = await ref.get();
     SetValue(ref, { 'status': false }, callback, 'Remove');
 };
 
@@ -65,5 +72,13 @@ let SetValue = async (doc, parameter, callback, methodName) => {
     ReturnObject(callback, null, res, methodName);
 };
 
+let UpdateObject = async(ref, tableData, callback) =>
+{
+    return Object.keys(tableData).map(function (k) {
+        let obj ={};
+        obj[k] = tableData[k];        
+        return SetValue(ref, obj, callback, 'UpdateObject');
+    });
+};
 
-module.exports = { Get, GetbySingleFilter, All, Add, Edit, Remove, HardDelete };
+module.exports = { Get, GetbySingleFilter, All, Add, Edit, FullUpdate, Remove, HardDelete };

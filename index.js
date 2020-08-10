@@ -8,7 +8,7 @@ const PORT = process.env.PORT || 3001;
 
 const { EnCode } = require('./src/Shared/Util');
 const { SendEmail } = require('./src/Shared/SendEmail');
-const { AddTemplate } = require('./src/Shared/AddTemplate');
+const { AddTemplate, GetTemplate } = require('./src/Shared/Template');
 //#region Imports
 
 //#region Shared Controller
@@ -1349,6 +1349,12 @@ app.post('/SendEmail', async (request, response) => {
 
 app.post('/AddTemplate', async (request, response) => {
   AddTemplate(request.body.id, request.body.template, (data, err) => {
+    ResponseAPI(response, data, err);
+  });
+});
+
+app.post('/GetTemplate', async (request, response) => {
+  GetTemplate(request.body.id, (data, err) => {
     ResponseAPI(response, data, err);
   });
 });
