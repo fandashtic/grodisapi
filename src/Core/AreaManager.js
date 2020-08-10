@@ -2,8 +2,7 @@ const { GetbyColumn, GetById, GetAll, Save, Update, Delete } = require('./../Dat
 const { GetAll: GetAllCityData } = require('./../Data/City');
 const { GetAll: GetAllStateData } = require('./../Data/State');
 const { GetAll: GetAllCountryData } = require('./../Data/Country');
-const { ReturnObject, GetLookUpData } = require('./../Shared/Util');
-const { IsHasValue } = require('./../Shared/Util');
+const { IsHasValue, ReturnObject, GetLookUpData } = require('./../Shared/Util');
 
 let AddArea = async (area, callback) => {
     return await Save(area, async (area) => {

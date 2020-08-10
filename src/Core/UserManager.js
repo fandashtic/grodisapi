@@ -15,7 +15,8 @@ let IsUserVerified = async (user_name, password, callback) => {
                     UserName: userExists.user_name,
                     UserDisplayName: userExists.first_name + ' ' + userExists.last_name,
                     UserType: userExists.user_type,
-                    CompanyId: userExists.company_id,
+					user_id: userExists.user_id,
+                    company_id: userExists.company_id,
                     store_id: IsHasValue(userExists.store_id)? userExists.store_id: 0,
                     UserProfileImage: IsHasValue(userExists.profileImageUrl) ? userExists.profileImageUrl: 'image.png',
                     Session_Token: _session.session_token

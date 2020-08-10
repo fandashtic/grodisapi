@@ -1,4 +1,5 @@
 const { GetById, GetAll, Save, Update, Delete } = require('./../Data/Cart');
+const { IsHasValue, ReturnObject, GetLookUpData } = require('./../Shared/Util');
 
 let IsCartValid = async (cartName, password, callback) => {
     return await GetById(cartName, async (cart) => {
@@ -8,7 +9,7 @@ let IsCartValid = async (cartName, password, callback) => {
                     CartName: cart.cartName,
                     CartDisplayName: cart.firstName + ' ' + cart.lastName,
                     CartType: cart.cartType,
-                    CompanyId: cart.companyId,
+                    company_id: cart.company_id,
                     store_id: cart.store_id,
                     CartProfileImage: cart.profileImageUrl
                 },

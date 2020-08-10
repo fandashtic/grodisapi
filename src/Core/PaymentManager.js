@@ -1,4 +1,5 @@
 const { GetbyColumn, GetById, GetAll, Save, Update, Delete } = require('./../Data/Payment');
+const { IsHasValue, ReturnObject, GetLookUpData } = require('./../Shared/Util');
 
 let IsPaymentValid = async (paymentName, password, callback) => {
     return await GetById(paymentName, async (payment) => {
@@ -8,7 +9,7 @@ let IsPaymentValid = async (paymentName, password, callback) => {
                     PaymentName: payment.paymentName,
                     PaymentDisplayName: payment.firstName + ' ' + payment.lastName,
                     PaymentType: payment.paymentType,
-                    CompanyId: payment.companyId,
+                    company_id: payment.company_id,
                     store_id: payment.store_id,
                     PaymentProfileImage: payment.profileImageUrl
                 },

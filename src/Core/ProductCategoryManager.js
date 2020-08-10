@@ -1,8 +1,7 @@
 const { GetbyColumn, GetById, GetAll, Save, Update, Delete } = require('./../Data/ProductCategory');
 const { GetAll: GetAllManufactureData } = require('./../Data/Manufacture');
 const { GetAll: GetAllBrandDatas } = require('./../Data/Brand');
-const { ReturnObject, GetLookUpData } = require('./../Shared/Util');
-const { IsHasValue } = require('./../Shared/Util');
+const { ReturnObject, GetLookUpData, IsHasValue } = require('./../Shared/Util');
 
 let IsProductCategoryValid = async (product_category_id, password, callback) => {
     return await GetById(product_category_id, async (product_category) => {
@@ -12,7 +11,7 @@ let IsProductCategoryValid = async (product_category_id, password, callback) => 
                     ProductCategoryName: product_category.product_category_name,
                     ProductCategoryDisplayName: product_category.firstName + ' ' + product_category.lastName,
                     ProductCategoryType: product_category.product_categoryType,
-                    CompanyId: product_category.companyId,
+                    company_id: product_category.company_id,
                     store_id: product_category.store_id,
                     ProductCategoryProfileImage: product_category.profileImageUrl
                 },

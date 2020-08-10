@@ -1,7 +1,6 @@
 const { GetbyColumn, GetById, GetAll, Save, Update, Delete } = require('./../Data/Brand');
 const { GetAll: GetAllManufactureData } = require('./../Data/Manufacture');
-const { ReturnObject, GetLookUpData } = require('./../Shared/Util');
-const { IsHasValue } = require('./../Shared/Util');
+const { IsHasValue, ReturnObject, GetLookUpData } = require('./../Shared/Util');
 
 let IsBrandValid = async (brand_id, password, callback) => {
     return await GetById(brand_id, async (brand, err) => {
@@ -11,7 +10,7 @@ let IsBrandValid = async (brand_id, password, callback) => {
                     BrandName: brand.brandName,
                     BrandDisplayName: brand.firstName + ' ' + brand.lastName,
                     BrandType: brand.brandType,
-                    CompanyId: brand.companyId,
+                    company_id: brand.company_id,
                     store_id: brand.store_id,
                     BrandProfileImage: brand.profileImageUrl
                 },

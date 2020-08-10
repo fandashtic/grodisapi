@@ -1,5 +1,5 @@
 const { GetbyColumn, GetById, GetAll, Save, Update, Delete } = require('./../Data/Manufacture');
-const { ReturnObject, GetLookUpData, IsHasValue} = require('./../Shared/Util');
+const { IsHasValue, ReturnObject, GetLookUpData } = require('./../Shared/Util');
 
 let AddManufacture = async (manufacture, callback) => {
     return await Save(manufacture, async (manufacture) => {

@@ -1,4 +1,5 @@
 const { GetbyColumn, GetById, GetAll, Save, Update, Delete } = require('./../Data/Scheme');
+const { IsHasValue, ReturnObject, GetLookUpData } = require('./../Shared/Util');
 
 let IsSchemeValid = async (schemeName, password, callback) => {
     return await GetById(schemeName, async (scheme) => {
@@ -8,7 +9,7 @@ let IsSchemeValid = async (schemeName, password, callback) => {
                     SchemeName: scheme.schemeName,
                     SchemeDisplayName: scheme.firstName + ' ' + scheme.lastName,
                     SchemeType: scheme.schemeType,
-                    CompanyId: scheme.companyId,
+                    company_id: scheme.company_id,
                     store_id: scheme.store_id,
                     SchemeProfileImage: scheme.profileImageUrl
                 },

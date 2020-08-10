@@ -3,8 +3,7 @@ const { GetAll: GetAllManufactureData  } = require('./../Data/Manufacture');
 const { GetAll: GetAllBrandDatas } = require('./../Data/Brand');
 const { GetAll: GetAllProductCategoriesData } = require('./../Data/ProductCategory');
 const { GetAll: GetAllProductFamiliesData } = require('./../Data/ProductFamily');
-const { ReturnObject, GetLookUpData } = require('./../Shared/Util');
-const { IsHasValue } = require('./../Shared/Util');
+const { IsHasValue, ReturnObject, GetLookUpData } = require('./../Shared/Util');
 
 let IsProductValid = async (product_id, password, callback) => {
     return await GetById(product_id, async (product) => {
@@ -14,7 +13,7 @@ let IsProductValid = async (product_id, password, callback) => {
                     ProductName: product.productName,
                     ProductDisplayName: product.firstName + ' ' + product.lastName,
                     ProductType: product.productType,
-                    CompanyId: product.companyId,
+                    company_id: product.company_id,
                     store_id: product.store_id,
                     ProductProfileImage: product.profileImageUrl
                 },

@@ -1,4 +1,5 @@
 const { GetbyColumn, GetById, GetAll, Save, Update, Delete } = require('./../Data/Delivery');
+const { IsHasValue, ReturnObject, GetLookUpData } = require('./../Shared/Util');
 
 let IsDeliveryValid = async (deliveryName, password, callback) => {
     return await GetById(deliveryName, async (delivery) => {
@@ -8,7 +9,7 @@ let IsDeliveryValid = async (deliveryName, password, callback) => {
                     DeliveryName: delivery.deliveryName,
                     DeliveryDisplayName: delivery.firstName + ' ' + delivery.lastName,
                     DeliveryType: delivery.deliveryType,
-                    CompanyId: delivery.companyId,
+                    company_id: delivery.company_id,
                     store_id: delivery.store_id,
                     DeliveryProfileImage: delivery.profileImageUrl
                 },

@@ -3,8 +3,7 @@ const { GetAll:GetAllAreaData } = require('./../Data/Area');
 const { GetAll:GetAllCityData } = require('./../Data/City');
 const { GetAll:GetAllStateData } = require('./../Data/State');
 const { GetAll:GetAllCountryData } = require('./../Data/Country');
-const { ReturnObject, GetLookUpData } = require('./../Shared/Util');
-const { IsHasValue } = require('./../Shared/Util');
+const { IsHasValue, ReturnObject, GetLookUpData } = require('./../Shared/Util');
 const { CreateDynamicUser } = require('./../Shared/Common');
 const { ApplicationType } = require('./../Shared/Constant/Enum');
 
@@ -16,7 +15,7 @@ let IsStoreValid = async (store_id, password, callback) => {
                     StoreName: store.storeName,
                     StoreDisplayName: store.firstName + ' ' + store.lastName,
                     StoreType: store.storeType,
-                    CompanyId: store.companyId,
+                    company_id: store.company_id,
                     store_id: store.store_id,
                     StoreProfileImage: store.profileImageUrl
                 },

@@ -1,4 +1,5 @@
 const { GetbyColumn, GetById, GetAll, Save, Update, Delete } = require('./../Data/Order');
+const { IsHasValue, ReturnObject, GetLookUpData } = require('./../Shared/Util');
 
 let IsOrderValid = async (orderName, password, callback) => {
     return await GetById(orderName, async (order) => {
@@ -8,7 +9,7 @@ let IsOrderValid = async (orderName, password, callback) => {
                     OrderName: order.orderName,
                     OrderDisplayName: order.firstName + ' ' + order.lastName,
                     OrderType: order.orderType,
-                    CompanyId: order.companyId,
+                    company_id: order.company_id,
                     store_id: order.store_id,
                     OrderProfileImage: order.profileImageUrl
                 },

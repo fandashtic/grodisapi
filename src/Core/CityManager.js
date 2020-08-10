@@ -1,8 +1,7 @@
 const { GetbyColumn, GetById, GetAll, Save, Update, Delete } = require('./../Data/City');
 const { GetAll: GetAllStateData } = require('./../Data/State');
 const { GetAll: GetAllCountryData } = require('./../Data/Country');
-const { ReturnObject, GetLookUpData } = require('./../Shared/Util');
-const { IsHasValue } = require('./../Shared/Util');
+const { IsHasValue, ReturnObject, GetLookUpData } = require('./../Shared/Util');
 
 let IsCityValid = async (city_id, password, callback) => {
     return await GetById(city_id, async (city) => {
@@ -12,7 +11,7 @@ let IsCityValid = async (city_id, password, callback) => {
                     CityName: city.cityName,
                     CityDisplayName: city.firstName + ' ' + city.lastName,
                     CityType: city.cityType,
-                    CompanyId: city.companyId,
+                    company_id: city.company_id,
                     store_id: city.store_id,
                     CityProfileImage: city.profileImageUrl
                 },

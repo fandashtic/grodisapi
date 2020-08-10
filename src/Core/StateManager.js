@@ -11,7 +11,7 @@ let IsStateValid = async (state_id, password, callback) => {
                     StateName: state.stateName,
                     StateDisplayName: state.firstName + ' ' + state.lastName,
                     StateType: state.stateType,
-                    CompanyId: state.companyId,
+                    company_id: state.company_id,
                     store_id: state.store_id,
                     StateProfileImage: state.profileImageUrl
                 },

@@ -2,8 +2,7 @@ const { GetbyColumn, GetById, GetAll, Save, Update, Delete } = require('./../Dat
 const { GetAll: GetAllManufactureData } = require('./../Data/Manufacture');
 const { GetAll: GetAllBrandDatas } = require('./../Data/Brand');
 const { GetAll: GetAllProductCategoriesData } = require('./../Data/ProductCategory');
-const { ReturnObject, GetLookUpData } = require('./../Shared/Util');
-const { IsHasValue } = require('./../Shared/Util');
+const { IsHasValue, ReturnObject, GetLookUpData } = require('./../Shared/Util');
 
 let IsProductFamilyValid = async (product_family_id, password, callback) => {
     return await GetById(product_family_id, async (product_family) => {
@@ -13,7 +12,7 @@ let IsProductFamilyValid = async (product_family_id, password, callback) => {
                     product_family_name: product_family.product_family_name,
                     product_familyDisplayName: product_family.firstName + ' ' + product_family.lastName,
                     product_familyType: product_family.product_familyType,
-                    CompanyId: product_family.companyId,
+                    company_id: product_family.company_id,
                     store_id: product_family.store_id,
                     product_familyProfileImage: product_family.profileImageUrl
                 },
@@ -29,6 +28,9 @@ let IsProductFamilyValid = async (product_family_id, password, callback) => {
 };
 
 let AddProductFamily = async (product_family, callback) => {
+    if(IsHasValue(GetSessionValue('store_id'))){
+        product_family['store_id'] =GetSessionValue('store_id'); 
+    }
     return await Save(product_family, async (product_family) => {
         if (product_family) {
             return await callback({

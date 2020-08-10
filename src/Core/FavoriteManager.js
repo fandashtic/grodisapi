@@ -8,7 +8,7 @@ let IsFavoriteValid = async (favorite_name, password, callback) => {
                     FavoriteName: favorite.favorite_name,
                     FavoriteDisplayName: favorite.firstName + ' ' + favorite.lastName,
                     FavoriteType: favorite.favoriteType,
-                    CompanyId: favorite.companyId,
+                    company_id: favorite.company_id,
                     store_id: favorite.store_id,
                     FavoriteProfileImage: favorite.profileImageUrl
                 },

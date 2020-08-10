@@ -1,4 +1,5 @@
 const { GetbyColumn, GetById, GetAll, Save, Update, Delete } = require('./../Data/Inventory');
+const { IsHasValue, ReturnObject, GetLookUpData } = require('./../Shared/Util');
 
 let IsInventoryValid = async (inventoryName, password, callback) => {
     return await GetById(inventoryName, async (inventory) => {
@@ -8,7 +9,7 @@ let IsInventoryValid = async (inventoryName, password, callback) => {
                     InventoryName: inventory.inventoryName,
                     InventoryDisplayName: inventory.firstName + ' ' + inventory.lastName,
                     InventoryType: inventory.inventoryType,
-                    CompanyId: inventory.companyId,
+                    company_id: inventory.company_id,
                     store_id: inventory.store_id,
                     InventoryProfileImage: inventory.profileImageUrl
                 },
