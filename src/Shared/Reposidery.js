@@ -26,12 +26,16 @@ let GetbySingleFilter = async (tableName, columnName, value, callback) => {
 
 
 let All = async (tableName, filter, callback) => {
-    const ref = db.collection(tableName);
+    let ref = db.collection(tableName);
     let array = [];
+
+    Object.keys(filter).map(function (k) {
+        ref = ref.where(k, '==', filter[k]);
+    });
+
     const snapshot = await ref.get();
     snapshot.forEach(doc => {
         array.push(doc.data());
-        //console.log(doc.id, '=>', doc.data());
     });
     ReturnObject(callback, null, array, 'GetAll');
 };
