@@ -1,11 +1,12 @@
 const { GetbyColumn, GetById, GetAll, Save, Update, Delete } = require('./../Data/Company');
 const { CreateDynamicUser } = require('./../Shared/Common');
+const { GetbyColumn: GetUserByEmailId } = require('./../Data/User');
 const { ApplicationType } = require('./../Shared/Constant/Enum');
 const { IsHasValue, ReturnObject, GetLookUpData } = require('./../Shared/Util');
 
-let AddCompany = async (company, callback) => {    
+let AddCompany = async (company, callback) => {
     // Check the company is exists by email
-    return await GetbyColumn(company.email_id, 'email_id', async (result, err) => {
+    return await GetUserByEmailId(company.email_id, 'email_id', async (result, err) => {
         if (err) {
             return await Save(company, async (_company, err) => {
                 if (_company) {
