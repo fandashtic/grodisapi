@@ -28,9 +28,6 @@ let IsProductFamilyValid = async (product_family_id, password, callback) => {
 };
 
 let AddProductFamily = async (product_family, callback) => {
-    if(IsHasValue(GetSessionValue('store_id'))){
-        product_family['store_id'] =GetSessionValue('store_id'); 
-    }
     return await Save(product_family, async (product_family) => {
         if (product_family) {
             return await callback({
