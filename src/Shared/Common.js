@@ -8,10 +8,19 @@ const config = require('./../../appConfig.json');
 let CreateDynamicUser = async (sourceData, type, callback) => {
     let user = {};
     user['user_id'] = GetNewKey(PreFix.User);
-    user['email_id'] = sourceData.email_id;
-    user['user_name'] = sourceData.user_name;
-    user['first_name'] = sourceData.contactperson;
-    user['last_name'] = sourceData.contactperson;
+
+    if (IsHasValue(sourceData.email_id)) {
+        user['email_id'] = sourceData.email_id;
+    }
+    if (IsHasValue(sourceData.user_name)) {
+        user['user_name'] = sourceData.user_name;
+    }
+    if (IsHasValue(sourceData.first_name)) {
+        user['first_name'] = sourceData.first_name;
+    }
+    if (IsHasValue(sourceData.last_name)) {
+        user['last_name'] = sourceData.last_name;
+    }
 
     if (type === ApplicationType.Company) {
         user['user_type'] = UserType.COMPANY_ADMIN;
@@ -39,15 +48,15 @@ let CreateDynamicUser = async (sourceData, type, callback) => {
                 userRegistationEmailTemplate = ReplaceAll(userRegistationEmailTemplate, '[LASTNAME]', data.last_name);
             }
 
-            if (IsHasValue(data.last_name)) {
+            if (IsHasValue(data.CompanyURL)) {
                 userRegistationEmailTemplate = ReplaceAll(userRegistationEmailTemplate, '[COMPANYURL]', config.CompanyURL);
             }
 
-            if (IsHasValue(data.last_name)) {
+            if (IsHasValue(data.user_name)) {
                 userRegistationEmailTemplate = ReplaceAll(userRegistationEmailTemplate, '[USERNAME]', data.user_name);
             }
 
-            if (IsHasValue(data.last_name)) {
+            if (IsHasValue(data.password)) {
                 userRegistationEmailTemplate = ReplaceAll(userRegistationEmailTemplate, '[PASSWORD]', data.password);
             }
 
