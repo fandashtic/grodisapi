@@ -9,7 +9,7 @@ let IsUserVerified = async (user_name, password, callback) => {
                 session_token: GetNewKey(),
                 session_date: GetDate()
             }
-            AddSessionLog(userExists.user_id + GetNewKey(), _session);
+            //AddSessionLog(userExists.user_id + GetNewKey(), _session);
             return await callback({
                 'data': {
                     UserName: userExists.user_name,
@@ -43,7 +43,7 @@ let IsUserValid = async (user_name) => {
 };
 
 let AddSessionLog = (session_id, session) => {
-    InsertLog(session_id, session, async (session) => {
+    InsertLog(session_id, session, (res) => {
 
     });
 }

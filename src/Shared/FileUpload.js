@@ -16,7 +16,6 @@ let UploadFile = async (file, folder, callback) => {
     uploadFile(file, s3_config)
         .then(async (data) => {
             if (IsHasValue(data)) {
-                console.log(data)
                 return await callback({
                     'data': data,
                     'Status': 200
@@ -45,7 +44,7 @@ let DeleteFile = async (file_name, folder, callback) => {
     deleteFile(file_name, s3_config)
         .then(async (data) => {
             if (IsHasValue(data)) {
-                console.log(data)
+                //console.log(data)
                 return await callback({
                     'data': data,
                     'Status': 200

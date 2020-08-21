@@ -7,7 +7,7 @@ const { IsHasValue, ReturnObject, GetLookUpData } = require('./../Shared/Util');
 let AddCompany = async (company, callback) => {
     // Check the company is exists by email
     return await GetUserByEmailId(company.email_id, 'email_id', async (result, err) => {
-        if (err) {
+        if (IsHasValue(err)) {
             return await Save(company, async (_company, err) => {
                 if (_company) {
                     return await CreateDynamicUser(_company, ApplicationType.Company, callback);
@@ -15,8 +15,13 @@ let AddCompany = async (company, callback) => {
                     return await callback({
                         'data': null,
                         'Status': 401
-                    })
+                    });
                 }
+            });
+        }else{
+            return await callback({
+                'data': 'Company User Email Exists',
+                'Status': 401
             });
         }
     });

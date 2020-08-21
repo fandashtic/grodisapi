@@ -66,8 +66,8 @@ let CreateDynamicUser = async (sourceData, type, callback) => {
                 subject: 'New Company User Registation',
                 html: userRegistationEmailTemplate
             };
+                                                                                  n     
             SendEmail(mailOptions, (data, err) => {
-                console.log(data, err);
                 ReturnObject(callback, err, data, 'New Company User Registation');
             });
         }
