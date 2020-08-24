@@ -28,6 +28,14 @@ let GetKey = (key, value) => {
     return _key;
 };
 
+
+let GetEmailKey = (email) => {
+    if(IsHasValue(email)){
+        email = ReplaceAll(ReplaceAll(email, '.',''), '@','');
+    }
+    return email;
+};
+
 let GetNewKey = (type) => {
     let _key = uuidv4();
     let newKey = _key;
@@ -178,5 +186,5 @@ let GetFileExtn = (fileName) => {
 module.exports = {
     GetLookUpData, GetDate, SortByCreatedOn, IsHasValue, GetUpdateExpressionAndAttributeValuesAndNames, ReplaceAll,
     ReturnObject, GetKey, GetNewKey, AddDetaultValues, UpdateDetaultValues, CreateRandomPassword, CreatePassword, CreatePasswordSalt,
-    ComparePassword, GetKeyNameFromObject, EnCode, DeCode, GetFileExtn
+    ComparePassword, GetKeyNameFromObject, EnCode, DeCode, GetFileExtn, GetEmailKey
 };

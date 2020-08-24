@@ -38,40 +38,50 @@ let CreateDynamicUser = async (sourceData, type, callback) => {
         user['profile_image_url'] = sourceData.profile_image_url;
     }
 
-    await SaveUserData(user, async (data, err) => {
-        if (IsHasValue(data)) {
-            if (IsHasValue(data.first_name)) {
-                userRegistationEmailTemplate = ReplaceAll(userRegistationEmailTemplate, '[FIRSTNAME]', data.first_name);
-            }
-
-            if (IsHasValue(data.last_name)) {
-                userRegistationEmailTemplate = ReplaceAll(userRegistationEmailTemplate, '[LASTNAME]', data.last_name);
-            }
-
-            if (IsHasValue(data.CompanyURL)) {
-                userRegistationEmailTemplate = ReplaceAll(userRegistationEmailTemplate, '[COMPANYURL]', config.CompanyURL);
-            }
-
-            if (IsHasValue(data.user_name)) {
-                userRegistationEmailTemplate = ReplaceAll(userRegistationEmailTemplate, '[USERNAME]', data.user_name);
-            }
-
-            if (IsHasValue(data.password)) {
-                userRegistationEmailTemplate = ReplaceAll(userRegistationEmailTemplate, '[PASSWORD]', data.password);
-            }
-
-            //TODO: Send Confirmation email to user.
-            let mailOptions = {
-                to: data.email_id,
-                subject: 'New Company User Registation',
-                html: userRegistationEmailTemplate
-            };
-                                                                                  n     
-            SendEmail(mailOptions, (data, err) => {
-                ReturnObject(callback, err, data, 'New Company User Registation');
-            });
+    await SaveUserData(user, async (user, err) => {
+        if (IsHasValue(user)) {
+            return await SendUserRegistationEmail(user, callback);
         }
     });
 }
 
-module.exports = { CreateDynamicUser };
+let SendUserRegistationEmail = async (user, callback) => {
+    if (IsHasValue(user)) {
+        if (IsHasValue(user.first_name)) {
+            userRegistationEmailTemplate = ReplaceAll(userRegistationEmailTemplate, '[FIRSTNAME]', user.first_name);
+        }
+
+        if (IsHasValue(user.last_name)) {
+            userRegistationEmailTemplate = ReplaceAll(userRegistationEmailTemplate, '[LASTNAME]', user.last_name);
+        }
+
+        if (IsHasValue(config.CompanyURL)) {
+            userRegistationEmailTemplate = ReplaceAll(userRegistationEmailTemplate, '[COMPANYURL]', config.CompanyURL);
+        }
+
+        if (IsHasValue(user.user_name)) {
+            userRegistationEmailTemplate = ReplaceAll(userRegistationEmailTemplate, '[USERNAME]', user.user_name);
+        }
+
+        if (IsHasValue(user.password)) {
+            userRegistationEmailTemplate = ReplaceAll(userRegistationEmailTemplate, '[PASSWORD]', user.password);
+        }
+
+        //TODO: Send Confirmation email to user.
+        let mailOptions = {
+            to: user.email_id,
+            subject: 'New User Registation',
+            html: userRegistationEmailTemplate
+        };
+                                                                                   
+        SendEmail(mailOptions, (data, err) => {
+            if(IsHasValue(data.accepted) && (data.accepted.length > 0)){
+                ReturnObject(callback, err, {'data': 'User Registation Email Send Successfully!', 'Status': 200 }, 'New User Registation');
+            }else{
+                ReturnObject(callback, err, null, 'New User Registation');
+            }
+        });
+    }
+}
+
+module.exports = { CreateDynamicUser, SendUserRegistationEmail };

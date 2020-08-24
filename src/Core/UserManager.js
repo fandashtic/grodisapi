@@ -1,6 +1,7 @@
 const { GetbyColumn, GetById, GetAll, Save, Update, Delete } = require('./../Data/User');
 const { InsertLog } = require('./../Data/SessionLog');
-const { GetNewKey, IsHasValue, GetDate, ComparePassword, CreatePassword, ReturnObject, GetLookUpData } = require('./../Shared/Util');
+const { SendUserRegistationEmail } = require('./../Shared/Common');
+const { GetNewKey, GetEmailKey, IsHasValue, GetDate, ComparePassword, CreatePassword, ReturnObject, GetLookUpData } = require('./../Shared/Util');
 
 let IsUserVerified = async (user_name, password, callback) => {
     return await GetbyColumn(user_name, 'user_name', async (userExists) => {        
@@ -49,17 +50,22 @@ let AddSessionLog = (session_id, session) => {
 }
 
 let AddUser = async (user, callback) => {
-    return await Save(user, async (user) => {
-        if (user) {
-            //TODO: Send Confirmation email to user.
-
-            return await callback({
-                'data': user,
-                'Status': 200
-            })
+    return await GetById(GetEmailKey(user.email_id), async (data, err) => {
+        if (IsHasValue(err)) {
+            return await Save(user, async (user) => {
+                if (user) {
+                    //TODO: Send Confirmation email to user.
+                    SendUserRegistationEmail(user, callback);
+                } else {
+                    return await callback({
+                        'data': null,
+                        'Status': 401
+                    })
+                }
+            });
         } else {
             return await callback({
-                'data': null,
+                'data': "User Email already exists!",
                 'Status': 401
             })
         }
