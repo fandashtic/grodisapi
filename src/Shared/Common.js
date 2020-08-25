@@ -75,7 +75,7 @@ let SendUserRegistationEmail = async (user, callback) => {
         };
                                                                                    
         SendEmail(mailOptions, (data, err) => {
-            if(IsHasValue(data.accepted) && (data.accepted.length > 0)){
+            if(IsHasValue(data) && IsHasValue(data.accepted) && (data.accepted.length > 0)){
                 ReturnObject(callback, err, {'data': 'User Registation Email Send Successfully!', 'Status': 200 }, 'New User Registation');
             }else{
                 ReturnObject(callback, err, null, 'New User Registation');
