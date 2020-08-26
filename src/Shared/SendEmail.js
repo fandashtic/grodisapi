@@ -6,8 +6,18 @@ let SendEmail = async (mailOptions, callback) => {
     if (IsHasValue(mailOptions)) {
         mailOptions['from'] = DeCode(config.mailconfig.user);
 
+        // var transporter = nodemailer.createTransport({
+        //     service: config.mailconfig.service,
+        //     auth: {
+        //         user: DeCode(config.mailconfig.user),
+        //         pass: DeCode(config.mailconfig.pass)
+        //     }
+        // });
+
         var transporter = nodemailer.createTransport({
-            service: config.mailconfig.service,
+            host: "smtp.gmail.com",
+            port: 587,
+            secure: false, // upgrade later with STARTTLS
             auth: {
                 user: DeCode(config.mailconfig.user),
                 pass: DeCode(config.mailconfig.pass)
@@ -15,7 +25,7 @@ let SendEmail = async (mailOptions, callback) => {
         });
 
         transporter.sendMail(mailOptions, function (err, data) {
-            ReturnObject(callback, err, data, 'SendEmail');            
+            ReturnObject(callback, err, data, 'SendEmail');
         });
     } else {
         return await callback({
