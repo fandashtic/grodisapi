@@ -46,6 +46,7 @@ let CreateDynamicUser = async (sourceData, type, callback) => {
 }
 
 let SendUserRegistationEmail = async (user, callback) => {
+    console.log(user);
     if (IsHasValue(user)) {
         if (IsHasValue(user.first_name)) {
             userRegistationEmailTemplate = ReplaceAll(userRegistationEmailTemplate, '[FIRSTNAME]', user.first_name);
@@ -65,6 +66,12 @@ let SendUserRegistationEmail = async (user, callback) => {
 
         if (IsHasValue(user.password)) {
             userRegistationEmailTemplate = ReplaceAll(userRegistationEmailTemplate, '[PASSWORD]', user.password);
+        }
+
+        if (IsHasValue(user.company_name)) {
+            userRegistationEmailTemplate = ReplaceAll(userRegistationEmailTemplate, '[COMPANYNAME]', user.company_name);
+        }else{
+            userRegistationEmailTemplate = ReplaceAll(userRegistationEmailTemplate, '[COMPANYNAME]', 'Fandashtic');
         }
 
         //TODO: Send Confirmation email to user.

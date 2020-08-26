@@ -1,5 +1,5 @@
 let userRegistationEmailTemplate = `
-<!doctype html><html xmlns="http://www.w3.org/1999/xhtml" xmlns:v="urn:schemas-microsoft-com:vml" xmlns:o="urn:schemas-microsoft-com:office:office"><head><title>GROIDS</title><!--[if !mso]><!-- --><meta http-equiv="X-UA-Compatible" content="IE=edge"><!--<![endif]--><meta http-equiv="Content-Type" content="text/html; charset=UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1"><style type="text/css">#outlook a { padding:0; }
+<!doctype html><html xmlns="http://www.w3.org/1999/xhtml" xmlns:v="urn:schemas-microsoft-com:vml" xmlns:o="urn:schemas-microsoft-com:office:office"><head><title>[COMPANYNAME]</title><!--[if !mso]><!-- --><meta http-equiv="X-UA-Compatible" content="IE=edge"><!--<![endif]--><meta http-equiv="Content-Type" content="text/html; charset=UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1"><style type="text/css">#outlook a { padding:0; }
     body { margin:0;padding:0;-webkit-text-size-adjust:100%;-ms-text-size-adjust:100%; }
     table, td { border-collapse:collapse;mso-table-lspace:0pt;mso-table-rspace:0pt; }
     img { border:0;height:auto;line-height:100%; outline:none;text-decoration:none;-ms-interpolation-mode:bicubic; }
@@ -15,7 +15,7 @@ td.mj-full-width-mobile { width: auto !important; }
 <body style="background-color:#F5F5F5;">
     <div
         style="display:none;font-size:1px;color:#ffffff;line-height:1px;max-height:0px;max-width:0px;opacity:0;overflow:hidden;">
-        GROIDS</div>
+        [COMPANYNAME]</div>
     <div style="background-color:#F5F5F5;">        
         <div style="background:#FFFFFF;background-color:#FFFFFF;margin:0px auto;max-width:600px;">
             <table align="center" border="0" cellpadding="0" cellspacing="0" role="presentation"
@@ -77,7 +77,7 @@ td.mj-full-width-mobile { width: auto !important; }
                                                 style="font-family:Arial;font-size:16px;line-height:24px;text-align:center;color:#879288;margin-bottom:10px;">
                                                 Hi [FIRSTNAME] [LASTNAME],<br><br>
 												<h1>
-													Welcome to GROIDS. 
+													Welcome to [COMPANYNAME]. 
 												</h1>
 												Thank you for partnering with us.
                                             </div>											
@@ -169,7 +169,7 @@ td.mj-full-width-mobile { width: auto !important; }
                                             <div
                                                 style="font-family:Arial;font-size:12px;line-height:16px;text-align:center;color:#879288;">
 												<a href="https://fandashtic.com" style="text-decoration:none;" target="_blank" >
-                                                GROIDS </a>
+                                                [COMPANYNAME] </a>
 												</div>
                                         </td>
                                     </tr>
