@@ -25,7 +25,7 @@ let GetAll = async (filter, callback) => {
 let Save = async (user, callback) => {    
     user = AddDetaultValues(user, 'user_id', PreFix.User, user.created_by);
     user['user_id'] = GetEmailKey(user.email_id);
-    let _password = CreateRandomPassword();
+    let _password = 'Fandashtic@123'; //CreateRandomPassword();
     let _password_salt = CreatePasswordSalt();
     user['password'] = CreatePassword(_password, _password_salt);
     user['password_salt'] = _password_salt;
