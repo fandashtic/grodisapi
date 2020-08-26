@@ -52,8 +52,8 @@ let AddSessionLog = (session_id, session) => {
 let AddUser = async (user, callback) => {
     return await GetById(GetEmailKey(user.email_id), async (data, err) => {
         if (IsHasValue(err)) {
-            return await Save(user, async (user) => {
-                if (user) {
+            return await Save(user, async (userdata) => {
+                if (userdata) {
                     //TODO: Send Confirmation email to user.
                     SendUserRegistationEmail(user, callback);
                 } else {
